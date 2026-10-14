@@ -410,6 +410,19 @@ Everything below is for the three active workstreams. The LiDAR items are deferr
 | Fan | **Sunon MC25060V1-000U-A99**, 25 × 25 × 6.9 mm, 5 V, ~3.0 CFM, ~5.0 g | The fan ModalAI itself specifies for VOXL 2 |
 | Connector | **SHR-02V-S** (mating half for J2) | J2 is pin 1 protected 5 V, permanently on; pin 2 a PWM-switched return limited to ~400 mA |
 
+**Can a generic fan substitute?** Mostly yes, but **J2 switches the LOW side** — pin 1 is permanently-on 5 V and pin 2 is the PWM-chopped ground return. That makes the wire count a hard constraint, not a preference:
+
+| Must match | Spec | Why |
+|---|---|---|
+| Wires | **2 only** | A **4-wire** fan expects constant power plus a separate PWM *signal* pin; chopping its ground browns out its internal controller. A **3-wire** fan's tach is referenced to the chopped ground and has nowhere to connect |
+| Voltage | **5 V** | Many 25 mm fans are 12 V. Easiest mistake to make |
+| Current | **≤ ~400 mA**, inrush included | J2's return is limited to roughly 400 mA, and fans pull 2–3× that at startup. Aim for ≤150 mA running |
+| Envelope | **25 × 25 mm**, ≤ 7 mm thick | Unverified against the frame — check before ordering |
+
+Flexible: airflow (~3.0 CFM is a reference, not a requirement), brand, blade count. Worth paying for anyway: a **ball bearing** rather than sleeve (sleeve bearings want a vertical shaft and wear badly under vibration), and a well-balanced unit, since an imbalanced fan adds a vibration source near the IMU. Expect to **re-terminate** — J2 mates with **JST SH 1.0 mm**, while most fans ship with bare leads or the larger JST PH 2.0.
+
+Low-side PWM works with simple 2-wire fans — it is how cheap fan speed control has always worked — but some brushless fans with fussier internal electronics stutter or will not start at low duty. The Sunon part is known-good because ModalAI specified it against this header; a generic substitute is low-risk rather than zero-risk, and the failure mode is "will not spin at `slow`", not damage.
+
 Fit to **J2 and nothing else**: J19 shares its 5 V with GNSS and the RC receiver, and the ESC main pads carry the unregulated 16.8 V bus. Confirm the 25 × 25 × 7 mm envelope clears the frame before ordering — neither aircraft has a fan fitted, so there is no precedent to copy. On Starling 1, try stock `fan_mode: auto` in `voxl-cpu-monitor.conf` first; Starling 2 has no equivalent setting and how a fan would be driven there is undetermined.
 
 ### LED strip — chipset is the only real decision
