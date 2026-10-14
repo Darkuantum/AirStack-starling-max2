@@ -59,6 +59,35 @@ network, no router, no Motive). Raw transcripts: `drone-backups/ident-*.txt`.
   per the rule below, never connect the laptop to it. Joining needs
   `voxl-wifi station '<SSID>' '<PASSWORD>'` **then a reboot**.
 
+### ESC / LED hardware (✅ settled 2026-10-14, no disassembly needed)
+
+| | |
+|---|---|
+| **ESC part number** | **M0129** (VOXL Micro/Mini 4-in-1, 4S). Proven from ModalAI's own shipped parameter set on the drone: `/usr/share/modalai/voxl-esc-params/D0012_Starling_MAX/esc_params_`**`m0129`**`_{custom_2204_1500kv,f2203_5_1500kv}_7x3.7x3.xml` |
+| ⚠️ Repo error | `AirStack/.../scripts/svg_led_daemon.py:62` comments "drives the strip on **M0138**". **Wrong** — M0138 is the 6S Racing ESC. The misread is likely from `voxl-esc-tools/m0138_custom_firmware_for_dyno_bench/`. Code is unaffected (ESC ID 0 is correct either way); only the comment is wrong |
+| LED outputs | **One** (the M0138's two outputs are not available on this ESC) |
+| LED data | Single-wire WS2812/NeoPixel off a raw **3.3 V** STM32 GPIO — **no level shifter**. Add a 330–470 Ω series resistor at the ESC end |
+| **LED power pad** | **3.3 V default**, 500–600 mA. A 5 V option exists but `AUX_VREG_ADJUST (CH0 PC14)` is firmware-**disabled**. Under-volts a 5 V strip — hence `brightness 80/255`. A longer/brighter strip needs its own 5 V BEC with grounds tied |
+| Max pixels | **32**, firmware-enforced (`MAX_NEOPIXELS = 32`). Currently using 11 |
+| Connector | **None** — bare solder test points (⬇ data, ➕ power, `G` ground) |
+| ESC telemetry | `px4-listener esc_status` works **without** stopping PX4. 4 ESCs online, 16.07–16.09 V (4S at ~4.02 V/cell), 42–44 °C idle |
+| `esc_address` | Reads **2, 3, 1, 4** — this is the **PX4 motor number**, not the raw ESC ID (it matches `VOXL_ESC_FUNC1..4 = 102,103,101,104`). `ESC_ID_DEFAULT = 0` in the daemon is **not** a bug |
+| Motor variants | The two param filenames encode the airframe split: `2204_1500kv` = **V4**, `f2203_5_1500kv` = **V1–V3**. Motor colour is visible **without opening the aircraft**: black = V4, black-and-gold = V1–V3 |
+
+### Cooling / thermal (✅ baseline measured 2026-10-14 on Starling 2, idle on bench)
+
+| | |
+|---|---|
+| Idle temperatures | `soc` **50 °C**; all CPU / DDR / camera zones **43–44 °C** |
+| Thresholds | `voxl-cpu-monitor` flags **>90 °C**; SoC throttling begins **~95 °C**. Staff call 60–75 °C unremarkable |
+| Verdict so far | **Large margin at idle.** Hover numbers still needed before deciding a fan is warranted |
+| ⚠️ Reading frequencies | Cores idle below max (`cpu0 787200/979200`, `gov=schedutil`) is **demand scaling, not throttling**. At 44 °C nothing is throttling |
+| `voxl-fan` | **NOT present** on Starling 2 (voxl-utils 2.0.4) |
+| Fan thresholds | `/etc/modalai/voxl-cpu-monitor.conf` exposes only `en_auto_pitmode`, `normal_governor`, `pitmode_governor` — **no fan control at all** |
+| PWM chips | `pwmchip0/2/5` exist but are all on the **PMIC** (`pm8150b`, `pm8150l`), none exported. Not confirmed as J2 |
+| J2 fan header | 2-pin, 5 V permanent + **PWM-switched return**. **No tach line** — software cannot tell you whether a fan is fitted |
+| Design note | A **constant-speed** fan beats a thermostatic one for EKF: fixed RPM gives one stationary vibration peak a static notch can remove; variable speed sweeps it. *(Engineering inference, not a ModalAI statement.)* |
+
 ### Other measured facts worth keeping
 
 - **Both** drones carry the full ESC/LED toolchain: `voxl-esc`, `voxl-led`,

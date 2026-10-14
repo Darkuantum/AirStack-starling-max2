@@ -1,0 +1,144 @@
+########## 1. ESC BOARD IDENTITY from the shipped param set ##########
+--- D0012_Starling_MAX param files ---
+total 24
+drwxr-xr-x  2 root root 4096 Mar  2  2023 .
+drwxr-xr-x 19 root root 4096 Mar  2  2023 ..
+-rw-r--r--  1 root root 7714 Mar 27 21:43 esc_params_m0129_custom_2204_1500kv_7x3.7x3.xml
+-rw-r--r--  1 root root 7714 Mar 27 21:43 esc_params_m0129_f2203_5_1500kv_7x3.7x3.xml
+--- board / hardware identifiers inside them ---
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+For a license to use on non-ModalAI hardware, please contact license@modalai.com -->
+    <param name="id"              value="127"/>  <!-- 0-7 .. 127 means use hardware ID pins to read ID-->
+    <param name="dir"             value="2"/>    <!-- 0=fwd, 1=rev, 2=fwd id-based, 3=rev id-based -->
+    <param name="protocol_version" value="2"/>          <!-- reserved for future use -->
+    <param name="input_mode"       value="0"/>          <!-- reserved for future use -->
+    <param name="baud_rate"        value="2000000"/>     <!-- communication bit rate -->
+    <param name="char_timeout_ns"  value="0"/>          <!-- not used -->
+    <param name="cmd_timeout_ns"   value="100000000"/>  <!-- timeout for incoming commands before ESC will stop the motor -->
+    <param name="pwm_frequency"       value="48000"/>  <!-- switching freqency of PWM signal going to motors. 24Khz and 48Khz are only options for now -->
+    <param name="vbat_nominal_mv"     value="14500"/>  <!-- used for sanity checking and limiting of voltage-dependent funcions -->
+    <param name="num_cycles_per_rev"  value="7"/>      <!-- number of pole pairs in the motor. used for converting electrical frequency to mechanical rpm -->
+    <param name="min_rpm"             value="2000"/>   <!-- minimum RPM that will be attempted, otherwise capped -->
+    <param name="max_rpm"             value="13000"/>  <!-- maximum RPM that will be attempted, otherwise capped -->
+    <param name="min_pwm"             value="80"/>     <!-- cap for minimum power to be ever applied. max is 999 -->
+    <param name="max_pwm"             value="999"/>    <!-- cap for maximum power to be ever applied. max is 999 -->
+    <param name="pwm_vs_rpm_curve_a0" value="476.9716515409892"/>  <!-- this is actually motor_voltage vs rpm curve.. using legacy naming -->
+    <param name="pwm_vs_rpm_curve_a1" value="0.4337070025406246"/> <!-- Emax RS1306 3300KV with tri-blade 3x3x3 -->
+    <param name="pwm_vs_rpm_curve_a2" value="5.797336492676575e-05"/>
+    <param name="kp"                  value="50"/>    <!-- RPM controller proportional gain -->
+    <param name="ki"                  value="20"/>     <!-- RPM controller proportional gain -->
+    <param name="max_kpe"             value="100"/>    <!-- maximum proportional erorr term (max is 999) -->
+    <param name="max_kie"             value="30"/>    <!-- maximum integral error term (max is 999) -->
+    <param name="max_rpm_delta"       value="6000"/>    <!-- cap for maximum rpm error used in RPM controller -->
+    <param name="spinup_type"         value="1"/>      <!-- 0: traditional, 1: sinusoidal -->
+    <param name="spinup_power"        value="140"/>     <!-- power used to during spin-up procedure -->
+    <param name="latch_power"         value="100"/>     <!-- power used during latching stage of spin-up (out of 999)-->
+    <param name="spinup_power_ramp"   value="8"/>      <!-- it will take ( 4096 / (spinup_power_ramp*10000) ) seconds to ramp sinusoidal start-up power from 0 to spinup_power -->
+    <param name="spinup_rpm_target"   value="2000"/>   <!-- Desired RPM at the end of the sinusoidal spin-up procedure -->
+    <param name="spinup_time_ms"      value="1500"/>   <!-- Duration of the sinusoidal spin-up procedure -->
+    <param name="spinup_bemf_comp"    value="1"/>      <!-- 0: disable, 1:enable back-emf compensation in sinusoidal spin-up procedure -->
+    <param name="motor_kv"            value="1500"/>    <!-- kV value of the motor. used in back-emf compensation during spin-up -->
+    <param name="min_num_cross_for_closed_loop" value="5"/>  <!-- exit latching mode of fixed power after this number of zero crossings -->
+    <param name="protection_stall_check_rpm" value="1000"/> <!-- if motor spins below this RPM, stall check will trigger and stop / restart the motor -->
+    <param name="brake_to_stop"       value="0"/>             <!-- apply brake when stopping motor (or not) -->
+    <param name="stall_timeout_ns"    value="20000000"/>      <!-- after spin-up, if no zero crossing is not detected for this amount of time, motor is considered stalled -->
+    <param name="require_reset_if_stalled"      value="0"/>   <!-- require sending an array of zero commands to reset before next spin-up, if motor stalled -->
+    <param name="tone_freqs"          value="[118, 132, 105, 88, 99, 88, 83, 78, 1, 235, 0, 0]"/> <!-- 200 is 2000Hz, max 255 -->
+    <param name="tone_durations"      value="[30, 30, 30, 60, 30, 30, 30, 60, 60, 60, 0, 0]"/> <!-- duration of each tone in units of 10 milli-seconds. Poor naming!!! -->
+    <param name="tone_powers"         value="[15, 15, 15, 15, 15, 15, 15, 15, 0, 15, 0, 0]"/> <!-- max is 255 -->
+--- the esc tools dir ---
+README.md
+__pycache__
+calibration.md
+crc.py
+doc
+esc_boards.py
+esc_scanner.py
+firmware
+m0138_custom_firmware_for_dyno_bench
+misc
+recovery.md
+voxl-esc-board-detect.py
+voxl-esc-calibrate.py
+voxl-esc-gpio.py
+voxl-esc-led.py
+voxl-esc-neopixel-test.py
+voxl-esc-pwm.py
+voxl-esc-scan.py
+voxl-esc-spin-helper.sh
+voxl-esc-spin-sine.py
+voxl-esc-spin-step.py
+voxl-esc-spin.py
+voxl-esc-stress.py
+voxl-esc-tone.py
+voxl-esc-tools-bin
+voxl-esc-upload-firmware-all.sh
+voxl-esc-upload-firmware.py
+voxl-esc-upload-params.py
+voxl-esc-verify-params.py
+voxl_esc_setup_paths.py
+
+########## 2. FULL ESC TELEMETRY (all four addresses) ##########
+The LED strip is driven by ESC ID 0's GPIO; esc_address 2 and 3 were seen
+earlier, so confirm an ID 0 actually exists before trusting ESC_ID_DEFAULT=0.
+    esc_count: 4
+    esc_online_flags: 15 (0b1111)
+    esc_armed_flags: 15 (0b1111)
+  esc[0] (esc_report):
+    esc_voltage: 16.07700
+    esc_temperature: 44.00000
+    esc_address: 2
+  esc[1] (esc_report):
+    esc_voltage: 16.06800
+    esc_temperature: 42.00000
+    esc_address: 3
+  esc[2] (esc_report):
+    esc_voltage: 16.07200
+    esc_temperature: 43.00000
+    esc_address: 1
+  esc[3] (esc_report):
+    esc_voltage: 16.07100
+    esc_temperature: 44.00000
+    esc_address: 4
+  esc[4] (esc_report):
+    esc_voltage: 0.00000
+    esc_temperature: 0.00000
+    esc_address: 0
+  esc[5] (esc_report):
+    esc_voltage: 0.00000
+    esc_temperature: 0.00000
+    esc_address: 0
+  esc[6] (esc_report):
+    esc_voltage: 0.00000
+    esc_temperature: 0.00000
+    esc_address: 0
+  esc[7] (esc_report):
+    esc_voltage: 0.00000
+    esc_temperature: 0.00000
+    esc_address: 0
+
+########## 3. THERMAL (the part that got cut last run) ##########
+--- governor + current vs max core frequency ---
+cpu0 gov=schedutil cur=787200 max=979200
+cpu1 gov=schedutil cur=979200 max=979200
+cpu2 gov=schedutil cur=787200 max=979200
+cpu3 gov=schedutil cur=979200 max=979200
+cpu4 gov=schedutil cur=710400 max=940800
+cpu5 gov=schedutil cur=710400 max=940800
+cpu6 gov=schedutil cur=710400 max=940800
+cpu7 gov=schedutil cur=844800 max=960000
+GPU cur_freq: 305000000
+--- top thermal zones, excluding the ibat CURRENT zones ---
+soc                          50.0
+pm8150l_tz                   46.8
+pm8150_tz                    45.0
+camera-usr                   44.4
+camera-step                  44.4
+cpuss-1-usr                  44.2
+cpu-1-1-step                 44.2
+q6-hvx-usr                   44.0
+q6-hvx-step                  44.0
+cpuss-0-usr                  43.8
+cpu-1-4-step                 43.8
+cpu-1-1-usr                  43.8
+--- cpu monitor (non-blocking: read the pipe directly) ---
