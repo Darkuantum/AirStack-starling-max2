@@ -429,7 +429,8 @@ Fit to **J2 and nothing else**: J19 shares its 5 V with GNSS and the RC receiver
 
 | Item | Choose | Notes |
 |---|---|---|
-| Strip | **SK6812 RGBW** *or* **WS2812B** | SK6812 RGBW matches the daemon's default (`rgbw=True`). WS2812B is cheaper and far more commonly stocked — the daemon's `--rgb` flag exists for exactly this |
+| Strip | **SK6812 RGBW** *or* **WS2812B**, any brand | **The model does not matter, the chipset does.** Must be individually addressable, single-wire, 5 V nominal. Brand, PCB colour, IP rating and reel length are all free choices. SK6812 RGBW matches the daemon's default (`rgbw=True`); WS2812B is cheaper and far more stocked, and the `--rgb` flag exists for exactly that. Cytron notes its own strip "may ship with either WS2812B or SK6812-based LEDs… the same brightness, color, and protocol" |
+| Density | **30 LED/m** | ~33 mm spacing: 6 pixels ≈ one 200 mm arm. 60/m needs 12 pixels for the same length and breaks the cap and the current budget |
 | Length | **≤ 32 pixels**, firmware-enforced | Currently configured for 11 |
 | Resistor | **330–470 Ω**, one per data line | Series, at the ESC end. The data pin is a raw 3.3 V STM32 GPIO with no level shifter |
 | Pigtail | 3-wire, to solder to the M0129 pads | ⬇ data, ➕ power, `G` ground. **There is no connector** |
@@ -439,6 +440,30 @@ Fit to **J2 and nothing else**: J19 shares its 5 V with GNSS and the RC receiver
 ⚠️ **The one open question is the ➕ pad voltage.** The M0129 datasheet says **3.3 V** with the 5 V select GPIO firmware-disabled, which under-volts a 5 V strip. That is survivable at the configured `brightness 80/255` and a short strip, but anything longer or brighter needs its own 5 V BEC with grounds tied. Measure the pad with a multimeter when the aircraft is open, before committing to a strip length.
 
 Cytron (Singapore) stocks 60 LED/m SK6812/WS2812B silicon strip and notes the product "may ship with either WS2812B or SK6812-based LEDs… the same brightness, color, and protocol" ([Cytron SG](https://sg.cytron.io/p-sk6812-60-led-silicon-strip-1m)).
+
+### Four-arm LED build (the segmented-indication design)
+
+**One chain, not four.** WS2812 is a daisy chain, and the M0129 has a single NeoPixel output, so four independent channels are not available. Route one chain out and back through each arm in turn:
+
+```
+ESC ⬇ ─▶ [arm 1: px 0–5] ─▶ [arm 2: px 6–11] ─▶ [arm 3: px 12–17] ─▶ [arm 4: px 18–23]
+```
+
+Each pixel regenerates the signal, so every pixel stays **independently addressable by index** — arm 1 red while arm 3 is green. Fanning the data line to four parallel strips would instead make all four show the *same* pattern, and would load one 3.3 V GPIO with four times the capacitance. Physically the chain must return to the hub between arms (arm 1's DOUT has to reach arm 2's DIN), so budget four outbound strip runs plus three 3-wire return runs through the hub; the returns are plain wire, not LEDs.
+
+**Six pixels per arm, not eight.** Twenty-four pixels leaves headroom under the 32-pixel firmware cap, and more importantly under the current budget. For SK6812 RGBW (R/G/B ~8 mA each, W ~16.5 mA):
+
+| Case | Per pixel | × 24 | × 32 | vs the 500–600 mA rail |
+|---|---|---|---|---|
+| Single colour @ `brightness 80/255` | ~2.5 mA | ~60 mA | ~80 mA | comfortable |
+| Full white @ `80/255` | ~12 mA | ~300 mA | ~400 mA | marginal at 32 |
+| Full white @ 255 | ~40 mA | ~960 mA | ~1.3 A | **far over** |
+
+⚠️ **Voltage drop is the reason four arms is the case where a separate BEC stops being optional.** The rail is **3.3 V feeding a part specified for 5 V**; WS2812B/SK6812 misbehave below roughly 3.5 V, so the strip is under-spec before any wire resistance. Add ~200 mm of arm run plus return wire to the far arm and the last pixels may be dim, colour-shifted or dark. Measure the ➕ pad first; if it reads 3.3 V, feed the strip from its own 5 V BEC with grounds tied and keep only the data line coming from the ESC. Inject power at both ends if you do run 32 pixels off the ESC rail.
+
+**Strip density: 30 LED/m.** At ~33 mm spacing, 6 pixels covers about 200 mm — roughly one arm. At 60/m the same length needs 12 pixels and breaks both the cap and the current budget.
+
+**Software change required.** The daemon currently drives the whole strip one colour: its UDP protocol carries a single `{"r","g","b","w","mode"}`. The packet builder underneath already accepts a per-pixel array (`build_neopixel_packet(led_data, num_leds, rgbw=...)`), so the capability exists and only the ground-side protocol needs extending — a `segments` field or a pixel array, in both `svg_led_daemon.py` and `led_controller.py`, plus a segment map from arm index to pixel range. Decide the semantics before soldering: arms can indicate heading, per-drone identity, or which direction the CBF is pushing, and that choice determines whether the map is body-fixed or world-fixed.
 
 ### Propellers — `7 × 3.7`, three blades
 
