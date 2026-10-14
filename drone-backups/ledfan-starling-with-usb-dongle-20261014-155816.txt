@@ -1,0 +1,187 @@
+########## A. ESC IDENTITY — settles M0129 vs M0138 ##########
+--- voxl-esc tooling on disk ---
+/usr/share/modalai/voxl-esc-params:
+D0005_starling_1504_3000kv_dji_props
+D0012_Starling_MAX
+D0013
+D0014_starling_1504_3000kv_ms_props
+FPV_RevB
+RB5_Flight_V1
+Seeker_V1
+Sentinel_V1
+Starling_V1
+--- voxl-esc help ---
+
+Start wizard with prompts:
+voxl-esc
+
+Shortcut configuration arguments for scripted setup.
+
+voxl-esc scan
+voxl-esc detect
+voxl-esc spin
+voxl-esc setup_starling_silver_motors
+voxl-esc setup_starling_black_motors
+voxl-esc setup_sentinel_v1
+voxl-esc setup_fpv_revB_v3
+voxl-esc setup_fpv_revB_v4
+voxl-esc setup_D0012
+voxl-esc setup_D0013
+voxl-esc upgrade_firmware
+
+optionally add the 'force' argument to any of the setup_* args above
+to force flash the ESCs even if the firmware matches and doesn't need
+updating, this is good for testing.
+
+
+show this help message:
+voxl-esc help
+
+--- does PX4 hold the ESC UART? (voxl-px4 active => yes) ---
+active
+--- ESC telemetry via PX4 (works WITHOUT stopping px4) ---
+
+TOPIC: esc_status
+ esc_status
+    timestamp: 33739185 (0.001213 seconds ago)
+    counter: 14662
+    esc_count: 4
+    esc_connectiontype: 1
+    esc_online_flags: 15 (0b1111)
+    esc_armed_flags: 15 (0b1111)
+
+  esc[0] (esc_report):
+    timestamp: 33737608 (0.002878 seconds ago)
+    esc_errorcount: 0
+    esc_rpm: 0
+    esc_voltage: 16.07800
+    esc_current: 0.00000
+    esc_temperature: 37.00000
+    failures: 0
+    esc_address: 2
+    esc_cmdcount: 70
+    esc_state: 0
+    actuator_function: 0
+    esc_power: 0
+
+  esc[1] (esc_report):
+    timestamp: 33739185 (0.001374 seconds ago)
+    esc_errorcount: 0
+    esc_rpm: 0
+    esc_voltage: 16.09600
+    esc_current: 0.00000
+    esc_temperature: 36.00000
+    failures: 0
+    esc_address: 3
+    esc_cmdcount: 71
+    esc_state: 0
+    actuator_function: 0
+    esc_power: 0
+
+  esc[2] (esc_report):
+    timestamp: 33735305 (0.005338 seconds ago)
+
+########## B. LED PATH ##########
+--- neopixel / led tools ---
+/usr/bin/voxl-led
+/usr/bin/voxl-send-neopixel-cmd
+General Usage:
+
+voxl-led on (same as white)
+voxl-led off
+voxl-led color red
+voxl-led custom 0 128 128
+
+color and custom can be appended with 'flash' to
+ direct cpu monitor to flash the color
+
+Available Color Presets:
+  white, red, orange, yellow,
+  green, teal, blue, purple
+
+--- ModalAI's own neopixel bench script ---
+/usr/share/modalai/voxl-esc-tools/voxl-esc-neopixel-test.py
+--- modal_io_bridge pipe (the LED transport) ---
+prw-r--r-- 1 root root 0 Aug 19 08:26 /run/mpa/modal_io_bridge
+--- our daemon installed? ---
+ls: cannot access '/usr/bin/svg_led_daemon.py': No such file or directory
+ls: cannot access '/etc/systemd/system/svg-led.service': No such file or directory
+inactive
+--- PX4 LED-related drivers present ---
+/usr/bin/px4-led_control
+/usr/bin/px4-modal_io_bridge
+/usr/bin/px4-rgbled
+
+########## C. FAN CONTROL ##########
+voxl-fan present: NOT FOUND
+timeout: failed to run command 'voxl-fan': No such file or directory
+--- pwm chips (is pwmchip0 real on VOXL 2?) ---
+total 0
+drwxr-xr-x   2 root root 0 Aug 19 08:26 .
+drwxr-xr-x 104 root root 0 Mar  2  2023 ..
+lrwxrwxrwx   1 root root 0 Mar  2  2023 pwmchip0 -> ../../devices/platform/soc/c440000.qcom,spmi/spmi-0/spmi0-03/c440000.qcom,spmi:qcom,pm8150b@3:qcom,pwms@b100/pwm/pwmchip0
+lrwxrwxrwx   1 root root 0 Mar  2  2023 pwmchip2 -> ../../devices/platform/soc/c440000.qcom,spmi/spmi-0/spmi0-05/c440000.qcom,spmi:qcom,pm8150l@5:qcom,pwms@b100/pwm/pwmchip2
+lrwxrwxrwx   1 root root 0 Mar  2  2023 pwmchip5 -> ../../devices/platform/soc/c440000.qcom,spmi/spmi-0/spmi0-05/c440000.qcom,spmi:qcom,pm8150l@5:qcom,pwms@bc00/pwm/pwmchip5
+/sys/class/pwm/pwmchip0 npwm=2
+/sys/class/pwm/pwmchip2 npwm=3
+/sys/class/pwm/pwmchip5 npwm=2
+--- cpu-monitor conf (does it expose fan thresholds?) ---
+/**
+ * This file contains configuration parameters for voxl-cpu-monitor.
+ *
+ *
+ * en_auto_standby:   enable cpu-monitor to put CPU in standby mode automatically
+ *                      when Autopilot is disarmed
+ *
+ * normal_cpu_mode:   cpu governor to use normally, default: auto
+ *                      options are: auto, performance, powersave, conservative
+ *
+ * standby_cpu_mode:  cpu governor to use when in standby mode, default: powersave
+ *                    options are: auto, performance, powersave, conservative
+ *
+ * fan_mode:          fan speed governor to use, default: auto
+ *                    options are: auto, off, max, slow
+ *
+ */
+{
+	"en_auto_standby":	0,
+	"normal_cpu_mode":	"auto",
+	"standby_cpu_mode":	"powersave",
+	"fan_mode":	"auto"
+}
+
+########## D. THERMAL BASELINE — do you even need a fan? ##########
+--- kernel thermal zones (degC) ---
+pm8150b-ibat-lvl0            781.0
+pm8150b-ibat-lvl1            703.0
+soc                          50.0
+apc-1-max-step               42.6
+cpu-1-2-usr                  42.2
+cpu-1-1-step                 42.2
+cpu-0-0-step                 42.2
+cpu-1-5-usr                  41.8
+cpu-0-0-usr                  41.8
+cpuss-1-usr                  41.5
+cpuss-0-usr                  41.5
+cpu-1-5-step                 41.5
+cpu-1-4-usr                  41.5
+cpu-1-4-step                 41.5
+cpu-1-2-step                 41.5
+cpu-1-1-usr                  41.5
+cpu-0-1-step                 41.5
+apc-0-max-step               41.5
+video-usr                    41.3
+video-step                   41.3
+cpu-1-7-usr                  41.1
+cpu-1-7-step                 41.1
+cpu-1-6-usr                  41.1
+cpu-1-6-step                 41.1
+cpu-1-0-step                 41.1
+--- governor + current vs max core frequency (throttling evidence) ---
+cpu0 gov=schedutil cur=1075200 max=1804800
+cpu4 gov=schedutil cur=825600 max=2419200
+cpu7 gov=schedutil cur=844800 max=2841600
+GPU cur_freq: 587000000
+NOTE: this is an IDLE-ON-BENCH baseline with no props spinning and cameras
+      mostly idle. Hover numbers will be higher. Treat 90C as the warning
+      flag and ~95C as where the SoC starts throttling.

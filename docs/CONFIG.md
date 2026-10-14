@@ -82,12 +82,14 @@ network, no router, no Motive). Raw transcripts: `drone-backups/ident-*.txt`.
 
 | | |
 |---|---|
-| Idle temperatures | `soc` **50 °C**; all CPU / DDR / camera zones **43–44 °C** |
+| ⚠️ Idle temperatures — **NOT a valid baseline** | Taken 2026-10-14 **with an external fan blowing on the aircraft**, so these are forced-convection numbers: Starling 2 **43–44 °C**, Starling 1 **41–42 °C**. The condition that actually matters is **still air on the ground** (pre-flight, between flights, post-landing) — props move air in flight, the bench does not. Re-measure with `scripts/thermal_soak.sh`, external fan OFF |
+| ⚠️ The `soc` zone is a placeholder | Reads **exactly 50.0** on both aircraft in every sample. Not a sensor. Use the `cpu-*` / `apc-*` / `ddr-*` zones |
 | Thresholds | `voxl-cpu-monitor` flags **>90 °C**; SoC throttling begins **~95 °C**. Staff call 60–75 °C unremarkable |
-| Verdict so far | **Large margin at idle**, and **no fan is fitted to J2 on either aircraft** (inspected 2026-10-14). Hover numbers still needed before deciding a fan is warranted at all |
+| Verdict so far | ⏳ **UNDECIDED — no valid measurement yet.** No fan is fitted to J2 on either aircraft (inspected 2026-10-14). The existing numbers are contaminated by an external fan and, on Starling 2, by pitmode. Need a still-air soak, idle and loaded, before deciding |
 | ⚠️ Reading frequencies | Cores idle below max (`cpu0 787200/979200`, `gov=schedutil`) is **demand scaling, not throttling**. At 44 °C nothing is throttling |
-| `voxl-fan` | **NOT present** on Starling 2 (voxl-utils 2.0.4) |
-| Fan thresholds | `/etc/modalai/voxl-cpu-monitor.conf` exposes only `en_auto_pitmode`, `normal_governor`, `pitmode_governor` — **no fan control at all** |
+| `voxl-fan` (CLI) | **NOT present on either aircraft** (A: voxl-utils 1.4.4, B: 2.0.4) |
+| **Fan control** | ⚠️ **differs per aircraft.** **Starling 1 HAS it**: `voxl-cpu-monitor.conf` carries **`"fan_mode": "auto"`** with options `auto / off / max / slow`, i.e. stock thermostatic control — fit a fan to J2 and change nothing. **Starling 2 does NOT**: its newer SDK replaced the schema (`en_auto_pitmode` / `normal_governor` / `pitmode_governor`, new `cool` governor) and **dropped `fan_mode` entirely** |
+| CPU power policy | **Starling 1: `en_auto_standby: 0`** — full frequency range always. **Starling 2: `en_auto_pitmode: true`** — cores drop to ~1 GHz while disarmed (`cpu7 max=960000` vs A's `2841600`), so B's bench temperatures were suppressed by policy, not just by airflow |
 | PWM chips | `pwmchip0/2/5` exist but are all on the **PMIC** (`pm8150b`, `pm8150l`), none exported. Not confirmed as J2 |
 | J2 fan header | 2-pin, 5 V permanent + **PWM-switched return**. **No tach line** — software cannot tell you whether a fan is fitted |
 | Design note | A **constant-speed** fan beats a thermostatic one for EKF: fixed RPM gives one stationary vibration peak a static notch can remove; variable speed sweeps it. *(Engineering inference, not a ModalAI statement.)* |
