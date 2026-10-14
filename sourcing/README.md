@@ -1,11 +1,11 @@
 # Printable parts-sourcing sheet
 
 `parts-sourcing.pdf` — 6 pages, A4, for carrying to Sim Lim Tower / Sim Lim Square.
-One page per item: a photo of the real part, the exact spec, a "do not buy" list, and a
+One page per item: a large photo of the real part, the exact spec, a "do not buy" list, and a
 blank table for writing quotes in so shops can be compared before buying.
 
-Key English terms are paired with Chinese, since most Sim Lim Tower component shops are
-Mandarin-speaking.
+Photos print large on purpose — they are the reason the sheet exists. Source images were
+auto-cropped of their white borders (40–45% of each file), so the part fills the frame.
 
 | Page | Contents |
 |---|---|
@@ -22,14 +22,16 @@ Mandarin-speaking.
 |---|---|---|
 | `img/led-strip.jpg`, `img/led-strip-detail.jpg` | Cytron Technologies, product DS-6812-WS-601M | vendor product photo |
 | `img/prop.webp` | OddityRC / Gemfan 7037-3 listing | vendor product photo |
+| `img/prop2.webp` | OddityRC / Gemfan 7037-3 listing | vendor product photo |
 | `img/jst-sh.jpg` | Christopher.nunez via Wikimedia Commons | CC BY-SA 3.0 |
-| `img/fan-sunon.jpg` | Rico Shen via Wikimedia Commons | CC BY-SA 4.0 |
 
-The **fan page keeps a drawn diagram as its primary illustration** rather than a photo.
-No openly-licensed photo of a 25×25×7 mm ("2507") 5 V 2-wire fan was findable, and the two
-things that actually matter — the dimensions and the wire count — are conveyed better by the
-dimensioned drawing and the 2/3/4-wire comparison than by a photo of a different fan. The
-Sunon range photo is included as supporting context only.
+**The fan page has no photo, deliberately.** No openly-licensed photo of a 25×25×7 mm
+("2507") 5 V 2-wire fan was findable, and two candidates were rejected for being actively
+misleading: a Commons "small fan" image that turned out to be a bracket of THREE-wire server
+fans, and a Sunon trade-show display of 8×8 to 30×30 mm micro-blowers — the wrong form factor
+entirely. The page uses a dimensioned drawing plus a 2/3/4-wire comparison, which convey the
+only two things that matter (size and wire count) better than a photo of a different fan, and
+leads with the size code **"2507"**, which is what shops actually recognise.
 
 ⚠️ Two of these are **third-party vendor photos in a public repository**. If that is a problem,
 delete `sourcing/img/` and `parts-sourcing.pdf`, keep the HTML, and re-fetch locally when
