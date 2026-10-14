@@ -59,13 +59,22 @@ done
 echo "--- cpu-monitor conf (does it expose fan thresholds?) ---"
 cat /etc/modalai/voxl-cpu-monitor.conf 2>&1
 
-echo; echo "########## D. THERMAL BASELINE — do you even need a fan? ##########"
+echo; echo "########## D. THERMAL SNAPSHOT ##########"
 echo "--- kernel thermal zones (degC) ---"
+# EXCLUDE two traps learned the hard way:
+#   *ibat*  are battery CURRENT zones, not temperatures. Left in, they sort to
+#           the top and read as 468-781 "degrees".
+#   soc     reads exactly 50.0 on every VOXL 2 sampled. It is a placeholder,
+#           not a sensor. Use the cpu-* / apc-* / ddr-* zones instead.
 for z in /sys/class/thermal/thermal_zone*; do
   [ -e "$z/temp" ] || continue
+  ty=$(cat "$z/type" 2>/dev/null)
+  case "$ty" in *ibat*|soc) continue;; esac
   t=$(cat "$z/temp" 2>/dev/null)
-  printf '%-28s %s\n' "$(cat $z/type 2>/dev/null)" "$(awk -v t="$t" 'BEGIN{printf "%.1f", (t>1000? t/1000 : t)}')"
-done | sort -k2 -rn | head -25
+  printf '%-28s %s\n' "$ty" "$(awk -v t="$t" 'BEGIN{printf "%.1f", (t>1000? t/1000 : t)}')"
+done | sort -k2 -rn | head -20
+echo "--- what is actually loading the CPU (the usual cause of heat) ---"
+ps -eo pid,pcpu,comm --sort=-pcpu 2>/dev/null | head -8
 echo "--- governor + current vs max core frequency (throttling evidence) ---"
 for i in 0 4 7; do
   d=/sys/devices/system/cpu/cpu$i/cpufreq
@@ -73,9 +82,12 @@ for i in 0 4 7; do
   echo "cpu$i gov=$(cat $d/scaling_governor 2>&1) cur=$(cat $d/scaling_cur_freq 2>&1) max=$(cat $d/scaling_max_freq 2>&1)"
 done
 echo -n "GPU cur_freq: "; cat /sys/class/kgsl/kgsl-3d0/devfreq/cur_freq 2>&1
-echo "NOTE: this is an IDLE-ON-BENCH baseline with no props spinning and cameras"
-echo "      mostly idle. Hover numbers will be higher. Treat 90C as the warning"
-echo "      flag and ~95C as where the SoC starts throttling."
+echo "NOTE: a core below its max frequency under schedutil is DEMAND SCALING, not"
+echo "      throttling. Only low frequency TOGETHER WITH high temperature means"
+echo "      throttling. Warning flag 90C, throttling begins ~95C."
+echo "      On Starling 1, stock voxl-camera-server (95%) + voxl-qvio-server (48%)"
+echo "      alone held the board at 95C; stopping them dropped it to 43.8C. Check"
+echo "      the process list above before concluding the aircraft needs a fan."
 PROBE
 
 if [ "$FAN_TEST" = "1" ]; then
