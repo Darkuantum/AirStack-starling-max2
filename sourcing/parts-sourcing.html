@@ -8,18 +8,18 @@
   .page { page-break-after: always; }
   .page:last-child { page-break-after: auto; }
   h1 { font-size:26pt; margin:0 0 2mm; letter-spacing:-0.5px; }
-  h2 { font-size:15pt; margin:6mm 0 2mm; border-bottom:2px solid #111; padding-bottom:1mm; }
+  h2 { font-size:14pt; margin:4mm 0 1.5mm; border-bottom:2px solid #111; padding-bottom:1mm; }
   .sub { font-size:11pt; color:#555; margin:0 0 5mm; }
   .cn { font-size:15pt; color:#000; font-weight:bold; }
   .big { font-size:19pt; font-weight:bold; line-height:1.3; }
-  table { width:100%; border-collapse:collapse; margin:3mm 0; font-size:10.5pt; }
-  th,td { border:1px solid #999; padding:2.2mm 2.6mm; text-align:left; vertical-align:top; }
+  table { width:100%; border-collapse:collapse; margin:2.2mm 0; font-size:10pt; }
+  th,td { border:1px solid #999; padding:1.6mm 2.2mm; text-align:left; vertical-align:top; }
   th { background:#eee; font-weight:bold; }
   .yes { background:#e8f5e9; }
   .no  { background:#ffebee; }
-  .spec { background:#f4f4f4; border-left:5px solid #111; padding:3.5mm 4mm; margin:3mm 0; }
-  .spec .k { font-size:21pt; font-weight:bold; display:block; }
-  .warn { border:2.5px solid #c62828; padding:3.5mm 4mm; margin:3mm 0; }
+  .spec { background:#f4f4f4; border-left:5px solid #111; padding:2.6mm 3.2mm; margin:2.4mm 0; }
+  .spec .k { font-size:18pt; font-weight:bold; display:block; }
+  .warn { border:2.5px solid #c62828; padding:2.4mm 3mm; margin:2.4mm 0; }
   .warn b { color:#c62828; font-size:13pt; }
   ul { margin:1.5mm 0 1.5mm 5mm; padding:0; }
   li { margin:0.8mm 0; }
@@ -31,12 +31,15 @@
   .cap { font-size:9pt; color:#555; text-align:center; margin-top:1mm; }
   .hdr { display:flex; justify-content:space-between; align-items:baseline; border-bottom:3px solid #111; padding-bottom:2mm; margin-bottom:4mm; }
   .hdr .n { font-size:11pt; color:#666; }
-  img { max-width:100%; border:1px solid #bbb; }
-  .quote { margin-top:5mm; border:2px solid #111; }
+  img { max-width:100%; border:1px solid #bbb; display:block; }
+  .photo { text-align:center; }
+  .photo img { margin:0 auto; }
+  .attr { font-size:7.5pt; color:#777; margin-top:0.8mm; }
+  .quote { margin-top:3mm; border:2px solid #111; }
   .quote .qh { background:#111; color:#fff; padding:1.8mm 3mm; font-size:11pt; font-weight:bold; }
   .quote table { margin:0; border:0; }
   .quote th { background:#f0f0f0; font-size:9.5pt; }
-  .quote td { height:9mm; }
+  .quote td { height:6.5mm; }
 </style></head><body>
 
 <!-- ============ PAGE 1 : CHECKLIST ============ -->
@@ -111,6 +114,14 @@
     <text x="335" y="128" text-anchor="middle" font-size="11" fill="#555" font-family="Arial">cut on the dashed lines · 30 LED per metre ≈ 33 mm spacing</text>
   </svg>
 
+  <div class="row" style="margin:3mm 0">
+    <div class="col photo"><img src="img/led-strip.jpg" style="max-height:28mm">
+      <div class="cap"><b>This is what to ask for</b> — a flexible addressable strip</div>
+      <div class="attr">Photo: Cytron Technologies, product DS-6812-WS-601M</div></div>
+    <div class="col photo"><img src="img/led-strip-detail.jpg" style="max-height:28mm">
+      <div class="cap"><b>Count the wires: THREE.</b> Typically red = +5 V, green = data, white = GND.</div>
+      <div class="attr">Photo: Cytron Technologies</div></div>
+  </div>
   <div class="spec"><span class="k">WS2812B &nbsp;or&nbsp; SK6812</span>
     <b>5 V</b> &nbsp;·&nbsp; <b>30 LED / metre</b> &nbsp;·&nbsp; need <b>24 pixels ≈ 80 cm</b> (1 metre is fine)</div>
 
@@ -120,8 +131,7 @@
         <tr><th colspan="2" class="yes">THESE ARE FINE ✓</th></tr>
         <tr><td>Chipset</td><td><b>WS2812B</b> / <b>SK6812</b><br>(RGB or RGBW both OK)</td></tr>
         <tr><td>Brand</td><td>Any</td></tr>
-        <tr><td>PCB colour</td><td>Black or white</td></tr>
-        <tr><td>Waterproof</td><td>Any (IP30 / IP65 / IP67)</td></tr>
+        <tr><td>PCB / jacket</td><td>Any colour, any IP rating</td></tr>
         <tr><td>Reel length</td><td>Any — 1 m is plenty</td></tr>
       </table>
     </div>
@@ -132,7 +142,7 @@
         <tr><td><b>SK9822</b></td><td>needs a clock wire</td></tr>
         <tr><td><b>WS2801</b></td><td>needs a clock wire</td></tr>
         <tr><td><b>WS2815</b></td><td>12 V — wrong voltage</td></tr>
-        <tr><td>Non-addressable<br>RGB strip</td><td>whole strip one colour,<br>cannot address pixels</td></tr>
+        <tr><td>Non-addressable RGB</td><td>cannot address pixels</td></tr>
       </table>
     </div>
   </div>
@@ -143,7 +153,7 @@
     If it needs <b>4 wires</b> (extra clock line) it is the wrong type.</div>
   <div class="quote"><div class="qh">Quotes — write the price here</div>
   <table><tr><th style="width:36%">Shop / unit no.</th><th style="width:28%">Exact item seen</th><th style="width:18%">Price S$</th><th>Bought?</th></tr>
-  <tr><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr></table></div>
+  <tr><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr></table></div>
 
 </div>
 
@@ -179,10 +189,15 @@
         <text x="16" y="124" text-anchor="middle" font-size="12" font-family="Arial" fill="#1565c0" transform="rotate(-90 16 124)">25 mm</text>
       </svg>
       <div class="cap">25 × 25 mm, 7 mm thick, exactly two wires</div>
+      <div class="photo" style="margin-top:3mm"><img src="img/fan-sunon.jpg" style="max-height:30mm">
+        <div class="cap">Sunon mini-fan range — the family ModalAI specifies. Yours is <b>25 × 25 × 7 mm</b>; note every one has <b>2 wires</b>.</div>
+        <div class="attr">Photo: Rico Shen, CC BY-SA 4.0, via Wikimedia Commons</div></div>
     </div>
     <div class="col">
       <div class="spec"><span class="k">25 × 25 × 7 mm</span>
-        <b>5 V DC</b><br><b>2 WIRES ONLY</b><br>≤ 150 mA (0.75 W)</div>
+        <b>5 V DC</b> · <b>2 WIRES ONLY</b> · ≤ 150 mA<br>
+        <span style="font-size:13pt">Size code: <b>“2507”</b></span></div>
+      <p class="note" style="margin-top:0">Shops know this size as <b>2507</b>. Asking for “a 2507 5 volt 2-wire fan” is the fastest way to be understood.</p>
       <table>
         <tr><th colspan="2" class="no">DO NOT BUY ✗</th></tr>
         <tr><td><b>12 V</b> fan</td><td>wrong voltage</td></tr>
@@ -224,7 +239,7 @@
   <p class="note">The drone switches the fan's <b>ground</b> on and off to control speed. A 3- or 4-wire fan has extra pins that need a constant ground, so it will stutter or not start.</p>
   <div class="quote"><div class="qh">Quotes — write the price here</div>
   <table><tr><th style="width:36%">Shop / unit no.</th><th style="width:28%">Exact item seen</th><th style="width:18%">Price S$</th><th>Bought?</th></tr>
-  <tr><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr></table></div>
+  <tr><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr></table></div>
 
 </div>
 
@@ -246,6 +261,9 @@
         <text x="99" y="128" text-anchor="middle" font-size="11" font-family="Arial" fill="#1565c0">1.0 mm pitch</text>
         <text x="99" y="36" text-anchor="middle" font-size="12" font-family="Arial" fill="#111" font-weight="bold">2 pins</text>
       </svg>
+      <div class="photo" style="margin:2mm 0"><img src="img/jst-sh.jpg" style="max-height:27mm">
+        <div class="cap"><b>This shape</b> — 2-pin housing with two wires already crimped on</div>
+        <div class="attr">Photo: Christopher.nunez, CC BY-SA 3.0, via Wikimedia Commons. Shown for shape only — confirm the pitch is 1.0 mm.</div></div>
       <div class="spec"><span class="k">JST SH 1.0 mm</span>
         <b>2-pin</b>, female, <b>with wires attached</b><br>(a “pigtail” / 带线插头)</div>
       <p class="note">This is the <b>small</b> JST — 1.0 mm between pins. Do <b>not</b> buy JST PH (2.0 mm) or XH (2.5 mm); they are bigger and will not fit.<br>Buy 2–3 spares, they are easy to damage.</p>
@@ -275,7 +293,7 @@
     <span class="note">Buy this only if the drone's LED power pad measures 3.3 V instead of 5 V. If unsure, skip it — it can be bought later.</span></div>
   <div class="quote"><div class="qh">Quotes — write the price here</div>
   <table><tr><th style="width:36%">Shop / unit no.</th><th style="width:28%">Exact item seen</th><th style="width:18%">Price S$</th><th>Bought?</th></tr>
-  <tr><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr></table></div>
+  <tr><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr></table></div>
 
 </div>
 
@@ -301,6 +319,9 @@
         <text x="152" y="134" font-size="10" font-family="Arial" fill="#333">M5 hole</text>
       </svg>
       <div class="cap">Three blades. Count them.</div>
+      <div class="photo" style="margin-top:3mm"><img src="img/prop.webp" style="max-height:44mm">
+        <div class="cap"><b>The exact bag to look for.</b> Label reads <b>GEMFAN 7037-3</b>, “Black Reinforced Carbon Nylon (2L+2R)”.</div>
+        <div class="attr">Photo: OddityRC / Gemfan product listing</div></div>
     </div>
     <div class="col">
       <div class="spec"><span class="k">7 × 3.7 × 3</span>
@@ -322,7 +343,7 @@
   <p class="note">A set is 4 propellers: 2 clockwise + 2 counter-clockwise. Buying 2 sets gives one spare set.</p>
   <div class="quote"><div class="qh">Quotes — write the price here</div>
   <table><tr><th style="width:36%">Shop / unit no.</th><th style="width:28%">Exact item seen</th><th style="width:18%">Price S$</th><th>Bought?</th></tr>
-  <tr><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr></table></div>
+  <tr><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr></table></div>
 
 </div>
 
