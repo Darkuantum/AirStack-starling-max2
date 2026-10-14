@@ -225,7 +225,7 @@ ros2 launch svg_ground_control real_interfaces.launch.py drones:=drone_1   # mor
 ```
 **New on this branch:** the startup line must read
 `[drone_1.fmu.px4_interface]: PX4Interface initialized (uXRCE-DDS), target_system=N`. That
-number must equal the drone's `MAV_SYS_ID` (⏳ **read `MAV_SYS_ID` back in QGC before the first arm** — the 2026-09-04 params export says **1**, a 2026-09-18 session note on this airframe says it was set to **2**; whichever it is, `target_systems:=` must match) or PX4 silently drops every
+number must equal the drone's `MAV_SYS_ID` (**Starling 1: ✅ 1**, measured 2026-10-14 over ADB — the default derivation from `drone_1` is already correct; Starling 2 ⏳ unread) or PX4 silently drops every
 arm/takeoff/land command — no error anywhere, just no ACK ([MIGRATION.md](MIGRATION.md) §5).
 Leave running. Verify (pane 4):
 ```bash

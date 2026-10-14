@@ -193,7 +193,10 @@ re-checked. ⏳ = decide at STE.
       **1.2** not our validated 0.5; `land_speed_mps` differs from our validated **0.6**
       everywhere. Full list in §7.
 - [ ] **Verify `target_system` == the drone's `MAV_SYS_ID`** before the first arm attempt —
-      ⏳ **read `MAV_SYS_ID` back in QGC before the first arm** — the 2026-09-04 params export says **1**, a 2026-09-18 session note on this airframe says it was set to **2**; whichever it is, `target_systems:=` must match. A silent no-ack is the symptom of getting this wrong.
+      ✅ **RESOLVED 2026-10-14: `MAV_SYS_ID` = 1 on Starling 1**, measured directly with
+      `px4-param show MAV_SYS_ID` over ADB. `drone_1` already derives `target_system=1`, so no
+      `target_systems:=` argument is needed. A silent no-ack is the symptom of getting this wrong.
+      ⚠️ Starling 2 still unread — its PX4 loaded only 110/2167 params, so the value was absent.
 
 ## 7 · Config value diff table
 

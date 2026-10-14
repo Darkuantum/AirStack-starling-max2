@@ -19,6 +19,64 @@
 
 *(Unfamiliar term? → [GLOSSARY.md](GLOSSARY.md))*
 
+## Airframe inventory — the two Starlings (✅ measured 2026-10-14 over ADB)
+
+Both aircraft were probed with `scripts/identify_drone.sh` (ADB over USB-C — needs **no**
+network, no router, no Motive). Raw transcripts: `drone-backups/ident-*.txt`.
+
+> **Headline: the compute boards are identical.** Both report `hw platform: M0054`,
+> `mach.var: 1.0.1`, sysfs `machine=1 variant=0` → **M0054-1, QRB5165M silicon**. Neither is
+> an M0154, neither is the 4-camera-capped `-2` assembly. **Every difference between the two
+> aircraft is accessory- or software-level**, so no per-board code paths are needed.
+
+| | **Starling 1** ("with dongle") | **Starling 2** ("without dongle") |
+|---|---|---|
+| Compute | VOXL 2 **M0054-1** (QRB5165M) | VOXL 2 **M0054-1** (QRB5165M) |
+| `SKU:` | *not printed* — voxl-suite too old | **`MRB-D0012-4-V4-C29-T9-M36-X0`** |
+| Airframe rev | ⏳ unknown from software — **inspect: V1–V3 = narrower motor spacing + black-and-gold 2203.5 motors** | **V4** — wider motor-mount spacing, black 2204 1500 kV motors. ⚠️ **V4 and V1–V3 carbon frames are NOT interchangeable** |
+| Cameras | **C29** — 5 detected | **C29** — 5 detected |
+| Camera set | `ar0144` tracking front/down · `imx412` hires front/down · `pmd-tof-liow2` ToF — all `enabled` | identical |
+| WiFi | **`wlan0` / `rtl8852bu`** — USB dongle (TP-Link Archer TX20U, `35bc:0108` post-modeswitch) on an M0151-class adapter | **`mlan0` + `uap0`** — B2B daughterboard. dmesg: `wlan: Loading MWLAN driver` ⇒ **Marvell/NXP** silicon (Sparrow/M0213-class) |
+| Modem | **Sierra Wireless EM9291** (5G) on `wwan0`/`cdc_mbim` | **none** — `lsusb` shows only root hubs |
+| system-image | `1.8.02-M0054-14.1a-perf`, kernel built 2024-11-11 | `1.8.08-M0054-14.1a-perf`, kernel built **2026-05-14** |
+| voxl-suite | `1.4.1~beta3` — **`dev` channel** (`dists/qrb5165/dev/`) | `1.6.4~beta5` — `sdk-1.6` channel |
+| voxl-px4 | `1.14.0-2.0.94` | `1.14.0-2.0.142` |
+| PX4 params loaded | **827**/2162 ✅ | **110**/2167 ⚠️ *(see below)* |
+| `MAV_SYS_ID` | **1** ✅ | ⏳ absent — param set never loaded |
+| `voxl-vision-hub` | active | **failed** |
+| `modal_io_bridge` pipe | present ⇒ **ESC LED path live** | **absent** ⇒ LED path not running |
+| Live IP at probe | `wlan0 10.40.2.11/23` | `usb0 192.168.7.2` · `uap0 192.168.8.1` — **not joined to any lab SSID** |
+
+### ⚠️ Starling 2 is not flight-ready as found (2026-10-14)
+
+- **110 of 2167 PX4 parameters loaded** — this is the "params missing" signature of
+  [CLAUDE.md](../CLAUDE.md) iron rule 7. `MAV_SYS_ID` and every `VOXL_ESC_*` param were absent.
+  **Fix = full reboot**, never `systemctl restart voxl-px4`.
+- `voxl-vision-hub` is in `failed` state; no `mavlink_*`, `qvio`, `vvhub_*` or `voa_pc_out`
+  pipes exist in `/run/mpa`.
+- **Never joined to the lab network.** `mlan0` is DOWN and `wpa_supplicant@mlan0.service` is
+  `inactive dead`. It is, however, **broadcasting its own hotspot** on `uap0` (`192.168.8.1`) —
+  per the rule below, never connect the laptop to it. Joining needs
+  `voxl-wifi station '<SSID>' '<PASSWORD>'` **then a reboot**.
+
+### Other measured facts worth keeping
+
+- **Both** drones carry the full ESC/LED toolchain: `voxl-esc`, `voxl-led`,
+  `voxl-send-esc-gpio-cmd`, `px4-modal_io_bridge`, `px4-rgbled`, `px4-led_control`.
+- **Starling 1's modem config does not match its modem**: `/etc/modalai/voxl-modem.conf` says
+  `"modem_type": "quectel"` (APN `sunsurf`) but the hardware is a Sierra Wireless EM9291.
+  `wwan0` is DOWN. Harmless today — nothing uses it — but it will not work if anyone tries.
+- **Neither drone's apt repo state is trustworthy.** Both print
+  `WARNING: repo file has changed since last update`; Starling 1 is on the **dev** channel and
+  Starling 2's repo metadata claims "Last Updated: 2023-03-02", which is impossible given its
+  package versions. ⚠️ **Do not run a casual `apt upgrade` on either drone.**
+- `/etc/modalai/network_interface_preferences.txt` (priority `tun0 > eth0 > usb0 > wlan0 >
+  wwan0`) exists **only on Starling 1**. Relevant if USB-Ethernet is ever added: `eth0`/`usb0`
+  outrank `wlan0`, which would change which address `voxl-vision-hub` advertises.
+- Starling 1's WiFi drop-in `/etc/systemd/system/wpa_supplicant.service.d/10-wait-for-wlan0.conf`
+  is **world-writable** — systemd logs a complaint each boot. `chmod 644` it.
+
+
 ## Network (router static leases for the key machines — see the leases row; other values still drift)
 
 > 📖 Full router configuration and reproduction steps live in the companion repo
@@ -45,7 +103,7 @@
 |---|---|---|---|
 | SSID (Starling joins) | **`StarlingMax2`** → puts the drone on the `10.40.2.0/23` segment. (`motive` is the lab-LAN SSID used by the Crazyflies; the Starling sat there historically. Earlier eras: `Mocap_QCGroundControl` 08-11, `AI.R STC Hangar-5G` before that) | `voxl-wifi getmode` on the drone | SSID **without** spaces → `voxl-wifi station '<SSID>' '<PASSWORD>'` works (proven 2026-08-11). SSID **with** spaces → manual `wpa_passphrase` method, archived MILESTONES M3-A (`git show airstack-starling-max2:docs/MILESTONES.md`) step 1 (`voxl-wifi station` corrupts spaced SSIDs). Check the drone's current SSID with `voxl-wifi getmode` |
 | Password | (not stored in this repo) | — | Same as above |
-| Drone WiFi interface | `mlan0` (station) / `uap0` (its own hotspot, SSID `Starling_1_demo_mode` on Starling 1 — never connect the laptop to it) | `ip -br link` on the drone | Hardware fact, won't change |
+| Drone WiFi interface | ⚠️ **differs per airframe — measured 2026-10-14.** **Starling 1 = `wlan0`** (USB dongle, `rtl8852bu`). **Starling 2 = `mlan0`** (station, B2B daughterboard, MWLAN/Marvell driver) **+ `uap0`** (its own hotspot — never connect the laptop to it; it was UP at `192.168.8.1` when probed). The earlier blanket `mlan0` claim here was wrong for Starling 1 — see §Airframe inventory | `ip -br link` on the drone | Per-airframe hardware fact. Check it before applying any WiFi fix: the [CLAUDE.md](../CLAUDE.md) `169.254.x.x` writeup applies to **`wlan0` units only** |
 | Band / channel | 5 GHz channel 36 (5.180 GHz), 802.11ax — both SSIDs served by the same radio. 2.4 GHz radio is deliberately **disabled** to keep the band clean for Crazyradio | Router admin page → Wireless | Hardware fact, won't change |
 | Security | ⚠️ Both `StarlingMax2` (the Starlings, `10.40.2.x`) and `motive` (lab LAN, Crazyflies) are **OPEN networks — no encryption** | Router admin page → Wireless | ⚠️ **Keep the lab network offline — never bridge it to the internet.** WAN port is deliberately unplugged; adding encryption is the fix if that ever changes (companion repo `docs/05-known-issues.md`) |
 
@@ -56,7 +114,7 @@
 | uXRCE agent port | `8888` | Setup script arg **and** `MicroXRCEAgent udp4 -p 8888` — must match |
 | DDS domain | `1` (= drone_1) | Setup script arg; container `.bashrc` pins it; sim uses the same. Each ADDITIONAL drone must get a UNIQUE domain ID and its own subnet IP when provisioned |
 | NatNet ports | `1510` (cmd) / `1511` (data) | Motive defaults; per-session check: `ss -ulpn \| grep -E ':(1510\|1511)'` must be clear |
-| **`target_system` = `MAV_SYS_ID`** (new 2026-10-07) | ⏳ **read `MAV_SYS_ID` back in QGC before the first arm** — the 2026-09-04 params export says **1**, a 2026-09-18 session note on this airframe says it was set to **2**; whichever it is, `target_systems:=` must match | `px4_interface` stamps it on every command; `real_interfaces.launch.py` derives it from the drone name (`drone_2` → 2) or takes `target_systems:=1,2,…`. **Mismatch ⇒ PX4 silently drops every arm/takeoff/land and sends no ACK.** Each additional drone needs a unique `MAV_SYS_ID` |
+| **`target_system` = `MAV_SYS_ID`** (new 2026-10-07; resolved 2026-10-14) | **`1`** on Starling 1 — ✅ **measured 2026-10-14** by `px4-param show MAV_SYS_ID` over ADB (`x   MAV_SYS_ID [469,997] : 1`), which settles the old 1-vs-2 ambiguity. `drone_1` derives `target_system=1`, so no `target_systems:=` argument is needed. ⚠️ Starling 2 has **not** been read back — its PX4 came up with only 110/2167 params loaded, so `MAV_SYS_ID` was absent entirely; re-read it after a reboot and before its first arm | `px4_interface` stamps it on every command; `real_interfaces.launch.py` derives it from the drone name (`drone_2` → 2) or takes `target_systems:=1,2,…`. **Mismatch ⇒ PX4 silently drops every arm/takeoff/land and sends no ACK.** Each additional drone needs a unique `MAV_SYS_ID` |
 | Foxglove bridge port | `8765` (`foxglove_port:=` on the commander launch; `address 0.0.0.0`) | Foxglove Studio connects to `ws://localhost:8765` — robot container is host-networked, so "localhost" on the laptop works ([BASESTATION.md](BASESTATION.md) §2) |
 | LED daemon ports | drone → laptop **udp/47901** (heartbeat, 1 Hz) · laptop → drone udp/47900 | `led_controller` binds 47901 (one instance only); open it in `ufw` if strips are used ([BASESTATION.md](BASESTATION.md) §8) |
 | Commander status snapshot | `/svg/commander_status`, JSON, `status_rate_hz` **5** | the Basestation's only source of mission truth; `NO COMMANDER` after 2 s silence — keep ≥ 1 Hz |

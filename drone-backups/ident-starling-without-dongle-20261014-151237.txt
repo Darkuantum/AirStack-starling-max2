@@ -1,0 +1,241 @@
+########## 1. BOARD IDENTITY ##########
+────────────────────────────────────────────────────────────────────────────────
+system-image: 1.8.08-M0054-14.1a-perf
+kernel:       #1 SMP PREEMPT Thu May 14 22:41:15 UTC 2026 4.19.125
+────────────────────────────────────────────────────────────────────────────────
+hw platform:  M0054
+mach.var:     1.0.1
+SKU:          MRB-D0012-4-V4-C29-T9-M36-X0
+────────────────────────────────────────────────────────────────────────────────
+voxl-suite:   1.6.4~beta5
+────────────────────────────────────────────────────────────────────────────────
+Packages:
+Repo:  http://voxl-packages.modalai.com/ ./dists/qrb5165/sdk-1.6/binary-arm64/
+Last Updated: 2023-03-02 12:58:52
+WARNING: repo file has changed since last update,
+	packages may have originated from a different repo
+List:
+libfc-sensor                   1.0.12
+libmodal-cv                    0.6.1
+libmodal-exposure              0.1.5
+libmodal-flow                  1.0.4
+libmodal-journal               0.2.7
+libmodal-json                  0.4.8
+libmodal-pipe                  2.14.12
+libqrb5165-io                  0.6.3
+libvoxl-cci-direct             0.4.0
+libvoxl-codec                  0.0.5
+libvoxl-cutils                 0.1.6
+modalai-slpi                   1.2.3
+mv-voxl                        0.1-r0
+qrb5165-bind                   0.1-r0
+qrb5165-dfs-server             0.2.0
+qrb5165-mini-tof-server        0.2.2
+qrb5165-rangefinder-server     0.1.6
+qrb5165-slpi-test-sig          01-r0
+qrb5165-tflite                 2.17.2
+voxl-camera-calibration        0.6.2
+voxl-camera-server             2.2.23
+voxl-ceres-solver              2:2.0.0-2
+voxl-configurator              1.1.21
+voxl-cpu-monitor               0.7.7
+voxl-docker-support            1.3.1
+voxl-elrs                      1.1.6
+voxl-esc                       1.6.3
+voxl-esptool                   0.2.1
+voxl-feature-tracker           0.5.2
+voxl-flow-server               0.3.6
+voxl-focus-camera              0.6.1
+voxl-gphoto2-server            0.0.10
+voxl-imu-server                2.0.2
+voxl-io-server                 0.1.1
+voxl-jpeg-turbo                2.1.3-7
+voxl-lepton-server             1.4.0
+voxl-lepton-tracker            0.0.4
+voxl-libgeographic             1.0.0
+voxl-libgphoto2                0.0.4
+voxl-libuvc                    1.0.7
+voxl-logger                    0.6.3
+voxl-mavcam-manager            0.6.1
+voxl-mavlink                   0.1.6
+voxl-mavlink-server            1.4.16
+voxl-modem                     1.2.4
+voxl-mongoose                  7.19.0-1
+voxl-mpa-to-ros                0.3.9
+voxl-mpa-tools                 1.5.8
+voxl-nano-tracker              0.1.7
+voxl-open-vins-server          0.6.1
+voxl-opencv                    4.5.5-3
+voxl-osd                       0.4.7
+voxl-portal                    0.9.4
+voxl-px4                       1.14.0-2.0.142
+voxl-px4-params                0.9.9
+voxl-qvio-server               1.2.3
+voxl-remote-id                 0.0.9
+voxl-reset-slpi                0.0.4
+voxl-state-estimator           0.0.6
+voxl-streamer                  0.8.1
+voxl-suite                     1.6.4~beta5
+voxl-tag-detector              0.1.0
+voxl-tflite-server             0.5.1
+voxl-utils                     2.0.4
+voxl-uvc-server                0.1.8
+voxl-vision-hub                1.9.21
+voxl-vtx                       2.2.19
+voxl-wavemux                   0.0.3
+voxl2-io                       0.0.3
+voxl2-security-hardening-utls  1.0-r0
+voxl2-system-image             1.8.08-r0
+voxl2-wlan                     1.0-r0
+────────────────────────────────────────────────────────────────────────────────
+--- voxl-platform ---
+M0054
+--- raw platform sysfs (NUMERIC: machine/variant/subvariant) ---
+machine:     1
+variant:     0
+subvariant:  cat: /sys/module/voxl_platform_mod/parameters/subvariant: No such file or directory
+(machine=1 -> VOXL2 full-size.  variant 0 = var00 = M0054-1 'QRB5165M' silicon;
+ variant 2 = var02 = M0054-2 'QSM8250', capped at 4 concurrent cameras.)
+
+########## 2. WIFI / MODEM GENERATION ##########
+lo               UNKNOWN        00:00:00:00:00:00 <LOOPBACK,UP,LOWER_UP> 
+bond0            DOWN           2a:79:82:18:f5:5d <NO-CARRIER,BROADCAST,MULTICAST,MASTER,UP> 
+dummy0           UNKNOWN        fa:d7:11:19:74:41 <BROADCAST,NOARP,UP,LOWER_UP> 
+ip_vti0@NONE     DOWN           0.0.0.0 <NOARP> 
+ip6_vti0@NONE    DOWN           :: <NOARP> 
+sit0@NONE        DOWN           0.0.0.0 <NOARP> 
+ip6tnl0@NONE     DOWN           :: <NOARP> 
+usb0             UP             ea:38:89:8c:e1:bc <BROADCAST,MULTICAST,UP,LOWER_UP> 
+--- netdev -> driver ---
+bond0 -> 
+bonding_masters -> 
+dummy0 -> 
+ip6_vti0 -> 
+ip6tnl0 -> 
+ip_vti0 -> 
+sit0 -> 
+usb0 -> driver
+--- lsusb ---
+Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+--- modem config ---
+{
+	"modem_type":	"v1",
+	"apn":	"h2g2",
+	"world": "false",
+	"microhard_ip": "192.168.168.100",
+	"dtc_ip": "192.168.0.100",
+	"doodle_ip": "10.223.0.100",
+	"doodle_interface": "eth0",
+	"modallink": "false",
+	"placeholder": "hello world"
+}
+--- iface preferences ---
+cat: /etc/modalai/network_interface_preferences.txt: No such file or directory
+--- supplicant ---
+wpa_supplicant@mlan0.service loaded inactive dead start WPA supplicant daemon (interface-specific version)
+--- usb enumerations this boot (should be 1 per device) ---
+0
+[    0.000000] OF: reserved mem: initialized node pil_wlan_fw_region@86700000, compatible id removed-dma-pool
+[    1.861120] usbcore: registered new interface driver sierra_net
+[    1.861132] usbcore: registered new interface driver qmi_wwan
+[    1.861136] usbcore: registered new interface driver cdc_mbim
+[    1.866813] usbcore: registered new interface driver sierra
+[    1.866816] usbserial: USB Serial support registered for Sierra USB modem
+[    1.909004] uaudio-qmi soc:usb_audio_qmi_dev: Linked as a consumer to 15000000.apps-smmu
+[    1.909030] iommu: Adding device soc:usb_audio_qmi_dev to group 20
+[    2.665649] RTW: rtl8821cu v5.12.0.4-1-g9241a6516.20210916_COEX20200730-5151
+[    2.665652] RTW: rtl8821cu BT-Coex version = COEX20200730-5151
+[    2.665686] usbcore: registered new interface driver rtl8821cu
+[    2.697537] usbcore: registered new interface driver rtl88XXau
+[    5.577401] sysmon-qmi: ssctl_new_server: Connection established between QMI handle and cdsp's SSCTL service
+[    5.577412] coresight-remote-etm soc:turing_etm0: Connection established between QMI handle and 13 service
+[    5.724178] wlan: Loading MWLAN driver
+[    5.728376] wlan: Register to Bus Driver...
+[    5.771133] sysmon-qmi: ssctl_new_server: Connection established between QMI handle and slpi's SSCTL service
+[    5.771138] coresight-remote-etm soc:ssc_etm0: Connection established between QMI handle and 8 service
+[    6.236416] wlan: Register to Bus Driver Done
+[    6.236434] wlan: Driver loaded successfully
+
+########## 3. ESC / LED ##########
+--- esc-related tools actually installed ---
+aa-enabled
+debconf-escape
+localedef
+px4-esc_calib
+px4-led_control
+px4-leddar_one
+px4-modal_io_bridge
+px4-rgbled
+px4-uart_esc_driver
+voxl-esc
+voxl-led
+voxl-send-esc-gpio-cmd
+voxl-send-esc-pwm-cmd
+voxl-send-esc-tone-cmd
+--- esc params (PX4 side, reads back real values) ---
+--- mpa pipes (modal_io_bridge present => ESC LED path live) ---
+cpu_monitor cpu_stats2 hires_down_large_color hires_down_large_encoded hires_down_large_grey hires_down_small_color hires_down_small_encoded hires_down_small_grey hires_down_snapshot hires_front_large_color hires_front_large_encoded hires_front_large_grey hires_front_small_color hires_front_small_encoded hires_front_small_grey hires_front_snapshot imu_apps imu_apps_body imu_apps_fft imu_apps_notemp imu_apps_raw rangefinders tof tof_conf tof_depth tof_ir tof_pc tracking_down tracking_down_bayer tracking_down_bayer_ion tracking_down_misp_encoded tracking_down_misp_grey tracking_down_misp_norm tracking_down_misp_norm_ion tracking_front tracking_front_bayer tracking_front_bayer_ion tracking_front_misp_encoded tracking_front_misp_grey tracking_front_misp_norm tracking_front_misp_norm_ion 
+NOTE: px4-qshell returns an exit status only; command OUTPUT goes to the
+      SLPI log, not stdout.  Read it with:  px4-logger / voxl-inspect-services
+
+########## 4. CAMERAS ##########
+Sensor IDs: 0x0356=AR0144(1280x800 tracking) 0x0577=IMX577/412(12MP)
+            0x2975=Infineon IRS2975 ToF  ->  ToF present means C29, not C28
+existing instance of voxl-camera-server found, attempting to stop it
+DEBUG:   Attempting to open the hal module
+DEBUG:   SUCCESS: Camera module opened on attempt 0
+DEBUG:   ----------- Number of cameras: 5
+
+DEBUG:   cci-direct: using voxl_platform_mod config 1 and 2 layout
+DEBUG:   trying to open idx  0 /dev/v4l-subdev8
+Cam idx: 0, Cam slot: 0, Slave Address: 0x0030, Sensor Id: 0x0356
+DEBUG:   trying to open idx  1 /dev/v4l-subdev9
+Cam idx: 1, Cam slot: 1, Slave Address: 0x0034, Sensor Id: 0x0577
+DEBUG:   trying to open idx  2 /dev/v4l-subdev12
+Cam idx: 2, Cam slot: 2, Slave Address: 0x0034, Sensor Id: 0x0577
+DEBUG:   trying to open idx  3 /dev/v4l-subdev13
+Cam idx: 3, Cam slot: 3, Slave Address: 0x007A, Sensor Id: 0x2975
+DEBUG:   trying to open idx  4 /dev/v4l-subdev10
+DEBUG:   trying to open idx  5 /dev/v4l-subdev14
+DEBUG:   trying to open idx  6 /dev/v4l-subdev11
+Cam idx: 4, Cam slot: 6, Slave Address: 0x0030, Sensor Id: 0x0356
+DEBUG:   Note: This list comes from the HAL module and may not be indicative
+DEBUG:   	of configurations that have full pipelines
+--- configured cameras ---
+			"type":	"ar0144",
+			"name":	"tracking_front",
+			"enabled":	true,
+			"type":	"imx412",
+			"name":	"hires_front",
+			"enabled":	true,
+			"type":	"imx412",
+			"name":	"hires_down",
+			"enabled":	true,
+			"type":	"pmd-tof-liow2",
+			"name":	"tof",
+			"enabled":	true,
+			"type":	"ar0144",
+			"name":	"tracking_down",
+			"enabled":	true,
+
+########## 5. SOFTWARE STACK ##########
+system image: 1.8.08-M0054-14.1a-perf
+px4 params loaded:  110/2167 parameters used.
+--- px4 / dds services ---
+active failed 
+
+########## 6. IDENTITY / NETWORK ##########
+hostname: m0054
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+bond0            DOWN           
+dummy0           UNKNOWN        fe80::cf37:e4f3:5d88:2404/64 
+ip_vti0@NONE     DOWN           
+ip6_vti0@NONE    DOWN           
+sit0@NONE        DOWN           
+ip6tnl0@NONE     DOWN           
+usb0             UP             192.168.7.2/24 fe80::d5be:6089:d6a1:d5d5/64 
+mlan0            DOWN           
+uap0             UP             192.168.8.1/24 fe80::8c1f:64ff:fe69:de32/64 
+voxl-my-ip: 192.168.7.2 (usb0) 192.168.8.1 (uap0) 
+--- MAV_SYS_ID (must match AirStack target_system) ---
