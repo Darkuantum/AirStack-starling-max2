@@ -33,7 +33,7 @@ network, no router, no Motive). Raw transcripts: `drone-backups/ident-*.txt`.
 |---|---|---|
 | Compute | VOXL 2 **M0054-1** (QRB5165M) | VOXL 2 **M0054-1** (QRB5165M) |
 | `SKU:` | *not printed* — voxl-suite too old | **`MRB-D0012-4-V4-C29-T9-M36-X0`** |
-| Airframe rev | ⏳ unknown from software — **inspect: V1–V3 = narrower motor spacing + black-and-gold 2203.5 motors** | **V4** — wider motor-mount spacing, black 2204 1500 kV motors. ⚠️ **V4 and V1–V3 carbon frames are NOT interchangeable** |
+| Airframe rev | ✅ **V1–V3** — confirmed 2026-10-14 by motor inspection (**2203.5** 1500 kV, black-and-gold T-Motor), narrower motor-mount spacing | ✅ **V4** (from `SKU:`) — wider motor-mount spacing, black **2204** 1500 kV motors |
 | Cameras | **C29** — 5 detected | **C29** — 5 detected |
 | Camera set | `ar0144` tracking front/down · `imx412` hires front/down · `pmd-tof-liow2` ToF — all `enabled` | identical |
 | WiFi | **`wlan0` / `rtl8852bu`** — USB dongle (TP-Link Archer TX20U, `35bc:0108` post-modeswitch) on an M0151-class adapter | **`mlan0` + `uap0`** — B2B daughterboard. dmesg: `wlan: Loading MWLAN driver` ⇒ **Marvell/NXP** silicon (Sparrow/M0213-class) |
@@ -45,6 +45,9 @@ network, no router, no Motive). Raw transcripts: `drone-backups/ident-*.txt`.
 | `MAV_SYS_ID` | **1** ✅ | ⏳ absent — param set never loaded |
 | `voxl-vision-hub` | active | **failed** |
 | `modal_io_bridge` pipe | present ⇒ **ESC LED path live** | **absent** ⇒ LED path not running |
+| ⚠️ Frame compatibility | **Frames, motors and feet do NOT interchange between these two aircraft.** A is V1–V3 (frame `M10000929`, motor `M10000073`, feet `M10000868`); B is V4 (frame `M10001459`, motor `M10001367`, feet `M10001460`). ModalAI: *"the two carbon fiber frames are not interchangeable"* | ← same |
+| Propellers | ✅ **Same on both: 7 × 3.7, 3-blade** (= the datasheet's 180 mm tri-blade). Read from the ESC param filenames' `7x3.7x3` suffix | ← same |
+| Cooling fan | ✅ **None fitted** — J2 is empty on both (confirmed by inspection 2026-10-14) | ← same |
 | Live IP at probe | `wlan0 10.40.2.11/23` | `usb0 192.168.7.2` · `uap0 192.168.8.1` — **not joined to any lab SSID** |
 
 ### ⚠️ Starling 2 is not flight-ready as found (2026-10-14)
@@ -72,7 +75,7 @@ network, no router, no Motive). Raw transcripts: `drone-backups/ident-*.txt`.
 | Connector | **None** — bare solder test points (⬇ data, ➕ power, `G` ground) |
 | ESC telemetry | `px4-listener esc_status` works **without** stopping PX4. 4 ESCs online, 16.07–16.09 V (4S at ~4.02 V/cell), 42–44 °C idle |
 | `esc_address` | Reads **2, 3, 1, 4** — this is the **PX4 motor number**, not the raw ESC ID (it matches `VOXL_ESC_FUNC1..4 = 102,103,101,104`). `ESC_ID_DEFAULT = 0` in the daemon is **not** a bug |
-| Motor variants | The two param filenames encode the airframe split: `2204_1500kv` = **V4**, `f2203_5_1500kv` = **V1–V3**. Motor colour is visible **without opening the aircraft**: black = V4, black-and-gold = V1–V3 |
+| Motor variants | The two param filenames encode the airframe split: `2204_1500kv` = **V4** (Starling 2), `f2203_5_1500kv` = **V1–V3** (Starling 1) — ✅ both confirmed by inspection 2026-10-14. Motor colour is readable **without opening the aircraft**: black = V4, black-and-gold = V1–V3. The filenames' `7x3.7x3` suffix is the **prop spec: 7 in × 3.7 pitch, 3 blades** |
 
 ### Cooling / thermal (✅ baseline measured 2026-10-14 on Starling 2, idle on bench)
 
@@ -80,7 +83,7 @@ network, no router, no Motive). Raw transcripts: `drone-backups/ident-*.txt`.
 |---|---|
 | Idle temperatures | `soc` **50 °C**; all CPU / DDR / camera zones **43–44 °C** |
 | Thresholds | `voxl-cpu-monitor` flags **>90 °C**; SoC throttling begins **~95 °C**. Staff call 60–75 °C unremarkable |
-| Verdict so far | **Large margin at idle.** Hover numbers still needed before deciding a fan is warranted |
+| Verdict so far | **Large margin at idle**, and **no fan is fitted to J2 on either aircraft** (inspected 2026-10-14). Hover numbers still needed before deciding a fan is warranted at all |
 | ⚠️ Reading frequencies | Cores idle below max (`cpu0 787200/979200`, `gov=schedutil`) is **demand scaling, not throttling**. At 44 °C nothing is throttling |
 | `voxl-fan` | **NOT present** on Starling 2 (voxl-utils 2.0.4) |
 | Fan thresholds | `/etc/modalai/voxl-cpu-monitor.conf` exposes only `en_auto_pitmode`, `normal_governor`, `pitmode_governor` — **no fan control at all** |
