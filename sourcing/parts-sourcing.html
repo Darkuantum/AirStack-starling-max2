@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Parts Sourcing</title>
+<style>
+  @page { size: A4; margin: 14mm 14mm 12mm 14mm; }
+  * { box-sizing: border-box; }
+  body { font-family: "DejaVu Sans", Arial, Helvetica, sans-serif; color:#111; margin:0; font-size:11pt; line-height:1.45; }
+  .page { page-break-after: always; }
+  .page:last-child { page-break-after: auto; }
+  h1 { font-size:26pt; margin:0 0 2mm; letter-spacing:-0.5px; }
+  h2 { font-size:15pt; margin:6mm 0 2mm; border-bottom:2px solid #111; padding-bottom:1mm; }
+  .sub { font-size:11pt; color:#555; margin:0 0 5mm; }
+  .cn { font-size:15pt; color:#000; font-weight:bold; }
+  .big { font-size:19pt; font-weight:bold; line-height:1.3; }
+  table { width:100%; border-collapse:collapse; margin:3mm 0; font-size:10.5pt; }
+  th,td { border:1px solid #999; padding:2.2mm 2.6mm; text-align:left; vertical-align:top; }
+  th { background:#eee; font-weight:bold; }
+  .yes { background:#e8f5e9; }
+  .no  { background:#ffebee; }
+  .spec { background:#f4f4f4; border-left:5px solid #111; padding:3.5mm 4mm; margin:3mm 0; }
+  .spec .k { font-size:21pt; font-weight:bold; display:block; }
+  .warn { border:2.5px solid #c62828; padding:3.5mm 4mm; margin:3mm 0; }
+  .warn b { color:#c62828; font-size:13pt; }
+  ul { margin:1.5mm 0 1.5mm 5mm; padding:0; }
+  li { margin:0.8mm 0; }
+  .row { display:flex; gap:6mm; align-items:flex-start; }
+  .col { flex:1; }
+  .tick { font-size:16pt; letter-spacing:2px; }
+  .note { font-size:9.5pt; color:#555; font-style:italic; }
+  svg { display:block; }
+  .cap { font-size:9pt; color:#555; text-align:center; margin-top:1mm; }
+  .hdr { display:flex; justify-content:space-between; align-items:baseline; border-bottom:3px solid #111; padding-bottom:2mm; margin-bottom:4mm; }
+  .hdr .n { font-size:11pt; color:#666; }
+  img { max-width:100%; border:1px solid #bbb; }
+  .quote { margin-top:5mm; border:2px solid #111; }
+  .quote .qh { background:#111; color:#fff; padding:1.8mm 3mm; font-size:11pt; font-weight:bold; }
+  .quote table { margin:0; border:0; }
+  .quote th { background:#f0f0f0; font-size:9.5pt; }
+  .quote td { height:9mm; }
+</style></head><body>
+
+<!-- ============ PAGE 1 : CHECKLIST ============ -->
+<div class="page">
+  <h1>Parts to buy</h1>
+  <p class="sub">ModalAI Starling 2 Max — LED strip, cooling fan, propellers. Each item has its own page with a picture, exact specs and a box to write prices in.<br>
+  <b style="color:#c62828">Keep every receipt</b> — ask for an itemised invoice showing the shop's name and GST registration number.</p>
+
+  <table>
+    <tr><th style="width:8%">✓</th><th style="width:30%">Item</th><th style="width:38%">Key spec</th><th>Where</th></tr>
+    <tr><td class="tick">☐</td><td><b>Addressable LED strip</b><div class="cn">幻彩灯带</div></td>
+        <td><b>WS2812B or SK6812</b><br>5 V · 30 LED/m · need ~24 pixels (≈80 cm)</td><td>Sim Lim <b>Tower</b></td></tr>
+    <tr><td class="tick">☐</td><td><b>Cooling fan</b><div class="cn">散热风扇</div></td>
+        <td><b>25 × 25 × 7 mm · 5 V · 2 WIRES ONLY</b><br>≤ 150 mA</td><td>Sim Lim <b>Tower</b></td></tr>
+    <tr><td class="tick">☐</td><td><b>JST SH 1.0 mm connector</b><div class="cn">JST SH 1.0mm 2P 插头线</div></td>
+        <td>2-pin, with pigtail wires (×2–3 spare)</td><td>Sim Lim <b>Tower</b></td></tr>
+    <tr><td class="tick">☐</td><td><b>Resistors</b><div class="cn">电阻</div></td>
+        <td>330 Ω or 470 Ω, 1/4 W (×10)</td><td>Sim Lim <b>Tower</b></td></tr>
+    <tr><td class="tick">☐</td><td><b>Hook-up wire</b><div class="cn">细电线</div></td>
+        <td>Thin stranded, 3 colours, ~2 m each</td><td>Sim Lim <b>Tower</b></td></tr>
+    <tr><td class="tick">☐</td><td><b>Propellers</b><div class="cn">螺旋桨 三叶 7寸</div></td>
+        <td><b>7 inch · 3.7 pitch · 3 blades</b><br>(7037-3 / 7×3.7×3)</td><td>Sim Lim <b>Square</b></td></tr>
+    <tr><td class="tick">☐</td><td><i>Optional:</i> 5 V BEC / regulator<div class="cn">5V 稳压模块</div></td>
+        <td>5 V out, ≥ 1 A — only if LED rail measures 3.3 V</td><td>Sim Lim <b>Tower</b></td></tr>
+  </table>
+
+  <h2 style="margin-top:4mm">Two buildings, side by side</h2>
+  <div class="row">
+    <div class="col spec"><span class="k">Sim Lim TOWER</span>
+      10 Jalan Besar<br><b>Electronic components</b><br>
+      LED strip · fan · connectors · resistors · wire<br>
+      <span class="note">Closes ~7:30 pm.</span></div>
+    <div class="col spec"><span class="k">Sim Lim SQUARE</span>
+      1 Rochor Canal Road<br><b>Drone / FPV parts</b><br>
+      Propellers — ask for <b>Hobby Square</b><br>
+      <span class="note">Mon–Sat 12:30–7:30 pm.</span></div>
+  </div>
+</div>
+
+<!-- ============ PAGE 2 : LED STRIP ============ -->
+<div class="page">
+  <div class="hdr"><h1>1 · LED strip</h1><span class="n">幻彩灯带 / 可编程灯带</span></div>
+
+  <svg width="100%" viewBox="0 0 640 150" xmlns="http://www.w3.org/2000/svg">
+    <rect x="70" y="40" width="540" height="62" rx="4" fill="#1b1b1b"/>
+    <g fill="#f5f5f5">
+      <rect x="92"  y="55" width="32" height="32" rx="3"/><rect x="178" y="55" width="32" height="32" rx="3"/>
+      <rect x="264" y="55" width="32" height="32" rx="3"/><rect x="350" y="55" width="32" height="32" rx="3"/>
+      <rect x="436" y="55" width="32" height="32" rx="3"/><rect x="522" y="55" width="32" height="32" rx="3"/>
+    </g>
+    <g stroke="#777" stroke-width="1.4" stroke-dasharray="4 3">
+      <line x1="151" y1="40" x2="151" y2="102"/><line x1="237" y1="40" x2="237" y2="102"/>
+      <line x1="323" y1="40" x2="323" y2="102"/><line x1="409" y1="40" x2="409" y2="102"/>
+      <line x1="495" y1="40" x2="495" y2="102"/>
+    </g>
+    <g fill="#8d6e63">
+      <rect x="74" y="46" width="13" height="14" rx="2"/><rect x="74" y="64" width="13" height="14" rx="2"/><rect x="74" y="82" width="13" height="14" rx="2"/>
+    </g>
+    <g stroke="#111" stroke-width="1.2">
+      <line x1="64" y1="43" x2="74" y2="53"/><line x1="64" y1="66" x2="74" y2="71"/><line x1="64" y1="89" x2="74" y2="89"/>
+    </g>
+    <g font-size="11" font-family="Arial">
+      <rect x="8" y="34" width="56" height="18" fill="#c62828"/><text x="36" y="47" text-anchor="middle" fill="#fff">+5V</text>
+      <rect x="8" y="57" width="56" height="18" fill="#1565c0"/><text x="36" y="70" text-anchor="middle" fill="#fff">DIN</text>
+      <rect x="8" y="80" width="56" height="18" fill="#333"/><text x="36" y="93" text-anchor="middle" fill="#fff">GND</text>
+      <text x="36" y="116" text-anchor="middle" font-size="10" fill="#555">3 solder pads</text>
+    </g>
+    <path d="M250 22 L420 22" stroke="#1565c0" stroke-width="2.5" marker-end="url(#a)"/>
+    <defs><marker id="a" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <path d="M0,0 L9,4.5 L0,9 z" fill="#1565c0"/></marker></defs>
+    <text x="335" y="16" text-anchor="middle" font-size="11" fill="#1565c0" font-family="Arial">data flows one way →</text>
+    <text x="335" y="128" text-anchor="middle" font-size="11" fill="#555" font-family="Arial">cut on the dashed lines · 30 LED per metre ≈ 33 mm spacing</text>
+  </svg>
+
+  <div class="spec"><span class="k">WS2812B &nbsp;or&nbsp; SK6812</span>
+    <b>5 V</b> &nbsp;·&nbsp; <b>30 LED / metre</b> &nbsp;·&nbsp; need <b>24 pixels ≈ 80 cm</b> (1 metre is fine)</div>
+
+  <div class="row">
+    <div class="col">
+      <table>
+        <tr><th colspan="2" class="yes">THESE ARE FINE ✓</th></tr>
+        <tr><td>Chipset</td><td><b>WS2812B</b> / <b>SK6812</b><br>(RGB or RGBW both OK)</td></tr>
+        <tr><td>Brand</td><td>Any</td></tr>
+        <tr><td>PCB colour</td><td>Black or white</td></tr>
+        <tr><td>Waterproof</td><td>Any (IP30 / IP65 / IP67)</td></tr>
+        <tr><td>Reel length</td><td>Any — 1 m is plenty</td></tr>
+      </table>
+    </div>
+    <div class="col">
+      <table>
+        <tr><th colspan="2" class="no">DO NOT BUY ✗</th></tr>
+        <tr><td><b>APA102</b> / DotStar</td><td>needs a clock wire</td></tr>
+        <tr><td><b>SK9822</b></td><td>needs a clock wire</td></tr>
+        <tr><td><b>WS2801</b></td><td>needs a clock wire</td></tr>
+        <tr><td><b>WS2815</b></td><td>12 V — wrong voltage</td></tr>
+        <tr><td>Non-addressable<br>RGB strip</td><td>whole strip one colour,<br>cannot address pixels</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="warn"><b>The test question to ask the shop:</b><br>
+    “Is this <b>individually addressable</b>, <b>5 volt</b>, with <b>3 wires</b> — data, +5 V, ground?”<br>
+    <span class="cn">“这个是单点控制的吗？5V的？三线：数据、正极、负极？”</span><br>
+    If it needs <b>4 wires</b> (extra clock line) it is the wrong type.</div>
+  <div class="quote"><div class="qh">Quotes — write the price here</div>
+  <table><tr><th style="width:36%">Shop / unit no.</th><th style="width:28%">Exact item seen</th><th style="width:18%">Price S$</th><th>Bought?</th></tr>
+  <tr><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr></table></div>
+
+</div>
+
+<!-- ============ PAGE 3 : FAN ============ -->
+<div class="page">
+  <div class="hdr"><h1>2 · Cooling fan</h1><span class="n">散热风扇 25mm 5V</span></div>
+
+  <div class="row">
+    <div class="col">
+      <svg width="100%" viewBox="0 0 300 240" xmlns="http://www.w3.org/2000/svg">
+        <rect x="40" y="30" width="180" height="180" rx="6" fill="#e8e8e8" stroke="#333" stroke-width="2.5"/>
+        <circle cx="130" cy="120" r="76" fill="#fafafa" stroke="#555" stroke-width="1.6"/>
+        <circle cx="130" cy="120" r="26" fill="#ccc" stroke="#555" stroke-width="1.6"/>
+        <g fill="#bbb" stroke="#666" stroke-width="1.2">
+          <path d="M130 94 Q166 88 170 118 Q146 104 130 94"/><path d="M156 120 Q162 156 132 160 Q148 136 156 120"/>
+          <path d="M130 146 Q94 152 90 122 Q114 136 130 146"/><path d="M104 120 Q98 84 128 80 Q112 104 104 120"/>
+        </g>
+        <g fill="#fff" stroke="#333" stroke-width="2">
+          <circle cx="58" cy="48" r="7"/><circle cx="202" cy="48" r="7"/>
+          <circle cx="58" cy="192" r="7"/><circle cx="202" cy="192" r="7"/>
+        </g>
+        <path d="M220 150 Q252 156 262 176" stroke="#c62828" stroke-width="3.5" fill="none"/>
+        <path d="M220 162 Q250 170 258 190" stroke="#111" stroke-width="3.5" fill="none"/>
+        <text x="268" y="178" font-size="12" font-family="Arial" fill="#c62828">+5V</text>
+        <text x="264" y="198" font-size="12" font-family="Arial" fill="#111">GND</text>
+        <g stroke="#1565c0" stroke-width="1.4" fill="none">
+          <line x1="40" y1="20" x2="220" y2="20"/><line x1="40" y1="15" x2="40" y2="25"/><line x1="220" y1="15" x2="220" y2="25"/>
+        </g>
+        <text x="130" y="14" text-anchor="middle" font-size="12" font-family="Arial" fill="#1565c0">25 mm</text>
+        <g stroke="#1565c0" stroke-width="1.4" fill="none">
+          <line x1="28" y1="30" x2="28" y2="210"/><line x1="23" y1="30" x2="33" y2="30"/><line x1="23" y1="210" x2="33" y2="210"/>
+        </g>
+        <text x="16" y="124" text-anchor="middle" font-size="12" font-family="Arial" fill="#1565c0" transform="rotate(-90 16 124)">25 mm</text>
+      </svg>
+      <div class="cap">25 × 25 mm, 7 mm thick, exactly two wires</div>
+    </div>
+    <div class="col">
+      <div class="spec"><span class="k">25 × 25 × 7 mm</span>
+        <b>5 V DC</b><br><b>2 WIRES ONLY</b><br>≤ 150 mA (0.75 W)</div>
+      <table>
+        <tr><th colspan="2" class="no">DO NOT BUY ✗</th></tr>
+        <tr><td><b>12 V</b> fan</td><td>wrong voltage</td></tr>
+        <tr><td><b>3-wire</b> (has tacho)</td><td>will not work</td></tr>
+        <tr><td><b>4-wire</b> (PWM input)</td><td>will not work</td></tr>
+      </table>
+      <p class="note">Prefer a <b>ball bearing</b> fan (滚珠轴承) over sleeve — it is going on a flying drone and will be vibrating.</p>
+      <p class="note">30 mm or 20 mm is acceptable <b>only</b> if 25 mm is unavailable — ask me before buying a different size.</p>
+    </div>
+  </div>
+
+  <h2>Why the wire count matters</h2>
+  <svg width="100%" viewBox="0 0 640 110" xmlns="http://www.w3.org/2000/svg">
+    <g font-family="Arial" font-size="12">
+      <rect x="30" y="20" width="62" height="62" rx="4" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2.5"/>
+      <circle cx="61" cy="51" r="22" fill="#fff" stroke="#2e7d32"/>
+      <line x1="92" y1="62" x2="130" y2="72" stroke="#c62828" stroke-width="3"/>
+      <line x1="92" y1="70" x2="130" y2="82" stroke="#111" stroke-width="3"/>
+      <text x="61" y="100" text-anchor="middle" fill="#2e7d32" font-weight="bold">2 wires ✓</text>
+      <text x="140" y="52" fill="#2e7d32" font-weight="bold">CORRECT</text>
+
+      <rect x="250" y="20" width="62" height="62" rx="4" fill="#ffebee" stroke="#c62828" stroke-width="2.5"/>
+      <circle cx="281" cy="51" r="22" fill="#fff" stroke="#c62828"/>
+      <line x1="312" y1="58" x2="350" y2="66" stroke="#c62828" stroke-width="3"/>
+      <line x1="312" y1="66" x2="350" y2="76" stroke="#111" stroke-width="3"/>
+      <line x1="312" y1="74" x2="350" y2="86" stroke="#f9a825" stroke-width="3"/>
+      <text x="281" y="100" text-anchor="middle" fill="#c62828" font-weight="bold">3 wires ✗</text>
+
+      <rect x="450" y="20" width="62" height="62" rx="4" fill="#ffebee" stroke="#c62828" stroke-width="2.5"/>
+      <circle cx="481" cy="51" r="22" fill="#fff" stroke="#c62828"/>
+      <line x1="512" y1="54" x2="550" y2="60" stroke="#c62828" stroke-width="3"/>
+      <line x1="512" y1="62" x2="550" y2="70" stroke="#111" stroke-width="3"/>
+      <line x1="512" y1="70" x2="550" y2="80" stroke="#f9a825" stroke-width="3"/>
+      <line x1="512" y1="78" x2="550" y2="90" stroke="#1565c0" stroke-width="3"/>
+      <text x="481" y="100" text-anchor="middle" fill="#c62828" font-weight="bold">4 wires ✗</text>
+      <text x="560" y="52" fill="#c62828" font-weight="bold">WRONG</text>
+    </g>
+  </svg>
+  <p class="note">The drone switches the fan's <b>ground</b> on and off to control speed. A 3- or 4-wire fan has extra pins that need a constant ground, so it will stutter or not start.</p>
+  <div class="quote"><div class="qh">Quotes — write the price here</div>
+  <table><tr><th style="width:36%">Shop / unit no.</th><th style="width:28%">Exact item seen</th><th style="width:18%">Price S$</th><th>Bought?</th></tr>
+  <tr><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr></table></div>
+
+</div>
+
+<!-- ============ PAGE 4 : CONNECTOR + RESISTOR ============ -->
+<div class="page">
+  <div class="hdr"><h1>3 · Connector, resistors, wire</h1><span class="n">插头 · 电阻 · 电线</span></div>
+
+  <div class="row">
+    <div class="col">
+      <svg width="100%" viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg">
+        <rect x="60" y="45" width="78" height="46" rx="3" fill="#f0f0f0" stroke="#333" stroke-width="2"/>
+        <rect x="68" y="52" width="26" height="32" rx="2" fill="#ddd" stroke="#666"/>
+        <rect x="104" y="52" width="26" height="32" rx="2" fill="#ddd" stroke="#666"/>
+        <line x1="138" y1="58" x2="200" y2="58" stroke="#c62828" stroke-width="3.5"/>
+        <line x1="138" y1="78" x2="200" y2="78" stroke="#111" stroke-width="3.5"/>
+        <g stroke="#1565c0" stroke-width="1.3" fill="none">
+          <line x1="68" y1="110" x2="130" y2="110"/><line x1="68" y1="105" x2="68" y2="115"/><line x1="130" y1="105" x2="130" y2="115"/>
+        </g>
+        <text x="99" y="128" text-anchor="middle" font-size="11" font-family="Arial" fill="#1565c0">1.0 mm pitch</text>
+        <text x="99" y="36" text-anchor="middle" font-size="12" font-family="Arial" fill="#111" font-weight="bold">2 pins</text>
+      </svg>
+      <div class="spec"><span class="k">JST SH 1.0 mm</span>
+        <b>2-pin</b>, female, <b>with wires attached</b><br>(a “pigtail” / 带线插头)</div>
+      <p class="note">This is the <b>small</b> JST — 1.0 mm between pins. Do <b>not</b> buy JST PH (2.0 mm) or XH (2.5 mm); they are bigger and will not fit.<br>Buy 2–3 spares, they are easy to damage.</p>
+    </div>
+    <div class="col">
+      <svg width="100%" viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg">
+        <line x1="20" y1="68" x2="98" y2="68" stroke="#111" stroke-width="2.5"/>
+        <line x1="202" y1="68" x2="280" y2="68" stroke="#111" stroke-width="2.5"/>
+        <rect x="98" y="52" width="104" height="32" rx="7" fill="#d7b98e" stroke="#7a5c33" stroke-width="1.6"/>
+        <rect x="112" y="52" width="9" height="32" fill="#f57f17"/>
+        <rect x="128" y="52" width="9" height="32" fill="#f57f17"/>
+        <rect x="144" y="52" width="9" height="32" fill="#5d4037"/>
+        <rect x="178" y="52" width="9" height="32" fill="#b8860b"/>
+        <text x="150" y="112" text-anchor="middle" font-size="12" font-family="Arial" fill="#555">orange-orange-brown = 330 Ω</text>
+      </svg>
+      <div class="spec"><span class="k">330 Ω or 470 Ω</span>
+        1/4 watt, ordinary carbon film<br>Buy <b>10</b> — they cost cents</div>
+      <p class="note">Either value works. Anything between 300 and 500 Ω is fine.</p>
+      <div class="spec"><span class="k">Hook-up wire</span>
+        Thin stranded, <b>3 colours</b> (red / black / any)<br>~2 m of each · 24–28 AWG</div>
+    </div>
+  </div>
+
+  <h2>Optional — only if needed</h2>
+  <div class="spec"><span class="k">5 V BEC / regulator module</span>
+    <b>5 V output, 1 A or more.</b> Input must accept <b>7–17 V</b> (it runs from a 4S battery).<br>
+    <span class="note">Buy this only if the drone's LED power pad measures 3.3 V instead of 5 V. If unsure, skip it — it can be bought later.</span></div>
+  <div class="quote"><div class="qh">Quotes — write the price here</div>
+  <table><tr><th style="width:36%">Shop / unit no.</th><th style="width:28%">Exact item seen</th><th style="width:18%">Price S$</th><th>Bought?</th></tr>
+  <tr><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr></table></div>
+
+</div>
+
+<!-- ============ PAGE 5 : PROPELLERS ============ -->
+<div class="page">
+  <div class="hdr"><h1>4 · Propellers</h1><span class="n">螺旋桨 · 三叶 · 7寸</span></div>
+
+  <div class="row">
+    <div class="col" style="flex:0 0 42%">
+      <svg width="100%" viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="130" cy="130" r="112" fill="none" stroke="#1565c0" stroke-width="1.3" stroke-dasharray="5 4"/>
+        <g fill="#2b2b2b">
+          <path d="M130 118 Q188 86 226 104 Q190 132 136 134 Z"/>
+          <path d="M130 142 Q150 204 126 234 Q102 196 118 140 Z"/>
+          <path d="M122 124 Q56 112 36 142 Q84 152 126 136 Z"/>
+        </g>
+        <circle cx="130" cy="130" r="22" fill="#888" stroke="#333" stroke-width="2"/>
+        <circle cx="130" cy="130" r="8" fill="#fff" stroke="#333" stroke-width="1.6"/>
+        <g stroke="#1565c0" stroke-width="1.4" fill="none">
+          <line x1="18" y1="248" x2="242" y2="248"/><line x1="18" y1="243" x2="18" y2="253"/><line x1="242" y1="243" x2="242" y2="253"/>
+        </g>
+        <text x="130" y="244" text-anchor="middle" font-size="12" font-family="Arial" fill="#1565c0">7 inch ≈ 178 mm</text>
+        <text x="152" y="134" font-size="10" font-family="Arial" fill="#333">M5 hole</text>
+      </svg>
+      <div class="cap">Three blades. Count them.</div>
+    </div>
+    <div class="col">
+      <div class="spec"><span class="k">7 × 3.7 × 3</span>
+        <b>7 inch</b> diameter (≈178 mm)<br>
+        <b>3.7 inch</b> pitch<br>
+        <b>3 blades</b> (tri-blade)</div>
+      <table>
+        <tr><th>Ask for</th><td><b>“7037” or “7×3.7 tri-blade”</b><br>e.g. Gemfan 7037-3</td></tr>
+        <tr><th>Bore</th><td>M5 (5 mm centre hole)</td></tr>
+        <tr><th>Quantity</th><td><b>2 sets of 4</b> (CW and CCW)</td></tr>
+        <tr><th>Material</th><td>Nylon / carbon-nylon — either</td></tr>
+      </table>
+      <div class="warn"><b>PITCH MUST NOT BE HIGHER THAN 3.7</b><br>
+      Do not accept 7040, 7042, 7045 or any “freestyle” prop. A higher-pitch prop will overheat the motors and ESC on this aircraft.<br>
+      <span class="cn">螺距不可以超过 3.7</span></div>
+      <p class="note">7035 (3.5 pitch) is acceptable as a substitute. Anything above 3.7 is not.</p>
+    </div>
+  </div>
+  <p class="note">A set is 4 propellers: 2 clockwise + 2 counter-clockwise. Buying 2 sets gives one spare set.</p>
+  <div class="quote"><div class="qh">Quotes — write the price here</div>
+  <table><tr><th style="width:36%">Shop / unit no.</th><th style="width:28%">Exact item seen</th><th style="width:18%">Price S$</th><th>Bought?</th></tr>
+  <tr><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr></table></div>
+
+</div>
+
+<!-- ============ PAGE 6 : SHOPS ============ -->
+<div class="page">
+  <div class="hdr"><h1>Where to go</h1><span class="n">call before travelling</span></div>
+
+  <h2>Components — Sim Lim Tower, 10 Jalan Besar</h2>
+  <table>
+    <tr><th style="width:30%">Shop</th><th style="width:34%">Known for</th><th>Buy here</th></tr>
+    <tr><td><b>J.C.W. Electronic</b></td><td>LED components, <b>DC fans</b>, power adapters</td><td>LED strip + fan — try here first, it may have both</td></tr>
+    <tr><td><b>Continental Electronic Enterprise</b></td><td>General hobby electronics</td><td>Resistors, wire, connectors</td></tr>
+    <tr><td><b>Kuriosity</b></td><td>Arduino / Raspberry Pi</td><td>Addressable LED strip, JST pigtails</td></tr>
+  </table>
+  <p class="note">Directory is ~2 years old — unit numbers may have changed. Most shops shut by ~7:30 pm regardless of posted hours. Prices vary between units; ask two or three.</p>
+
+  <h2>Propellers — Sim Lim Square, 1 Rochor Canal Road</h2>
+  <table>
+    <tr><td style="width:30%"><b>Hobby Square</b></td><td>FPV drone shop inside Sim Lim Square. Lists propellers from 1" to 12" including carbon fibre. Listed hours Mon–Sat 12:30 pm – 7:30 pm.</td></tr>
+  </table>
+
+  <h2>If Hobby Square has no 7037</h2>
+  <table>
+    <tr><th style="width:30%">Shop</th><th>Notes</th></tr>
+    <tr><td><b>Sky Hobbies</b><br>skyhobbies.com.sg</td><td>Jalan Sultan area. Claims to be the largest HQProps stockist in Singapore.</td></tr>
+    <tr><td><b>Helicopter Smartfly</b><br>smartfly.com.sg</td><td>Queensway Shopping Centre. Mon–Sat 12–7 pm, Sun 3–7 pm, <b>closed Wednesday</b>.</td></tr>
+    <tr><td><b>Rotor Hobby</b><br>shop.rotor.com.sg</td><td>French Road, Kitchener Complex. Tel +65 6296 3686.</td></tr>
+  </table>
+
+  <h2>Fan fallback</h2>
+  <table>
+    <tr><td style="width:30%"><b>Amicus</b><br>amicus.com.sg</td><td>8 Ubi Road 2, #03-13 Zervex. Tel +65 6980 6783. Stocks 5 V brushless fans with order collection — <b>call first</b>, the listed model is 60 mm not 25 mm.</td></tr>
+  </table>
+
+</div>
+
+</body></html>
