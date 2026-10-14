@@ -41,13 +41,14 @@ network, no router, no Motive). Raw transcripts: `drone-backups/ident-*.txt`.
 | system-image | `1.8.02-M0054-14.1a-perf`, kernel built 2024-11-11 | `1.8.08-M0054-14.1a-perf`, kernel built **2026-05-14** |
 | voxl-suite | `1.4.1~beta3` — **`dev` channel** (`dists/qrb5165/dev/`) | `1.6.4~beta5` — `sdk-1.6` channel |
 | voxl-px4 | `1.14.0-2.0.94` | `1.14.0-2.0.142` |
-| PX4 params loaded | **827**/2162 ✅ | **110**/2167 ⚠️ *(see below)* |
-| `MAV_SYS_ID` | **1** ✅ | ⏳ absent — param set never loaded |
-| `voxl-vision-hub` | active | **failed** |
+| PX4 params loaded | **827**/2162 ✅ | **872**/2167 ✅ after a reboot (was 110 — the iron-rule-7 stale-boot state) |
+| `MAV_SYS_ID` | **1** ✅ | **1** ⚠️ — read after the reboot. ⚠️ **COLLISION: both aircraft are `MAV_SYS_ID` 1.** Harmless flying one at a time; broken for simultaneous flight. Convention if you go multi-drone: B becomes `2` / `drone_2` ([DRONE_SETUP.md](DRONE_SETUP.md)) |
+| `voxl-vision-hub` | active | ✅ **fixed 2026-10-14** — was `failed (255)`: `"offboard_mode":  off,` unquoted in `/etc/modalai/voxl-vision-hub.conf` (hand-edit damage, A's config is intact). Quoted + restarted → active |
 | `modal_io_bridge` pipe | present ⇒ **ESC LED path live** | **absent** ⇒ LED path not running |
 | ⚠️ Frame compatibility | **Frames, motors and feet do NOT interchange between these two aircraft.** A is V1–V3 (frame `M10000929`, motor `M10000073`, feet `M10000868`); B is V4 (frame `M10001459`, motor `M10001367`, feet `M10001460`). ModalAI: *"the two carbon fiber frames are not interchangeable"* | ← same |
 | Propellers | ✅ **Same on both: 7 × 3.7, 3-blade** (= the datasheet's 180 mm tri-blade). Read from the ESC param filenames' `7x3.7x3` suffix | ← same |
 | Cooling fan | ✅ **None fitted** — J2 is empty on both (confirmed by inspection 2026-10-14) | ← same |
+| Clock | synced (on the lab WiFi) | ⚠️ **no battery-backed RTC**; `RTC time: 1970-01-01`, `synchronized: no`. Was 8 weeks slow. Lab WAN is unplugged, so public NTP is unreachable — verify with `timedatectl` rather than assuming WiFi fixes it |
 | Live IP at probe | `wlan0 10.40.2.11/23` | `usb0 192.168.7.2` · `uap0 192.168.8.1` — **not joined to any lab SSID** |
 
 ### ⚠️ Starling 2 is not flight-ready as found (2026-10-14)
