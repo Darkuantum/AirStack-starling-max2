@@ -47,11 +47,19 @@ The old-branch docs in full: `git show airstack-starling-max2:docs/MILESTONES.md
 
 ## WiFi: drone comes up on 169.254.x.x instead of its DHCP address (2026-09-16)
 
-**Applies to OLDER Starling Max 2 units only** — the ones with **no integrated WiFi chip**,
-which need a USB **TP-Link Archer TX20U Nano (RTL8852BU)** dongle and come up as **`wlan0`**
-(this rig: `m0054`). **NEWER Starling Max 2 units have WiFi integrated on the VOXL board**,
-come up as **`mlan0`** driven by `wpa_supplicant@mlan0`, and need **none** of this.
+**Applies to the `wlan0` airframe only** — Starling 1, which carries a USB **TP-Link Archer
+TX20U Nano (RTL8852BU)** dongle on an M0151-class adapter. Starling 2 comes up as **`mlan0`**
+(plus its own `uap0` hotspot) driven by `wpa_supplicant@mlan0` and needs **none** of this.
 Check which you have before applying anything: `ip -br link | grep -E 'wlan0|mlan0'`.
+
+> ⚠️ **Corrected 2026-10-14.** This section used to say the newer units have "WiFi integrated
+> on the VOXL board", and to identify the older unit by `m0054`. Both are wrong. **Both
+> aircraft are M0054-1** — the hostname does not distinguish them. And ModalAI's own feature
+> matrix lists built-in WiFi as **No** for VOXL 2 and VOXL 2 Mini alike: Starling 2's WiFi is a
+> **B2B daughterboard** on the 60-pin legacy connector (Sparrow/M0213-class, Marvell/NXP
+> silicon — `dmesg` shows `wlan: Loading MWLAN driver`), not silicon on the VOXL. The only
+> reliable discriminator is the interface name. See [CONFIG.md](docs/CONFIG.md)
+> §Airframe inventory.
 
 **Symptom:** boot banner shows `current IP: wlan0: 169.254.38.32`, or no `wlan0` at all.
 `169.254.x.x` is dhcpcd's link-local fallback — it means DHCP never ran, because the drone

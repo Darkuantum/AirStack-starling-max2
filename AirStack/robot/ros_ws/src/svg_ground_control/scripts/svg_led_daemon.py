@@ -59,7 +59,14 @@ ESC_PACKET_HEADER = 0xAF
 ESC_PACKET_TYPE_LED_RGB_ARRAY_CMD = 25
 ESC_PACKET_TYPE_LED_RGBW_ARRAY_CMD = 26
 ESC_ID_ALL = 255          # modal_io.c broadcasts; ModalAI's voxl-esc-neopixel-test.py
-ESC_ID_DEFAULT = 0        # addresses ESC 0 (its RGB_OUT pin drives the strip on M0138)
+ESC_ID_DEFAULT = 0        # addresses ESC 0, whose GPIO drives the strip.
+                          # NB: upstream's comment said M0138. That is WRONG for this
+                          # airframe - M0138 is the 6S Racing ESC and the Starling 2 Max
+                          # is 4S. Ours is the M0129 Micro ESC, confirmed 2026-10-14 from
+                          # ModalAI's own /usr/share/modalai/voxl-esc-params/D0012_Starling_MAX/
+                          # esc_params_m0129_*.xml on both aircraft. ESC ID 0 is correct either
+                          # way, so this is a documentation fix only. The M0129 governs the
+                          # LED rail: ONE output, 3.3 V pad (5 V select disabled in fw), 32 px.
 MAX_NEOPIXELS = 32
 MODAL_IO_BRIDGE_SINK = '/run/mpa/modal_io_bridge'
 VOXL_PX4_START = '/usr/bin/voxl-px4-start'
