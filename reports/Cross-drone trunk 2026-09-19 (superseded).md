@@ -4,9 +4,9 @@
 >
 > The architecture question below was answered again on 2026-10-11 with a different decision:
 > fly the Crazyflies under this repo's SVG CBF swarm commander rather than a custom trunk. That
-> report is `~/CrazySwarm2-with-Mocap/docs/research/2026-10-11-cbf-commander-feasibility.md` (still
-> uncommitted there as of 2026-10-20), also published as the claude.ai doc "Crazyflies under the CBF
-> commander: feasibility and plan".
+> report is [`CF under CBF commander feasibility 2026-10-11.md`](CF%20under%20CBF%20commander%20feasibility%202026-10-11.md)
+> next to this file, also published as the claude.ai doc "Crazyflies under the CBF commander:
+> feasibility and plan".
 >
 > Stale in this brief: it assumes **one** Starling (two now fly, on different hardware versions),
 > the small CF arena (a 14 m × 14 m × 14 m arena is coming), and AirStack M1–M6 validated on the
