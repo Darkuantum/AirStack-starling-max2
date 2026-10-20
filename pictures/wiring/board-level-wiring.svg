@@ -1,0 +1,237 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1340 960' width='1340' height='960'>
+<rect x='0.0' y='0.0' width='1340.0' height='960.0' rx='0' fill='#ffffff' stroke='none' stroke-width='0' opacity='1'/>
+<text x='20.0' y='32.0' font-size='19' text-anchor='start' font-weight='bold' fill='#111' font-family='Helvetica, Arial, sans-serif'>Starling 2 Max — board-level wiring, connectors at their real positions</text>
+<text x='20.0' y='54.0' font-size='11.5' text-anchor='start' font-weight='normal' fill='#555' font-family='Helvetica, Arial, sans-serif'>Board outlines and connector positions traced from ModalAI's VOXL 2 connector drawing and M0129 photo (5 px = 1 mm, ±1 mm). Connections confirmed by the owner's hardware check, 2026-10-20.</text>
+<text x='20.0' y='69.0' font-size='11.5' text-anchor='start' font-weight='normal' fill='#555' font-family='Helvetica, Arial, sans-serif'>Wiring per ModalAI's D0012 REV4 compute diagram + our 2026-10-14 bench session.   ⚪ = drawn by ModalAI, not inspected on our aircraft.</text>
+<path d='M20.0,92.0 L54.0,92.0' fill='none' stroke='#d62828' stroke-width='3' stroke-linejoin='round' stroke-linecap='round'/>
+<text x='62.0' y='96.0' font-size='12' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>+ power</text>
+<path d='M190.0,92.0 L224.0,92.0' fill='none' stroke='#222222' stroke-width='3' stroke-linejoin='round' stroke-linecap='round'/>
+<text x='232.0' y='96.0' font-size='12' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>ground</text>
+<path d='M360.0,92.0 L394.0,92.0' fill='none' stroke='#1d5fbf' stroke-width='3' stroke-linejoin='round' stroke-linecap='round'/>
+<text x='402.0' y='96.0' font-size='12' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>UART / serial</text>
+<path d='M530.0,92.0 L564.0,92.0' fill='none' stroke='#0f8a8a' stroke-width='3' stroke-linejoin='round' stroke-linecap='round'/>
+<text x='572.0' y='96.0' font-size='12' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>I²C</text>
+<path d='M700.0,92.0 L734.0,92.0' fill='none' stroke='#7b3fb5' stroke-width='3' stroke-linejoin='round' stroke-linecap='round'/>
+<text x='742.0' y='96.0' font-size='12' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>USB</text>
+<path d='M870.0,92.0 L904.0,92.0' fill='none' stroke='#888888' stroke-width='3' stroke-linejoin='round' stroke-linecap='round' stroke-dasharray='6 4'/>
+<text x='912.0' y='96.0' font-size='12' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>board-to-board stack</text>
+<path d='M1040.0,92.0 L1074.0,92.0' fill='none' stroke='#e07b00' stroke-width='3' stroke-linejoin='round' stroke-linecap='round' stroke-dasharray='7 4'/>
+<text x='1082.0' y='96.0' font-size='12' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>planned mod</text>
+<rect x='310.0' y='150.0' width='350.0' height='180.0' rx='4' fill='#dbe7f3' stroke='#1f4e79' stroke-width='2' opacity='1'/>
+<text x='310.0' y='126.0' font-size='14' text-anchor='start' font-weight='bold' fill='#1f4e79' font-family='Helvetica, Arial, sans-serif'>VOXL 2 (M0054-1) — top face</text>
+<text x='310.0' y='142.0' font-size='11' text-anchor='start' font-weight='normal' fill='#555' font-family='Helvetica, Arial, sans-serif'>ModalAI's "top": J2 · J3 · J5 · J10 · J19</text>
+<circle cx='323.5' cy='161.0' r='5.5' fill='#fff' stroke='#1f4e79' stroke-width='1.2'/>
+<circle cx='634.5' cy='161.0' r='5.5' fill='#fff' stroke='#1f4e79' stroke-width='1.2'/>
+<circle cx='323.5' cy='316.5' r='5.5' fill='#fff' stroke='#1f4e79' stroke-width='1.2'/>
+<circle cx='634.5' cy='316.5' r='5.5' fill='#fff' stroke='#1f4e79' stroke-width='1.2'/>
+<rect x='336.0' y='159.5' width='96.0' height='25.5' rx='0' fill='#f2f2f2' stroke='#555' stroke-width='1.2' opacity='1'/>
+<text x='384.0' y='176.2' font-size='12' text-anchor='middle' font-weight='bold' fill='#111' font-family='Helvetica, Arial, sans-serif'>J5  120-pin B2B</text>
+<rect x='337.5' y='288.0' width='114.5' height='41.5' rx='0' fill='#f2f2f2' stroke='#555' stroke-width='1.2' opacity='1'/>
+<text x='394.8' y='312.8' font-size='12' text-anchor='middle' font-weight='bold' fill='#111' font-family='Helvetica, Arial, sans-serif'>J3  60-pin B2B</text>
+<rect x='454.0' y='300.0' width='96.5' height='30.0' rx='0' fill='#f2f2f2' stroke='#555' stroke-width='1.2' opacity='1'/>
+<text x='502.2' y='319.0' font-size='12' text-anchor='middle' font-weight='bold' fill='#111' font-family='Helvetica, Arial, sans-serif'>J19</text>
+<rect x='556.0' y='308.0' width='71.5' height='22.0' rx='0' fill='#bbbbbb' stroke='#555' stroke-width='1.2' opacity='1'/>
+<text x='591.8' y='323.0' font-size='12' text-anchor='middle' font-weight='bold' fill='#666' font-family='Helvetica, Arial, sans-serif'>J10 · empty</text>
+<rect x='632.5' y='281.0' width='32.5' height='26.0' rx='0' fill='#f2f2f2' stroke='#555' stroke-width='1.2' opacity='1'/>
+<text x='648.8' y='298.0' font-size='11' text-anchor='middle' font-weight='bold' fill='#111' font-family='Helvetica, Arial, sans-serif'>J2</text>
+<circle cx='460.0' cy='324.0' r='2.6' fill='#e00'/>
+<circle cx='640.0' cy='287.0' r='2.6' fill='#e00'/>
+<rect x='310.0' y='560.0' width='350.0' height='180.0' rx='4' fill='#dbe7f3' stroke='#1f4e79' stroke-width='2' opacity='1'/>
+<text x='310.0' y='536.0' font-size='14' text-anchor='start' font-weight='bold' fill='#1f4e79' font-family='Helvetica, Arial, sans-serif'>VOXL 2 — bottom face (as ModalAI draws it)</text>
+<text x='310.0' y='552.0' font-size='11' text-anchor='start' font-weight='normal' fill='#555' font-family='Helvetica, Arial, sans-serif'>QRB5165 SIP · J4 · J6–J9 · J18</text>
+<circle cx='334.5' cy='571.0' r='5.5' fill='#fff' stroke='#1f4e79' stroke-width='1.2'/>
+<circle cx='647.0' cy='571.0' r='5.5' fill='#fff' stroke='#1f4e79' stroke-width='1.2'/>
+<circle cx='334.5' cy='726.5' r='5.5' fill='#fff' stroke='#1f4e79' stroke-width='1.2'/>
+<circle cx='647.0' cy='726.5' r='5.5' fill='#fff' stroke='#1f4e79' stroke-width='1.2'/>
+<rect x='394.5' y='595.0' width='77.5' height='64.5' rx='2' fill='#c9ccd1' stroke='#666' stroke-width='1.2' opacity='1'/>
+<text x='433.0' y='618.0' font-size='11' text-anchor='middle' font-weight='bold' fill='#111' font-family='Helvetica, Arial, sans-serif'>QRB5165 SIP</text>
+<text x='433.0' y='631.0' font-size='11' text-anchor='middle' font-weight='bold' fill='#111' font-family='Helvetica, Arial, sans-serif'>Linux CPUs +</text>
+<text x='433.0' y='644.0' font-size='11' text-anchor='middle' font-weight='bold' fill='#111' font-family='Helvetica, Arial, sans-serif'>SLPI = PX4</text>
+<rect x='355.0' y='565.0' width='19.5' height='68.0' rx='0' fill='#f2f2f2' stroke='#555' stroke-width='1.2' opacity='1'/>
+<text x='364.8' y='603.0' font-size='12' text-anchor='middle' font-weight='bold' fill='#111' font-family='Helvetica, Arial, sans-serif'></text>
+<rect x='355.0' y='664.5' width='19.5' height='69.5' rx='0' fill='#f2f2f2' stroke='#555' stroke-width='1.2' opacity='1'/>
+<text x='364.8' y='703.2' font-size='12' text-anchor='middle' font-weight='bold' fill='#111' font-family='Helvetica, Arial, sans-serif'></text>
+<rect x='565.0' y='666.0' width='17.5' height='68.0' rx='0' fill='#bbbbbb' stroke='#555' stroke-width='1.2' opacity='1'/>
+<text x='573.8' y='704.0' font-size='12' text-anchor='middle' font-weight='bold' fill='#666' font-family='Helvetica, Arial, sans-serif'></text>
+<text x='381.0' y='602.5' font-size='12' text-anchor='start' font-weight='bold' fill='#111' font-family='Helvetica, Arial, sans-serif'>J6</text>
+<text x='381.0' y='702.5' font-size='12' text-anchor='start' font-weight='bold' fill='#111' font-family='Helvetica, Arial, sans-serif'>J7</text>
+<text x='535.0' y='702.5' font-size='12' text-anchor='start' font-weight='bold' fill='#777' font-family='Helvetica, Arial, sans-serif'>J8</text>
+<text x='527.5' y='722.5' font-size='10' text-anchor='start' font-weight='normal' fill='#777' font-family='Helvetica, Arial, sans-serif' font-style='italic'>empty</text>
+<rect x='587.5' y='562.5' width='44.0' height='21.0' rx='0' fill='#f2f2f2' stroke='#555' stroke-width='1.2' opacity='1'/>
+<text x='609.5' y='577.0' font-size='11' text-anchor='middle' font-weight='bold' fill='#111' font-family='Helvetica, Arial, sans-serif'>J18</text>
+<rect x='616.0' y='602.5' width='49.0' height='44.5' rx='0' fill='#f2f2f2' stroke='#555' stroke-width='1.2' opacity='1'/>
+<text x='640.5' y='628.8' font-size='11' text-anchor='middle' font-weight='bold' fill='#111' font-family='Helvetica, Arial, sans-serif'>J9</text>
+<rect x='631.5' y='653.5' width='41.0' height='61.5' rx='0' fill='#f2f2f2' stroke='#555' stroke-width='1.2' opacity='1'/>
+<text x='652.0' y='688.2' font-size='11' text-anchor='middle' font-weight='bold' fill='#111' font-family='Helvetica, Arial, sans-serif'>J4</text>
+<circle cx='626.5' cy='580.0' r='2.6' fill='#e00'/>
+<circle cx='637.5' cy='710.0' r='2.6' fill='#e00'/>
+<rect x='855.0' y='560.0' width='182.5' height='182.5' rx='4' fill='#dbe7f3' stroke='#1f4e79' stroke-width='2' opacity='1'/>
+<text x='855.0' y='536.0' font-size='14' text-anchor='start' font-weight='bold' fill='#1f4e79' font-family='Helvetica, Arial, sans-serif'>M0129 ESC — top</text>
+<text x='855.0' y='552.0' font-size='11' text-anchor='start' font-weight='normal' fill='#555' font-family='Helvetica, Arial, sans-serif'>feeds VOXL 2 power</text>
+<circle cx='866.0' cy='571.0' r='5.5' fill='#fff' stroke='#1f4e79' stroke-width='1.2'/>
+<circle cx='1026.5' cy='571.0' r='5.5' fill='#fff' stroke='#1f4e79' stroke-width='1.2'/>
+<circle cx='866.0' cy='731.5' r='5.5' fill='#fff' stroke='#1f4e79' stroke-width='1.2'/>
+<circle cx='1026.5' cy='731.5' r='5.5' fill='#fff' stroke='#1f4e79' stroke-width='1.2'/>
+<rect x='884.0' y='579.0' width='46.0' height='24.0' rx='0' fill='#f2f2f2' stroke='#555' stroke-width='1.2' opacity='1'/>
+<text x='907.0' y='595.0' font-size='11' text-anchor='middle' font-weight='bold' fill='#111' font-family='Helvetica, Arial, sans-serif'>J1 UART</text>
+<rect x='977.0' y='577.0' width='17.5' height='14.5' rx='0' fill='#f6d36b' stroke='#555' stroke-width='1.2' opacity='1'/>
+<text x='985.8' y='588.2' font-size='11' text-anchor='middle' font-weight='bold' fill='#111' font-family='Helvetica, Arial, sans-serif'>+</text>
+<rect x='995.0' y='577.0' width='17.5' height='14.5' rx='0' fill='#f6d36b' stroke='#555' stroke-width='1.2' opacity='1'/>
+<text x='1003.8' y='588.2' font-size='11' text-anchor='middle' font-weight='bold' fill='#111' font-family='Helvetica, Arial, sans-serif'>−</text>
+<text x='995.0' y='607.0' font-size='9.5' text-anchor='middle' font-weight='bold' fill='#111' font-family='Helvetica, Arial, sans-serif'>VREG OUT 5 V</text>
+<rect x='926.0' y='718.5' width='16.5' height='16.5' rx='0' fill='#f6d36b' stroke='#555' stroke-width='1.2' opacity='1'/>
+<text x='934.2' y='730.8' font-size='11' text-anchor='middle' font-weight='bold' fill='#111' font-family='Helvetica, Arial, sans-serif'>+</text>
+<rect x='955.0' y='718.5' width='17.0' height='16.5' rx='0' fill='#f6d36b' stroke='#555' stroke-width='1.2' opacity='1'/>
+<text x='963.5' y='730.8' font-size='11' text-anchor='middle' font-weight='bold' fill='#111' font-family='Helvetica, Arial, sans-serif'>−</text>
+<text x='949.0' y='712.0' font-size='9.5' text-anchor='middle' font-weight='bold' fill='#111' font-family='Helvetica, Arial, sans-serif'>BATT</text>
+<rect x='874.0' y='609.5' width='12.0' height='12.0' rx='0' fill='#f6d36b' stroke='#8a6d00' stroke-width='1' opacity='1'/>
+<rect x='874.0' y='629.0' width='12.0' height='12.0' rx='0' fill='#f6d36b' stroke='#8a6d00' stroke-width='1' opacity='1'/>
+<rect x='874.0' y='648.0' width='12.0' height='12.0' rx='0' fill='#f6d36b' stroke='#8a6d00' stroke-width='1' opacity='1'/>
+<text x='849.0' y='639.0' font-size='11.5' text-anchor='end' font-weight='bold' fill='#111' font-family='Helvetica, Arial, sans-serif'>M4 ◂ ID3</text>
+<rect x='874.0' y='666.5' width='12.0' height='12.0' rx='0' fill='#f6d36b' stroke='#8a6d00' stroke-width='1' opacity='1'/>
+<rect x='874.0' y='686.0' width='12.0' height='12.0' rx='0' fill='#f6d36b' stroke='#8a6d00' stroke-width='1' opacity='1'/>
+<rect x='874.0' y='705.0' width='12.0' height='12.0' rx='0' fill='#f6d36b' stroke='#8a6d00' stroke-width='1' opacity='1'/>
+<text x='849.0' y='696.0' font-size='11.5' text-anchor='end' font-weight='bold' fill='#111' font-family='Helvetica, Arial, sans-serif'>M1 ◂ ID2</text>
+<rect x='1011.5' y='609.5' width='12.0' height='12.0' rx='0' fill='#f6d36b' stroke='#8a6d00' stroke-width='1' opacity='1'/>
+<rect x='1011.5' y='629.0' width='12.0' height='12.0' rx='0' fill='#f6d36b' stroke='#8a6d00' stroke-width='1' opacity='1'/>
+<rect x='1011.5' y='648.0' width='12.0' height='12.0' rx='0' fill='#f6d36b' stroke='#8a6d00' stroke-width='1' opacity='1'/>
+<text x='1043.5' y='639.0' font-size='11.5' text-anchor='start' font-weight='bold' fill='#111' font-family='Helvetica, Arial, sans-serif'>ID0 ▸ M2</text>
+<rect x='1011.5' y='666.5' width='12.0' height='12.0' rx='0' fill='#f6d36b' stroke='#8a6d00' stroke-width='1' opacity='1'/>
+<rect x='1011.5' y='686.0' width='12.0' height='12.0' rx='0' fill='#f6d36b' stroke='#8a6d00' stroke-width='1' opacity='1'/>
+<rect x='1011.5' y='705.0' width='12.0' height='12.0' rx='0' fill='#f6d36b' stroke='#8a6d00' stroke-width='1' opacity='1'/>
+<text x='1043.5' y='696.0' font-size='11.5' text-anchor='start' font-weight='bold' fill='#111' font-family='Helvetica, Arial, sans-serif'>ID1 ▸ M3</text>
+<text x='1043.5' y='612.5' font-size='10' text-anchor='start' font-weight='normal' fill='#555' font-family='Helvetica, Arial, sans-serif'>ID ▸ motor</text>
+<text x='849.0' y='612.5' font-size='10' text-anchor='end' font-weight='normal' fill='#555' font-family='Helvetica, Arial, sans-serif'>motor ◂ ID</text>
+<text x='20.0' y='948.0' font-size='11' text-anchor='start' font-weight='normal' fill='#555' font-family='Helvetica, Arial, sans-serif'>Motor numbers: PX4 Quad X (M1 front-right, M2 rear-left, M3 front-left, M4 rear-right). ESC ID → motor from VOXL_ESC_FUNC1–4 = 102,103,101,104, read off both aircraft. ESC ID0 also drives the NeoPixel pad.</text>
+<rect x='1112.0' y='560.0' width='182.5' height='182.5' rx='4' fill='#dbe7f3' stroke='#1f4e79' stroke-width='2' opacity='1'/>
+<text x='1112.0' y='536.0' font-size='14' text-anchor='start' font-weight='bold' fill='#1f4e79' font-family='Helvetica, Arial, sans-serif'>M0129 — bottom</text>
+<text x='1112.0' y='552.0' font-size='11' text-anchor='start' font-weight='normal' fill='#555' font-family='Helvetica, Arial, sans-serif'>seen from below (mirrored)</text>
+<circle cx='1123.0' cy='571.0' r='5.5' fill='#fff' stroke='#1f4e79' stroke-width='1.2'/>
+<circle cx='1283.5' cy='571.0' r='5.5' fill='#fff' stroke='#1f4e79' stroke-width='1.2'/>
+<circle cx='1123.0' cy='731.5' r='5.5' fill='#fff' stroke='#1f4e79' stroke-width='1.2'/>
+<circle cx='1283.5' cy='731.5' r='5.5' fill='#fff' stroke='#1f4e79' stroke-width='1.2'/>
+<circle cx='1144.0' cy='581.5' r='5' fill='#f6d36b' stroke='#8a6d00'/>
+<circle cx='1166.5' cy='581.5' r='5' fill='#f6d36b' stroke='#8a6d00'/>
+<circle cx='1177.5' cy='581.5' r='5' fill='#f6d36b' stroke='#8a6d00'/>
+<text x='1189.5' y='614.0' font-size='10' text-anchor='start' font-weight='bold' fill='#111' font-family='Helvetica, Arial, sans-serif'>◂ NeoPixel pads (reachable)</text>
+<text x='1189.5' y='626.0' font-size='9.5' text-anchor='start' font-weight='normal' fill='#555' font-family='Helvetica, Arial, sans-serif'>G · OUT · VAUX</text>
+<circle cx='1230.0' cy='581.5' r='3.6' fill='#bbbbbb' stroke='#888'/>
+<circle cx='1239.0' cy='581.5' r='3.6' fill='#bbbbbb' stroke='#888'/>
+<circle cx='1248.0' cy='581.5' r='3.6' fill='#bbbbbb' stroke='#888'/>
+<circle cx='1256.5' cy='581.5' r='3.6' fill='#bbbbbb' stroke='#888'/>
+<circle cx='1266.5' cy='581.5' r='3.6' fill='#bbbbbb' stroke='#888'/>
+<text x='1237.0' y='600.0' font-size='9.5' text-anchor='middle' font-weight='normal' fill='#777' font-family='Helvetica, Arial, sans-serif'>AUX PWM (unused)</text>
+<rect x='1212.0' y='645.0' width='45.0' height='20.0' rx='2' fill='#c9ccd1' stroke='#666' stroke-width='1' opacity='1'/>
+<text x='1234.5' y='660.0' font-size='9.5' text-anchor='middle' font-weight='bold' fill='#111' font-family='Helvetica, Arial, sans-serif'>AUX reg</text>
+<text x='1247.0' y='687.5' font-size='9.5' text-anchor='middle' font-weight='normal' fill='#555' font-family='Helvetica, Arial, sans-serif'>AUX reg: 3.3 V default,</text>
+<text x='1247.0' y='699.5' font-size='9.5' text-anchor='middle' font-weight='normal' fill='#555' font-family='Helvetica, Arial, sans-serif'>500–600 mA (5 V select</text>
+<text x='1247.0' y='711.5' font-size='9.5' text-anchor='middle' font-weight='normal' fill='#555' font-family='Helvetica, Arial, sans-serif'>disabled in firmware)</text>
+<text x='1120.0' y='597.0' font-size='11' text-anchor='start' font-weight='bold' fill='#111' font-family='Helvetica, Arial, sans-serif'>0</text>
+<text x='1278.5' y='597.0' font-size='11' text-anchor='start' font-weight='bold' fill='#111' font-family='Helvetica, Arial, sans-serif'>3</text>
+<text x='1120.0' y='725.0' font-size='11' text-anchor='start' font-weight='bold' fill='#111' font-family='Helvetica, Arial, sans-serif'>1</text>
+<text x='1278.5' y='725.0' font-size='11' text-anchor='start' font-weight='bold' fill='#111' font-family='Helvetica, Arial, sans-serif'>2</text>
+<path d='M985.5,577.0 L985.5,512.0 L770.0,512.0 L770.0,680.0 L672.5,680.0' fill='none' stroke='#d62828' stroke-width='2.6' stroke-linejoin='round' stroke-linecap='round'/>
+<path d='M1003.5,577.0 L1003.5,518.0 L776.0,518.0 L776.0,688.0 L672.5,688.0' fill='none' stroke='#222222' stroke-width='2.6' stroke-linejoin='round' stroke-linecap='round'/>
+<text x='680.0' y='712.0' font-size='11' text-anchor='start' font-weight='bold' fill='#d62828' font-family='Helvetica, Arial, sans-serif'>5 V → J4-1</text>
+<text x='680.0' y='726.0' font-size='11' text-anchor='start' font-weight='bold' fill='#111' font-family='Helvetica, Arial, sans-serif'>GND → J4-2</text>
+<text x='680.0' y='740.0' font-size='10' text-anchor='start' font-weight='normal' fill='#555' font-family='Helvetica, Arial, sans-serif'>J4-3/4 not wired</text>
+<path d='M631.5,568.0 L735.0,568.0 L735.0,586.0 L884.0,586.0' fill='none' stroke='#1d5fbf' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<path d='M631.5,573.0 L740.0,573.0 L740.0,591.0 L884.0,591.0' fill='none' stroke='#1d5fbf' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<path d='M631.5,578.0 L745.0,578.0 L745.0,596.0 L884.0,596.0' fill='none' stroke='#222222' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<text x='650.0' y='512.0' font-size='11' text-anchor='start' font-weight='bold' fill='#1d5fbf' font-family='Helvetica, Arial, sans-serif'>UART 3.3 V</text>
+<text x='650.0' y='525.0' font-size='10' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>J18-2 TX → J1-2 RX</text>
+<text x='650.0' y='537.0' font-size='10' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>J18-3 RX ← J1-3 TX</text>
+<text x='650.0' y='549.0' font-size='10' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>J18-4 GND — J1-4</text>
+<path d='M665.0,624.5 L682.0,624.5' fill='none' stroke='#7b3fb5' stroke-width='2.4' stroke-linejoin='round' stroke-linecap='round'/>
+<rect x='682.0' y='606.0' width='80.0' height='42.0' rx='6' fill='#fff' stroke='#7b3fb5' stroke-width='1.6' opacity='1'/>
+<text x='692.0' y='625.0' font-size='12.5' text-anchor='start' font-weight='bold' fill='#7b3fb5' font-family='Helvetica, Arial, sans-serif'>Laptop</text>
+<text x='692.0' y='643.0' font-size='11.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>ADB only</text>
+<rect x='838.0' y='850.0' width='92.0' height='52.0' rx='6' fill='#fff' stroke='#d62828' stroke-width='1.6' opacity='1'/>
+<text x='848.0' y='869.0' font-size='12.5' text-anchor='start' font-weight='bold' fill='#d62828' font-family='Helvetica, Arial, sans-serif'>Pack A</text>
+<text x='848.0' y='887.0' font-size='11.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>2S 18650</text>
+<rect x='960.0' y='850.0' width='92.0' height='52.0' rx='6' fill='#fff' stroke='#d62828' stroke-width='1.6' opacity='1'/>
+<text x='970.0' y='869.0' font-size='12.5' text-anchor='start' font-weight='bold' fill='#d62828' font-family='Helvetica, Arial, sans-serif'>Pack B</text>
+<text x='970.0' y='887.0' font-size='11.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>2S 18650</text>
+<path d='M934.2,735.0 L934.2,850.0' fill='none' stroke='#d62828' stroke-width='2.6' stroke-linejoin='round' stroke-linecap='round'/>
+<path d='M963.5,735.0 L963.5,790.0 L1030.0,790.0 L1030.0,850.0' fill='none' stroke='#222222' stroke-width='2.6' stroke-linejoin='round' stroke-linecap='round'/>
+<path d='M930.0,885.0 L960.0,885.0' fill='none' stroke='#d62828' stroke-width='2.6' stroke-linejoin='round' stroke-linecap='round'/>
+<text x='838.0' y='922.0' font-size='11' text-anchor='start' font-weight='normal' fill='#555' font-family='Helvetica, Arial, sans-serif'>XT30 × 2 in series → 12–16.8 V (read 16.07–16.09 V)</text>
+<path d='M502.0,330.0 L502.0,365.0' fill='none' stroke='#555' stroke-width='4' stroke-linejoin='round' stroke-linecap='round'/>
+<circle cx='502.0' cy='365.0' r='4' fill='#555'/>
+<path d='M502.0,365.0 L420.0,365.0 L420.0,390.0' fill='none' stroke='#0f8a8a' stroke-width='2.4' stroke-linejoin='round' stroke-linecap='round'/>
+<path d='M502.0,365.0 L640.0,365.0 L640.0,390.0' fill='none' stroke='#1d5fbf' stroke-width='2.4' stroke-linejoin='round' stroke-linecap='round'/>
+<rect x='318.0' y='390.0' width='205.0' height='100.0' rx='6' fill='#fff' stroke='#0f8a8a' stroke-width='1.6' opacity='1'/>
+<text x='328.0' y='409.0' font-size='12.5' text-anchor='start' font-weight='bold' fill='#0f8a8a' font-family='Helvetica, Arial, sans-serif'>GNSS + mag (M10-5883)</text>
+<text x='328.0' y='427.0' font-size='11.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>J19-1 +5 V · J19-6 GND</text>
+<text x='328.0' y='441.5' font-size='11.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>J19-2 TX → GNSS RX</text>
+<text x='328.0' y='456.0' font-size='11.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>J19-3 RX ← GNSS TX</text>
+<text x='328.0' y='470.5' font-size='11.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>J19-4/5 mag SCL/SDA (I²C)</text>
+<rect x='540.0' y='390.0' width='240.0' height='100.0' rx='6' fill='#fff' stroke='#1d5fbf' stroke-width='1.6' opacity='1'/>
+<text x='550.0' y='409.0' font-size='12.5' text-anchor='start' font-weight='bold' fill='#1d5fbf' font-family='Helvetica, Arial, sans-serif'>RC receiver</text>
+<text x='550.0' y='427.0' font-size='11.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>Starling 1: ELRS · Starling 2: Ghost</text>
+<text x='550.0' y='441.5' font-size='11.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>J19-11 RX ← receiver TX</text>
+<text x='550.0' y='456.0' font-size='11.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>J19-10 TX → receiver RX (ELRS only)</text>
+<text x='550.0' y='470.5' font-size='11.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>J19-1 +5 V (shared) · J19-12 GND</text>
+<path d='M665.0,294.0 L705.0,294.0 L705.0,300.0' fill='none' stroke='#e07b00' stroke-width='2.6' stroke-linejoin='round' stroke-linecap='round' stroke-dasharray='7 4'/>
+<rect x='680.0' y='300.0' width='215.0' height='84.0' rx='6' fill='#fff' stroke='#e07b00' stroke-width='1.6' stroke-dasharray='7 4' opacity='1'/>
+<text x='690.0' y='319.0' font-size='12.5' text-anchor='start' font-weight='bold' fill='#e07b00' font-family='Helvetica, Arial, sans-serif'>① Fan (planned · J2 empty)</text>
+<text x='690.0' y='337.0' font-size='11.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>25 × 25 × 7 mm · 5 V · 2 wires</text>
+<text x='690.0' y='351.5' font-size='11.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>plug SHR-02V-S (JST SH 1.0)</text>
+<text x='690.0' y='366.0' font-size='11.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>pin 1 +5 V always on</text>
+<text x='690.0' y='378.0' font-size='11.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>pin 2 PWM-switched GND ≤ 400 mA</text>
+<rect x='20.0' y='140.0' width='270.0' height='205.0' rx='6' fill='#fff' stroke='#888888' stroke-width='1.6' stroke-dasharray='6 4' opacity='1'/>
+<text x='30.0' y='159.0' font-size='12.5' text-anchor='start' font-weight='bold' fill='#888888' font-family='Helvetica, Arial, sans-serif'>Plugs onto J3 + J5 (both aircraft)</text>
+<text x='30.0' y='177.0' font-size='11.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>Starling 2: Sparrow WiFi board</text>
+<text x='30.0' y='191.5' font-size='11.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>  M0213-class (REV4 says M0141)</text>
+<text x='30.0' y='206.0' font-size='11.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>  → mlan0 · 2 × U.FL WiFi antennas</text>
+<text x='30.0' y='220.5' font-size='11.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>Starling 1: M0090-class 5G carrier</text>
+<text x='30.0' y='235.0' font-size='11.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>  own USB hub · J11 USB 3 free</text>
+<text x='30.0' y='249.5' font-size='11.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>  ├ EM9291 5G modem (M.2, unused)</text>
+<text x='30.0' y='264.0' font-size='11.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>  └ J12 USB 2 → TX20U dongle → wlan0</text>
+<text x='30.0' y='278.5' font-size='11.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>Starling 2 board also sits on J5 (owner</text>
+<text x='30.0' y='293.0' font-size='11.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>check), though M0213 docs list J3 only</text>
+<path d='M290.0,230.0 L305.0,230.0 L305.0,308.5 L337.5,308.5' fill='none' stroke='#888888' stroke-width='2.2' stroke-linejoin='round' stroke-linecap='round' stroke-dasharray='6 4'/>
+<path d='M290.0,190.0 L300.0,190.0 L300.0,172.0 L336.0,172.0' fill='none' stroke='#888888' stroke-width='2.2' stroke-linejoin='round' stroke-linecap='round' stroke-dasharray='6 4'/>
+<text x='150.0' y='362.0' font-size='11' text-anchor='middle' font-weight='normal' fill='#555' font-family='Helvetica, Arial, sans-serif' font-style='italic'>No room for an M0062 Ethernet add-on</text>
+<rect x='20.0' y='560.0' width='270.0' height='190.0' rx='6' fill='#fff' stroke='#888888' stroke-width='1.6' stroke-dasharray='6 4' opacity='1'/>
+<text x='30.0' y='579.0' font-size='12.5' text-anchor='start' font-weight='bold' fill='#888888' font-family='Helvetica, Arial, sans-serif'>Plugs onto J6 + J7: M0173</text>
+<text x='30.0' y='597.0' font-size='11.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>"Starling front end" camera board</text>
+<text x='30.0' y='611.5' font-size='11.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>Our C29 config, 5 sensors:</text>
+<text x='30.0' y='626.0' font-size='11.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>  AR0144 tracking — front, down</text>
+<text x='30.0' y='640.5' font-size='11.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>  IMX412 hi-res — front, down</text>
+<text x='30.0' y='655.0' font-size='11.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>  IRS2975 ToF (via M0171 + M0177 flex)</text>
+<text x='30.0' y='669.5' font-size='11.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>  ⚪ VL53L1CX rangefinder (M0157)</text>
+<text x='30.0' y='684.0' font-size='11.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>Micro-coax MCBL-00084-xx per camera</text>
+<text x='30.0' y='698.5' font-size='11.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>Cabling matches ModalAI's REV4 drawing</text>
+<path d='M290.0,640.0 L300.0,640.0 L300.0,599.0 L355.0,599.0' fill='none' stroke='#888888' stroke-width='2.2' stroke-linejoin='round' stroke-linecap='round' stroke-dasharray='6 4'/>
+<path d='M290.0,680.0 L300.0,680.0 L300.0,699.0 L355.0,699.0' fill='none' stroke='#888888' stroke-width='2.2' stroke-linejoin='round' stroke-linecap='round' stroke-dasharray='6 4'/>
+<path d='M1144.0,586.5 L1144.0,820.0 L1186.0,820.0' fill='none' stroke='#222222' stroke-width='2' stroke-linejoin='round' stroke-linecap='round' stroke-dasharray='7 4'/>
+<path d='M1166.5,586.5 L1166.5,772.0' fill='none' stroke='#e07b00' stroke-width='2.2' stroke-linejoin='round' stroke-linecap='round' stroke-dasharray='7 4'/>
+<rect x='1160.5' y='772.0' width='12.0' height='22.0' rx='0' fill='#fff' stroke='#e07b00' stroke-width='1.6' opacity='1'/>
+<text x='1176.5' y='787.0' font-size='10.5' text-anchor='start' font-weight='bold' fill='#e07b00' font-family='Helvetica, Arial, sans-serif'>330–470 Ω</text>
+<path d='M1166.5,794.0 L1166.5,812.0 L1186.0,812.0' fill='none' stroke='#e07b00' stroke-width='2.2' stroke-linejoin='round' stroke-linecap='round' stroke-dasharray='7 4'/>
+<path d='M1177.5,586.5 L1177.5,804.0 L1186.0,804.0' fill='none' stroke='#d62828' stroke-width='2' stroke-linejoin='round' stroke-linecap='round' stroke-dasharray='7 4'/>
+<rect x='1186.0' y='807.0' width='6.0' height='10.0' rx='0' fill='#fff4e0' stroke='#e07b00' stroke-width='1' opacity='1'/>
+<rect x='1193.5' y='807.0' width='6.0' height='10.0' rx='0' fill='#fff4e0' stroke='#e07b00' stroke-width='1' opacity='1'/>
+<rect x='1201.0' y='807.0' width='6.0' height='10.0' rx='0' fill='#fff4e0' stroke='#e07b00' stroke-width='1' opacity='1'/>
+<rect x='1208.5' y='807.0' width='6.0' height='10.0' rx='0' fill='#fff4e0' stroke='#e07b00' stroke-width='1' opacity='1'/>
+<rect x='1219.0' y='807.0' width='6.0' height='10.0' rx='0' fill='#fff4e0' stroke='#e07b00' stroke-width='1' opacity='1'/>
+<rect x='1226.5' y='807.0' width='6.0' height='10.0' rx='0' fill='#fff4e0' stroke='#e07b00' stroke-width='1' opacity='1'/>
+<rect x='1234.0' y='807.0' width='6.0' height='10.0' rx='0' fill='#fff4e0' stroke='#e07b00' stroke-width='1' opacity='1'/>
+<rect x='1241.5' y='807.0' width='6.0' height='10.0' rx='0' fill='#fff4e0' stroke='#e07b00' stroke-width='1' opacity='1'/>
+<rect x='1252.0' y='807.0' width='6.0' height='10.0' rx='0' fill='#fff4e0' stroke='#e07b00' stroke-width='1' opacity='1'/>
+<rect x='1259.5' y='807.0' width='6.0' height='10.0' rx='0' fill='#fff4e0' stroke='#e07b00' stroke-width='1' opacity='1'/>
+<rect x='1267.0' y='807.0' width='6.0' height='10.0' rx='0' fill='#fff4e0' stroke='#e07b00' stroke-width='1' opacity='1'/>
+<rect x='1274.5' y='807.0' width='6.0' height='10.0' rx='0' fill='#fff4e0' stroke='#e07b00' stroke-width='1' opacity='1'/>
+<rect x='1285.0' y='807.0' width='6.0' height='10.0' rx='0' fill='#fff4e0' stroke='#e07b00' stroke-width='1' opacity='1'/>
+<rect x='1292.5' y='807.0' width='6.0' height='10.0' rx='0' fill='#fff4e0' stroke='#e07b00' stroke-width='1' opacity='1'/>
+<rect x='1300.0' y='807.0' width='6.0' height='10.0' rx='0' fill='#fff4e0' stroke='#e07b00' stroke-width='1' opacity='1'/>
+<rect x='1307.5' y='807.0' width='6.0' height='10.0' rx='0' fill='#fff4e0' stroke='#e07b00' stroke-width='1' opacity='1'/>
+<text x='1186.0' y='842.0' font-size='11.5' text-anchor='start' font-weight='bold' fill='#e07b00' font-family='Helvetica, Arial, sans-serif'>② LED chain · 16 px</text>
+<text x='1186.0' y='856.0' font-size='10.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>4 arms × 4 px, 60 LED/m</text>
+<text x='1186.0' y='869.0' font-size='10.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>returns via the hub</text>
+<text x='1186.0' y='882.0' font-size='10.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>470–1000 µF at strip</text>
+<rect x='1186.0' y='896.0' width='140.0' height='48.0' rx='6' fill='#fff' stroke='#e07b00' stroke-width='1.6' stroke-dasharray='7 4' opacity='1'/>
+<text x='1196.0' y='915.0' font-size='12.5' text-anchor='start' font-weight='bold' fill='#e07b00' font-family='Helvetica, Arial, sans-serif'>5 V BEC</text>
+<text x='1196.0' y='933.0' font-size='11.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>only if VAUX = 3.3 V</text>
+</svg>

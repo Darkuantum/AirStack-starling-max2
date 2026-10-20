@@ -1,5 +1,9 @@
 # Livox LiDAR as a Physical Payload on a ModalAI Starling Max 2 — Hardware, Electrical, Mechanical
 
+> **Superseded in part (2026-10-20).** The binding limit is the M0129 ESC, which ModalAI designs "for
+> vehicles under 750 g", ~184 g above the 566 g takeoff weight, not the datasheet's 500 g payload.
+> A Mid-360 does not fit this airframe. See `reports/Onboard compute alternatives 2026-10-20.md` §5.
+
 Scope note: this file covers sensor selection, weight/power budget, mounting, vibration, time sync, extrinsic calibration and the physical/electrical interface. Software (drivers, SLAM, EKF2 plumbing) is out of scope except where it forces a hardware choice.
 
 ## Sensor selection: Livox Mid-360 primary specs

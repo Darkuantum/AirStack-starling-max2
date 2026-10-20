@@ -1,5 +1,10 @@
 # Starling Max 2 / VOXL 2 board and airframe identification
 
+> **Superseded in part (2026-10-20).** Starling 1's dongle is most likely on an **M0090 5G-modem carrier**
+> (the owner saw its EM9291 card; the dongle sits behind a USB hub at `1-1.4`), not on the M0151 this file
+> maps it to. The forum claims about M0151 below are recorded accurately, but they are not our aircraft.
+> Current state: `reports/Starling Max 2 modification stack.md` § Full wiring.
+
 Scope note: the user's two airframes are tagged `m0054` and `D0012`. Research below confirms
 `D0012` is ModalAI's airframe code for the **Starling 2 Max** and `M0054` is the original
 full-size **VOXL 2** compute board. Everything here is organised around telling two vintages

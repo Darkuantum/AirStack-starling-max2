@@ -26,7 +26,8 @@ network, no router, no Motive). Raw transcripts: `drone-backups/ident-*.txt`.
 
 > **Headline: the compute boards are identical.** Both report `hw platform: M0054`,
 > `mach.var: 1.0.1`, sysfs `machine=1 variant=0` → **M0054-1, QRB5165M silicon**. Neither is
-> an M0154, neither is the 4-camera-capped `-2` assembly. **Every difference between the two
+> the 4-camera-capped `-2` assembly. (ModalAI's product photo shows an `M0154` silkscreen;
+> M0054-1 and M0154-1 are functionally equivalent and software may not tell them apart.) **Every difference between the two
 > aircraft is accessory- or software-level**, so no per-board code paths are needed.
 
 | | **Starling 1** ("with dongle") | **Starling 2** ("without dongle") |
@@ -36,8 +37,9 @@ network, no router, no Motive). Raw transcripts: `drone-backups/ident-*.txt`.
 | Airframe rev | ✅ **V1–V3** — confirmed 2026-10-14 by motor inspection (**2203.5** 1500 kV, black-and-gold T-Motor), narrower motor-mount spacing | ✅ **V4** (from `SKU:`) — wider motor-mount spacing, black **2204** 1500 kV motors |
 | Cameras | **C29** — 5 detected | **C29** — 5 detected |
 | Camera set | `ar0144` tracking front/down · `imx412` hires front/down · `pmd-tof-liow2` ToF — all `enabled` | identical |
-| WiFi | **`wlan0` / `rtl8852bu`** — USB dongle (TP-Link Archer TX20U, `35bc:0108` post-modeswitch) on an M0151-class adapter | **`mlan0` + `uap0`** — B2B daughterboard. dmesg: `wlan: Loading MWLAN driver` ⇒ **Marvell/NXP** silicon (Sparrow/M0213-class) |
-| Modem | **Sierra Wireless EM9291** (5G) on `wwan0`/`cdc_mbim` | **none** — `lsusb` shows only root hubs |
+| WiFi | **`wlan0` / `rtl8852bu`** — USB dongle (TP-Link Archer TX20U, `35bc:0108` post-modeswitch) plugged into `J12` (USB 2 header) of the M0090-class 5G carrier, enumerating at `1-1.4` (owner check 2026-10-20; part number under glue; earlier docs said M0151) | **`mlan0` + `uap0`** — B2B daughterboard. dmesg: `wlan: Loading MWLAN driver` ⇒ **Marvell/NXP** silicon (Sparrow/M0213-class) |
+| Modem | **Sierra Wireless EM9291** (5G) on `wwan0`/`cdc_mbim`, card seen stacked on the VOXL 2 (2026-10-20), on an M0090-class carrier using J3 + J5. Unused; the carrier's `J12` also hosts the WiFi dongle, and its `J11` (USB 3) is free | **none** — `lsusb` shows only root hubs |
+| Connectors in use (owner check 2026-10-20) | J3 + J5 → M0090 5G carrier / EM9291 · J6 + J7 → M0173 cameras · J19 → GNSS + **ELRS** receiver · J4 → ESC 5 V + GND · J18 → ESC UART · J9 → ADB only · **J2, J8, J10 empty** | J3 + J5 → WiFi board · J6 + J7 → M0173 cameras · J19 → GNSS + **Ghost** receiver · J4, J18 → ESC · J9 → ADB only · **J2, J8, J10 empty** |
 | system-image | `1.8.02-M0054-14.1a-perf`, kernel built 2024-11-11 | `1.8.08-M0054-14.1a-perf`, kernel built **2026-05-14** |
 | voxl-suite | `1.4.1~beta3` — **`dev` channel** (`dists/qrb5165/dev/`) | `1.6.4~beta5` — `sdk-1.6` channel |
 | voxl-px4 | `1.14.0-2.0.94` | `1.14.0-2.0.142` |
