@@ -10,7 +10,7 @@ auto-cropped of their white borders (40–45% of each file), so the part fills t
 | Page | Contents |
 |---|---|
 | 1 | Checklist with tick boxes + the two buildings |
-| 2 | LED strip — WS2812B/SK6812, 5 V, 30 LED/m, chipsets to avoid |
+| 2 | LED strip — WS2812B/SK6812, 5 V, 60 LED/m (4 px per ~75 mm arm), chipsets to avoid |
 | 3 | Fan — "2507", 5 V, **2 wires only**, with a wire-count diagram |
 | 4 | JST SH 1.0 mm connector, resistors, wire, optional BEC |
 | 5 | Propellers — 7 × 3.7 × 3, with the pitch warning |
