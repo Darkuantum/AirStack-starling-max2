@@ -51,7 +51,7 @@
   <table>
     <tr><th style="width:8%">✓</th><th style="width:30%">Item</th><th style="width:38%">Key spec</th><th>Where</th></tr>
     <tr><td class="tick">☐</td><td><b>Addressable LED strip</b></td>
-        <td><b>WS2812B or SK6812</b><br>5 V · 60 LED/m · need 16 pixels (≈27 cm) · buy 1 m</td><td>Sim Lim <b>Tower</b></td></tr>
+        <td><b>WS2812B or SK6812</b><br>5 V · 60 LED/m · need 16 pixels (≈27 cm) · buy 1 m<br>(1 m also covers 6 px per arm if the arms re-measure at ~100 mm)</td><td>Sim Lim <b>Tower</b></td></tr>
     <tr><td class="tick">☐</td><td><b>Cooling fan</b></td>
         <td><b>25 × 25 × 7 mm · 5 V · 2 WIRES ONLY</b><br>≤ 150 mA</td><td>Sim Lim <b>Tower</b></td></tr>
     <tr><td class="tick">☐</td><td><b>JST SH 1.0 mm connector</b></td>
@@ -60,10 +60,14 @@
         <td>330 Ω or 470 Ω, 1/4 W (×10)</td><td>Sim Lim <b>Tower</b></td></tr>
     <tr><td class="tick">☐</td><td><b>Hook-up wire</b></td>
         <td>Thin stranded, 3 colours, ~2 m each</td><td>Sim Lim <b>Tower</b></td></tr>
+    <tr><td class="tick">☐</td><td><b>Capacitor</b></td>
+        <td>470 µF electrolytic, ≥ 6.3 V (×2) · goes at the strip end</td><td>Sim Lim <b>Tower</b></td></tr>
+    <tr><td class="tick">☐</td><td><b>Kapton tape</b> or clear heat-shrink</td>
+        <td>~10 mm tape, or heat-shrink to fit a 10 mm arm</td><td>Sim Lim <b>Tower</b></td></tr>
     <tr><td class="tick">☐</td><td><b>Propellers</b></td>
         <td><b>7 inch · 3.7 pitch · 3 blades</b><br>(7037-3 / 7×3.7×3)</td><td>Sim Lim <b>Square</b></td></tr>
-    <tr><td class="tick">☐</td><td><i>Optional:</i> 5 V BEC / regulator</td>
-        <td>5 V out, ≥ 1 A — only if LED rail measures 3.3 V</td><td>Sim Lim <b>Tower</b></td></tr>
+    <tr><td class="tick">☐</td><td><i>Backup kit</i> (buy all three or none)</td>
+        <td>5 V BEC ≥ 1 A · <b>74HCT125</b> or 74AHCT125 chip (×2) · XT30 Y-lead</td><td>Sim Lim <b>Tower</b></td></tr>
   </table>
 
   <h2 style="margin-top:4mm">Two buildings, side by side</h2>
@@ -213,7 +217,7 @@
         <text x="99" y="128" text-anchor="middle" font-size="11" font-family="Arial" fill="#1565c0">1.0 mm pitch</text>
         <text x="99" y="36" text-anchor="middle" font-size="12" font-family="Arial" fill="#111" font-weight="bold">2 pins</text>
       </svg>
-      <div class="photo" style="margin:2mm 0"><img src="img/jst-sh.jpg" style="max-height:48mm">
+      <div class="photo" style="margin:2mm 0"><img src="img/jst-sh.jpg" style="max-height:40mm">
         <div class="cap"><b>This shape</b> — 2-pin housing with two wires already crimped on</div>
         <div class="attr">Photo: Christopher.nunez, CC BY-SA 3.0, via Wikimedia Commons. Shown for shape only — confirm the pitch is 1.0 mm.</div></div>
       <div class="spec"><span class="k">JST SH 1.0 mm</span>
@@ -239,14 +243,28 @@
     </div>
   </div>
 
-  <h2>Optional — only if needed</h2>
-  <div class="spec"><span class="k">5 V BEC / regulator module</span>
-    <b>5 V output, 1 A or more.</b> Input must accept <b>7–17 V</b> (it runs from a 4S battery).<br>
-    <span class="note">Buy this only if the drone's LED power pad measures 3.3 V instead of 5 V. If unsure, skip it — it can be bought later.</span></div>
+  <div class="spec"><span class="k">Capacitor · Kapton tape</span>
+    <b>470 µF electrolytic, ≥ 6.3 V</b> (×2), across + and GND at the strip start; the stripe marks the negative leg.<br>
+    <b>~10 mm Kapton tape</b> or heat-shrink that fits over a 10 mm arm, to hold the strip ends on the carbon.</div>
+
   <div class="quote"><div class="qh">Quotes — write the price here</div>
   <table><tr><th style="width:36%">Shop / unit no.</th><th style="width:28%">Exact item seen</th><th style="width:18%">Price S$</th><th>Bought?</th></tr>
   <tr><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr></table></div>
 
+</div>
+
+<!-- ============ PAGE 4b : 5 V BACKUP KIT ============ -->
+<div class="page">
+  <div class="hdr"><h1>3b · 5 V backup kit</h1><span class="n">all three, or none</span></div>
+  <p class="sub">Only needed if the strip misbehaves on the ESC&rsquo;s 3.3 V pad. Cheap, so buying it now saves a second trip.</p>
+  <div class="spec"><span class="k">5 V BEC + 74HCT125 + XT30 Y-lead</span>
+    The ESC's LED pad gives only <b>3.3 V</b>. If the strip is too dim or glitches on 3.3 V, power it from 5 V instead:<br>
+    <b>5 V BEC</b>, 1 A or more, input <b>7–17 V</b> (runs from the 4S battery) · <b>XT30 Y-lead</b> to tap the battery for it ·
+    <b>74HCT125</b> or <b>74AHCT125</b> chip (×2) to lift the 3.3 V data signal to 5 V.<br>
+    <span class="note"><b>Do not buy 74HC125 or 74LS125</b> — wrong input levels. A 5 V strip on 3.3 V data without this chip may work on the bench and fail in flight.</span></div>
+  <div class="quote"><div class="qh">Quotes — write the price here</div>
+  <table><tr><th style="width:36%">Shop / unit no.</th><th style="width:28%">Exact item seen</th><th style="width:18%">Price S$</th><th>Bought?</th></tr>
+  <tr><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr></table></div>
 </div>
 
 <!-- ============ PAGE 5 : PROPELLERS ============ -->

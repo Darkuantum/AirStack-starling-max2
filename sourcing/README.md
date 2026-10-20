@@ -1,6 +1,6 @@
 # Printable parts-sourcing sheet
 
-`parts-sourcing.pdf` — 6 pages, A4, for carrying to Sim Lim Tower / Sim Lim Square.
+`parts-sourcing.pdf` — 7 pages, A4, for carrying to Sim Lim Tower / Sim Lim Square.
 One page per item: a large photo of the real part, the exact spec, a "do not buy" list, and a
 blank table for writing quotes in so shops can be compared before buying.
 
@@ -12,9 +12,10 @@ auto-cropped of their white borders (40–45% of each file), so the part fills t
 | 1 | Checklist with tick boxes + the two buildings |
 | 2 | LED strip — WS2812B/SK6812, 5 V, 60 LED/m (4 px per ~75 mm arm), chipsets to avoid |
 | 3 | Fan — "2507", 5 V, **2 wires only**, with a wire-count diagram |
-| 4 | JST SH 1.0 mm connector, resistors, wire, optional BEC |
-| 5 | Propellers — 7 × 3.7 × 3, with the pitch warning |
-| 6 | Shop addresses and fallbacks |
+| 4 | JST SH 1.0 mm connector, resistors, wire, capacitor, Kapton tape |
+| 5 | 5 V backup kit — BEC + 74HCT125 + XT30 Y-lead, all three or none |
+| 6 | Propellers — 7 × 3.7 × 3, with the pitch warning |
+| 7 | Shop addresses and fallbacks |
 
 ## Images and attribution
 
@@ -50,6 +51,6 @@ Diagrams are inline SVG; photos live in `img/`. Nothing is fetched at render tim
 
 ## Specs come from
 
-`reports/Starling Max 2 modification stack.md` § *What to order*. If a spec changes there,
+`docs/MODIFICATIONS.md` (§② LED strip, §① Cooling, §③ Propellers). If a spec changes there,
 change it here too. Shop details were web-sourced 2026-10-14 and some directory listings were
 already ~2 years old — **call before travelling**.
