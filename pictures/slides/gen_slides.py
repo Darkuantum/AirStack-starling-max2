@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """16:9 slide images replacing the Mermaid charts in
-reports/Starling Max 2 modification stack.md. Plain SVG, no dependencies.
+the hardware docs (docs/HARDWARE.md, reports/Starling 2 Max hardware investigation.md). Plain SVG, no dependencies.
 
 Usage: gen_slides.py OUT_DIR    (writes slide-*.svg)
 """
@@ -99,8 +99,8 @@ class Slide:
 
 
 def slide_hardware(path):
-    s = Slide("The aircraft, and the four places you modify it",
-              "Every board on the Starling 2 Max and what connects them. Numbered boxes are the workstreams.",
+    s = Slide("The aircraft, and the five places you modify it",
+              "Every board on the Starling 2 Max and what connects them. Numbered boxes are the five workstreams.",
               "Sources: ModalAI REV4 compute diagram · bench session 2026-10-14 · owner hardware check 2026-10-20")
     s.box(56, 210, 270, 170, "Battery", ["2 × 2S 18650 packs", "wired in series → 4S", "12–16.8 V · XT30 × 2"])
     s.box(420, 180, 360, 230, "M0129 ESC, 4-in-1", ["drives 4 motors; PX4 talks to it", "over one UART (J18 ↔ J1)",
@@ -115,7 +115,7 @@ def slide_hardware(path):
     s.arrow([(780, 245), (880, 245)], "pwr", "5 V", (830, 232))
     s.arrow([(780, 345), (880, 345)], "data", "UART: motors\n+ LED colours", (830, 318), both=True)
     s.arrow([(1260, 285), (1340, 285)], "b2b", "B2B", (1300, 270), both=True)
-    s.box(56, 520, 240, 150, "Also on the VOXL 2", ["J19: GNSS + RC rx", "J6+J7: M0173 + cameras", "J9: USB-C, ADB"], "grey", rsize=14)
+    s.box(56, 520, 240, 150, "Companion", ["planned · ≤ ~170 g", "USB (J9 / J11) or WiFi", "own 5 V BEC"], "new", "⑤", dash=True, rsize=14)
     s.box(330, 520, 300, 150, "Motors + props", ["4 × 1500 kV motors", "7 × 3.7 × 3 props", "S1: 2203.5 · S2: 2204"], "new", "③")
     s.box(670, 520, 300, 150, "LED strip", ["16 px on one data line", "solder to ESC pads", "330–470 Ω in series"], "new", "②")
     s.box(1010, 520, 280, 150, "Cooling fan", ["VOXL 2 J2 header", "25 × 25 × 7 mm, 5 V", "2 wires only"], "new", "①")

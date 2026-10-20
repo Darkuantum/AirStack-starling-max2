@@ -2,8 +2,8 @@
 <defs><marker id='a-pwr' viewBox='0 0 10 10' refX='9' refY='5' markerWidth='7' markerHeight='7' orient='auto-start-reverse'><path d='M0,0 L10,5 L0,10 z' fill='#d62828'/></marker><marker id='a-data' viewBox='0 0 10 10' refX='9' refY='5' markerWidth='7' markerHeight='7' orient='auto-start-reverse'><path d='M0,0 L10,5 L0,10 z' fill='#2b6cb0'/></marker><marker id='a-b2b' viewBox='0 0 10 10' refX='9' refY='5' markerWidth='7' markerHeight='7' orient='auto-start-reverse'><path d='M0,0 L10,5 L0,10 z' fill='#8a8a8a'/></marker><marker id='a-mod' viewBox='0 0 10 10' refX='9' refY='5' markerWidth='7' markerHeight='7' orient='auto-start-reverse'><path d='M0,0 L10,5 L0,10 z' fill='#b8860b'/></marker><marker id='a-warn' viewBox='0 0 10 10' refX='9' refY='5' markerWidth='7' markerHeight='7' orient='auto-start-reverse'><path d='M0,0 L10,5 L0,10 z' fill='#c53030'/></marker><marker id='a-ok' viewBox='0 0 10 10' refX='9' refY='5' markerWidth='7' markerHeight='7' orient='auto-start-reverse'><path d='M0,0 L10,5 L0,10 z' fill='#22863a'/></marker><marker id='a-ink' viewBox='0 0 10 10' refX='9' refY='5' markerWidth='7' markerHeight='7' orient='auto-start-reverse'><path d='M0,0 L10,5 L0,10 z' fill='#3d4752'/></marker></defs>
 <rect width='1600' height='900' fill='#ffffff'/>
 <rect width='1600' height='8' fill='#1f4e79'/>
-<text x='56.0' y='74.0' font-size='38' text-anchor='start' font-weight='bold' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>The aircraft, and the four places you modify it</text>
-<text x='56.0' y='110.0' font-size='20' text-anchor='start' font-weight='normal' fill='#56606d' font-family='Helvetica, Arial, sans-serif'>Every board on the Starling 2 Max and what connects them. Numbered boxes are the workstreams.</text>
+<text x='56.0' y='74.0' font-size='38' text-anchor='start' font-weight='bold' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>The aircraft, and the five places you modify it</text>
+<text x='56.0' y='110.0' font-size='20' text-anchor='start' font-weight='normal' fill='#56606d' font-family='Helvetica, Arial, sans-serif'>Every board on the Starling 2 Max and what connects them. Numbered boxes are the five workstreams.</text>
 <line x1='56' y1='850' x2='1544' y2='850' stroke='#e2e6ec'/>
 <text x='56.0' y='878.0' font-size='14' text-anchor='start' font-weight='normal' fill='#56606d' font-family='Helvetica, Arial, sans-serif'>Sources: ModalAI REV4 compute diagram · bench session 2026-10-14 · owner hardware check 2026-10-20</text>
 <text x='1544.0' y='878.0' font-size='14' text-anchor='end' font-weight='normal' fill='#56606d' font-family='Helvetica, Arial, sans-serif'>Starling 2 Max · modification stack</text>
@@ -49,11 +49,13 @@
 <path d='M1260.0,285.0 L1340.0,285.0' fill='none' stroke='#8a8a8a' stroke-width='2.6' stroke-linejoin='round' marker-end='url(#a-b2b)' marker-start='url(#a-b2b)'/>
 <rect x='1284.2' y='257.0' width='31.5' height='19' rx='3' fill='#ffffff' opacity='0.92'/>
 <text x='1300.0' y='270.0' font-size='14' text-anchor='middle' font-weight='bold' fill='#8a8a8a' font-family='Helvetica, Arial, sans-serif'>B2B</text>
-<rect x='56' y='520' width='240' height='150' rx='12' fill='#f1f1f1' stroke='#8a8a8a' stroke-width='2.2'/>
-<text x='72.0' y='554.0' font-size='19' text-anchor='start' font-weight='bold' fill='#8a8a8a' font-family='Helvetica, Arial, sans-serif'>Also on the VOXL 2</text>
-<text x='72.0' y='582.0' font-size='14' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>J19: GNSS + RC rx</text>
-<text x='72.0' y='602.0' font-size='14' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>J6+J7: M0173 + cameras</text>
-<text x='72.0' y='622.0' font-size='14' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>J9: USB-C, ADB</text>
+<rect x='56' y='520' width='240' height='150' rx='12' fill='#fff3cd' stroke='#b8860b' stroke-width='2.2' stroke-dasharray='8 5'/>
+<circle cx='82' cy='547' r='15' fill='#b8860b'/>
+<text x='82.0' y='553.0' font-size='17' text-anchor='middle' font-weight='bold' fill='#fff' font-family='Helvetica, Arial, sans-serif'>⑤</text>
+<text x='106.0' y='554.0' font-size='19' text-anchor='start' font-weight='bold' fill='#b8860b' font-family='Helvetica, Arial, sans-serif'>Companion</text>
+<text x='72.0' y='582.0' font-size='14' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>planned · ≤ ~170 g</text>
+<text x='72.0' y='602.0' font-size='14' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>USB (J9 / J11) or WiFi</text>
+<text x='72.0' y='622.0' font-size='14' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>own 5 V BEC</text>
 <rect x='330' y='520' width='300' height='150' rx='12' fill='#fff3cd' stroke='#b8860b' stroke-width='2.2'/>
 <circle cx='356' cy='547' r='15' fill='#b8860b'/>
 <text x='356.0' y='553.0' font-size='17' text-anchor='middle' font-weight='bold' fill='#fff' font-family='Helvetica, Arial, sans-serif'>③</text>

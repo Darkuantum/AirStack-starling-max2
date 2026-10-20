@@ -1,6 +1,6 @@
 # The ESC's 750 g rating, not compute, decides what can ride on a Starling 2 Max
 
-*Research brief, 2026-10-20. Question: how do we run more powerful algorithms onboard, in whatever form that takes? Inputs: three parallel web-research passes (VOXL 2 headroom, companion computers, replacement architectures and airframes) plus this repo's own measurements. Markers: **[I]** = our inference or arithmetic, not a sourced figure. **[U]** = found but not verified.*
+*Research brief, 2026-10-20. Plan: [docs/MODIFICATIONS.md](../docs/MODIFICATIONS.md) ⑤; hardware facts: [docs/HARDWARE.md](../docs/HARDWARE.md). Question: how do we run more powerful algorithms onboard, in whatever form that takes? Inputs: three parallel web-research passes (VOXL 2 headroom, companion computers, replacement architectures and airframes) plus this repo's own measurements. Markers: **[I]** = our inference or arithmetic, not a sourced figure. **[U]** = found but not verified.*
 
 There are five ways to get more onboard compute. They are ranked below by how much they disturb the aircraft you already fly:
 
@@ -163,5 +163,5 @@ What do you want to run onboard?
 - **Fan control on J2.** One 2024 forum thread says the VOXL 2's J2 fan header is "always on", with no software control ([forum topic 3228](https://forum.modalai.com/topic/3228/starling-fan-attachment-and-optimization)). The connector docs describe pin 2 as a PWM-switched return, and that is what the modification-stack report follows. Unresolved. It only changes whether a fan can be thermostatic.
 - **Thermal shutdown.** A moderator says the board shuts down at 90 °C ([forum post 13482](https://forum.modalai.com/post/13482)); staff elsewhere say it throttles at 90–95 °C. We measured 102 °C without a shutdown, so the "shutdown at 90 °C" claim looks wrong for current firmware [I].
 - **Throttling and PX4.** Whether apps-CPU throttling affects PX4 on the SLPI was not found. It is likely independent, since the SLPI is a separate DSP [I]. A thermal shutdown would still take PX4 down with the board.
-- **Starling 1's J3 board.** The companion research assumed an M0151 USB adapter; this session's evidence (an EM9291 card seen by the owner, USB hub addresses) points to an M0090 5G carrier. Not yet confirmed by silkscreen.
+- **Starling 1's J3 board.** Resolved 2026-10-20: an M0090-class 5G carrier, with the WiFi dongle on its `J12` (USB 2) and `J11` (USB 3) free. The companion research had assumed an M0151 USB adapter.
 - **Singapore prices.** Mostly unverified: Cytron SG blocked automated fetches. Get quotes for any shortlisted part.
