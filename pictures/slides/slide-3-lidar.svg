@@ -1,0 +1,103 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900' width='1600' height='900'>
+<defs><marker id='a-pwr' viewBox='0 0 10 10' refX='9' refY='5' markerWidth='7' markerHeight='7' orient='auto-start-reverse'><path d='M0,0 L10,5 L0,10 z' fill='#d62828'/></marker><marker id='a-data' viewBox='0 0 10 10' refX='9' refY='5' markerWidth='7' markerHeight='7' orient='auto-start-reverse'><path d='M0,0 L10,5 L0,10 z' fill='#2b6cb0'/></marker><marker id='a-b2b' viewBox='0 0 10 10' refX='9' refY='5' markerWidth='7' markerHeight='7' orient='auto-start-reverse'><path d='M0,0 L10,5 L0,10 z' fill='#8a8a8a'/></marker><marker id='a-mod' viewBox='0 0 10 10' refX='9' refY='5' markerWidth='7' markerHeight='7' orient='auto-start-reverse'><path d='M0,0 L10,5 L0,10 z' fill='#b8860b'/></marker><marker id='a-warn' viewBox='0 0 10 10' refX='9' refY='5' markerWidth='7' markerHeight='7' orient='auto-start-reverse'><path d='M0,0 L10,5 L0,10 z' fill='#c53030'/></marker><marker id='a-ok' viewBox='0 0 10 10' refX='9' refY='5' markerWidth='7' markerHeight='7' orient='auto-start-reverse'><path d='M0,0 L10,5 L0,10 z' fill='#22863a'/></marker><marker id='a-ink' viewBox='0 0 10 10' refX='9' refY='5' markerWidth='7' markerHeight='7' orient='auto-start-reverse'><path d='M0,0 L10,5 L0,10 z' fill='#3d4752'/></marker></defs>
+<rect width='1600' height='900' fill='#ffffff'/>
+<rect width='1600' height='8' fill='#1f4e79'/>
+<text x='56.0' y='74.0' font-size='38' text-anchor='start' font-weight='bold' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>What the LiDAR goal actually changes</text>
+<text x='56.0' y='110.0' font-size='20' text-anchor='start' font-weight='normal' fill='#56606d' font-family='Helvetica, Arial, sans-serif'>LiDAR → map already exists in the tree. LiDAR → pose and LiDAR → local avoidance are the gaps.</text>
+<line x1='56' y1='850' x2='1544' y2='850' stroke='#e2e6ec'/>
+<text x='56.0' y='878.0' font-size='14' text-anchor='start' font-weight='normal' fill='#56606d' font-family='Helvetica, Arial, sans-serif'>Source: vendored AirStack tree (global_bringup/config/vdb_params.yaml, local.launch.xml, px4_interface.launch.xml)</text>
+<text x='1544.0' y='878.0' font-size='14' text-anchor='end' font-weight='normal' fill='#56606d' font-family='Helvetica, Arial, sans-serif'>Starling 2 Max · modification stack</text>
+<rect x='56' y='132' width='1488' height='46' rx='10' fill='#f1f1f1' stroke='#8a8a8a' stroke-width='1.6'/>
+<text x='74.0' y='162.0' font-size='17' text-anchor='start' font-weight='bold' fill='#8a8a8a' font-family='Helvetica, Arial, sans-serif'>Deferred: no LiDAR fits under the M0129's 750 g rating. This is the software picture for a future airframe.</text>
+<rect x='56' y='202' width='26' height='18' rx='4' fill='#e6f6ec' stroke='#22863a' stroke-width='2'/>
+<text x='92.0' y='216.0' font-size='15' text-anchor='start' font-weight='normal' fill='#56606d' font-family='Helvetica, Arial, sans-serif'>already in your tree</text>
+<rect x='286' y='202' width='26' height='18' rx='4' fill='#fff3cd' stroke='#b8860b' stroke-width='2'/>
+<text x='322.0' y='216.0' font-size='15' text-anchor='start' font-weight='normal' fill='#56606d' font-family='Helvetica, Arial, sans-serif'>you would build</text>
+<rect x='516' y='202' width='26' height='18' rx='4' fill='#ffe3e3' stroke='#c53030' stroke-width='2'/>
+<text x='552.0' y='216.0' font-size='15' text-anchor='start' font-weight='normal' fill='#56606d' font-family='Helvetica, Arial, sans-serif'>unsolved gap</text>
+<rect x='56' y='250' width='200' height='300' rx='12' fill='#fff3cd' stroke='#b8860b' stroke-width='2.2'/>
+<text x='72.0' y='284.0' font-size='19' text-anchor='start' font-weight='bold' fill='#b8860b' font-family='Helvetica, Arial, sans-serif'>Livox Mid-360</text>
+<text x='72.0' y='312.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>265 g</text>
+<text x='72.0' y='333.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>0.1 m min range</text>
+<text x='72.0' y='354.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>100BASE-TX</text>
+<text x='72.0' y='375.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>built-in IMU</text>
+<rect x='290' y='250' width='180' height='130' rx='12' fill='#fff3cd' stroke='#b8860b' stroke-width='2.2'/>
+<text x='306.0' y='284.0' font-size='17' text-anchor='start' font-weight='bold' fill='#b8860b' font-family='Helvetica, Arial, sans-serif'>livox_ros_driver2</text>
+<text x='306.0' y='312.0' font-size='14' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>you supply it:</text>
+<text x='306.0' y='332.0' font-size='14' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>AirStack vendors</text>
+<text x='306.0' y='352.0' font-size='14' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>no LiDAR driver</text>
+<rect x='496' y='250' width='180' height='130' rx='12' fill='#e6f6ec' stroke='#22863a' stroke-width='2.2'/>
+<text x='512.0' y='284.0' font-size='17' text-anchor='start' font-weight='bold' fill='#22863a' font-family='Helvetica, Arial, sans-serif'>Raw cloud</text>
+<text x='512.0' y='312.0' font-size='14' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>sensors/ouster/</text>
+<text x='512.0' y='332.0' font-size='14' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>point_cloud_raw</text>
+<rect x='702' y='250' width='180' height='130' rx='12' fill='#e6f6ec' stroke='#22863a' stroke-width='2.2'/>
+<text x='718.0' y='284.0' font-size='17' text-anchor='start' font-weight='bold' fill='#22863a' font-family='Helvetica, Arial, sans-serif'>Cloud filter</text>
+<text x='718.0' y='312.0' font-size='14' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>lidar_point_</text>
+<text x='718.0' y='332.0' font-size='14' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>cloud_filter</text>
+<text x='718.0' y='352.0' font-size='14' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>near_range 0.75 m</text>
+<rect x='908' y='250' width='180' height='130' rx='12' fill='#e6f6ec' stroke='#22863a' stroke-width='2.2'/>
+<text x='924.0' y='284.0' font-size='17' text-anchor='start' font-weight='bold' fill='#22863a' font-family='Helvetica, Arial, sans-serif'>Clean cloud</text>
+<text x='924.0' y='312.0' font-size='14' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>sensors/ouster/</text>
+<text x='924.0' y='332.0' font-size='14' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>point_cloud</text>
+<rect x='1114' y='250' width='180' height='130' rx='12' fill='#e6f6ec' stroke='#22863a' stroke-width='2.2'/>
+<text x='1130.0' y='284.0' font-size='17' text-anchor='start' font-weight='bold' fill='#22863a' font-family='Helvetica, Arial, sans-serif'>vdb_mapping</text>
+<text x='1130.0' y='312.0' font-size='14' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>sources: [lidar]</text>
+<rect x='1320' y='250' width='180' height='130' rx='12' fill='#e6f6ec' stroke='#22863a' stroke-width='2.2'/>
+<text x='1336.0' y='284.0' font-size='17' text-anchor='start' font-weight='bold' fill='#22863a' font-family='Helvetica, Arial, sans-serif'>Global planner</text>
+<text x='1336.0' y='312.0' font-size='14' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>random_walk</text>
+<text x='1336.0' y='332.0' font-size='14' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>(exploration in</text>
+<text x='1336.0' y='352.0' font-size='14' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>tree, not launched)</text>
+<path d='M256.0,315.0 L290.0,315.0' fill='none' stroke='#b8860b' stroke-width='2.6' stroke-linejoin='round' marker-end='url(#a-mod)'/>
+<path d='M470.0,315.0 L496.0,315.0' fill='none' stroke='#b8860b' stroke-width='2.6' stroke-linejoin='round' marker-end='url(#a-mod)'/>
+<path d='M676.0,315.0 L702.0,315.0' fill='none' stroke='#22863a' stroke-width='2.6' stroke-linejoin='round' marker-end='url(#a-ok)'/>
+<path d='M882.0,315.0 L908.0,315.0' fill='none' stroke='#22863a' stroke-width='2.6' stroke-linejoin='round' marker-end='url(#a-ok)'/>
+<path d='M1088.0,315.0 L1114.0,315.0' fill='none' stroke='#22863a' stroke-width='2.6' stroke-linejoin='round' marker-end='url(#a-ok)'/>
+<path d='M1294.0,315.0 L1320.0,315.0' fill='none' stroke='#22863a' stroke-width='2.6' stroke-linejoin='round' marker-end='url(#a-ok)'/>
+<rect x='290' y='440' width='180' height='120' rx='12' fill='#fff3cd' stroke='#b8860b' stroke-width='2.2'/>
+<text x='306.0' y='474.0' font-size='17' text-anchor='start' font-weight='bold' fill='#b8860b' font-family='Helvetica, Arial, sans-serif'>FAST-LIO2</text>
+<text x='306.0' y='502.0' font-size='14' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>LiDAR-inertial</text>
+<text x='306.0' y='522.0' font-size='14' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>odometry</text>
+<rect x='496' y='440' width='180' height='120' rx='12' fill='#fff3cd' stroke='#b8860b' stroke-width='2.2'/>
+<text x='512.0' y='474.0' font-size='17' text-anchor='start' font-weight='bold' fill='#b8860b' font-family='Helvetica, Arial, sans-serif'>Your estimator</text>
+<text x='512.0' y='502.0' font-size='14' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>perception/&lt;est&gt;/</text>
+<text x='512.0' y='522.0' font-size='14' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>odometry</text>
+<rect x='702' y='440' width='180' height='120' rx='12' fill='#e6f6ec' stroke='#22863a' stroke-width='2.2'/>
+<text x='718.0' y='474.0' font-size='15' text-anchor='start' font-weight='bold' fill='#22863a' font-family='Helvetica, Arial, sans-serif'>odometry_conversion</text>
+<text x='718.0' y='502.0' font-size='14' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>edit its</text>
+<text x='718.0' y='522.0' font-size='14' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>odometry_in remap</text>
+<rect x='908' y='440' width='180' height='120' rx='12' fill='#e6f6ec' stroke='#22863a' stroke-width='2.2'/>
+<text x='924.0' y='474.0' font-size='15' text-anchor='start' font-weight='bold' fill='#22863a' font-family='Helvetica, Arial, sans-serif'>Canonical odometry</text>
+<text x='924.0' y='502.0' font-size='14' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>odometry_conversion/</text>
+<text x='924.0' y='522.0' font-size='14' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>odometry: every</text>
+<text x='924.0' y='542.0' font-size='14' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>consumer reads it</text>
+<path d='M256.0,500.0 L290.0,500.0' fill='none' stroke='#b8860b' stroke-width='2.6' stroke-linejoin='round' marker-end='url(#a-mod)'/>
+<path d='M470.0,500.0 L496.0,500.0' fill='none' stroke='#b8860b' stroke-width='2.6' stroke-linejoin='round' marker-end='url(#a-mod)'/>
+<path d='M676.0,500.0 L702.0,500.0' fill='none' stroke='#b8860b' stroke-width='2.6' stroke-linejoin='round' marker-end='url(#a-mod)'/>
+<path d='M882.0,500.0 L908.0,500.0' fill='none' stroke='#22863a' stroke-width='2.6' stroke-linejoin='round' marker-end='url(#a-ok)'/>
+<rect x='290' y='625' width='290' height='115' rx='12' fill='#e6f6ec' stroke='#22863a' stroke-width='2.2'/>
+<text x='306.0' y='659.0' font-size='19' text-anchor='start' font-weight='bold' fill='#22863a' font-family='Helvetica, Arial, sans-serif'>OptiTrack mocap</text>
+<text x='306.0' y='687.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>flying today</text>
+<text x='306.0' y='708.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>new job: ground-truth scorer</text>
+<rect x='702' y='625' width='260' height='115' rx='12' fill='#e6f6ec' stroke='#22863a' stroke-width='2.2'/>
+<text x='718.0' y='659.0' font-size='19' text-anchor='start' font-weight='bold' fill='#22863a' font-family='Helvetica, Arial, sans-serif'>PX4 EKF2</text>
+<text x='718.0' y='687.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>external vision input</text>
+<text x='718.0' y='708.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>(one channel only)</text>
+<rect x='1114' y='625' width='386' height='115' rx='12' fill='#ffe3e3' stroke='#c53030' stroke-width='2.2'/>
+<text x='1130.0' y='659.0' font-size='19' text-anchor='start' font-weight='bold' fill='#c53030' font-family='Helvetica, Arial, sans-serif'>droan_gl local planner</text>
+<text x='1130.0' y='687.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>disparity-only: no LiDAR path</text>
+<text x='1130.0' y='708.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>CPU planner disabled (&lt;?ignore?&gt;)</text>
+<path d='M580.0,670.0 L702.0,670.0' fill='none' stroke='#22863a' stroke-width='2.6' stroke-linejoin='round' marker-end='url(#a-ok)'/>
+<rect x='593.3' y='644.0' width='95.4' height='18' rx='3' fill='#ffffff' opacity='0.92'/>
+<text x='641.0' y='656.0' font-size='13' text-anchor='middle' font-weight='bold' fill='#22863a' font-family='Helvetica, Arial, sans-serif'>mocap_bridge</text>
+<path d='M586.0,560.0 L586.0,598.0 L800.0,598.0 L800.0,625.0' fill='none' stroke='#b8860b' stroke-width='2.6' stroke-linejoin='round' stroke-dasharray='8 5' marker-end='url(#a-mod)'/>
+<rect x='578.5' y='579.0' width='223.0' height='17' rx='3' fill='#ffffff' opacity='0.92'/>
+<text x='690.0' y='590.0' font-size='12' text-anchor='middle' font-weight='bold' fill='#b8860b' font-family='Helvetica, Arial, sans-serif'>visual_odometry_in: unused today</text>
+<path d='M330.0,740.0 L330.0,770.0 L1050.0,770.0 L1050.0,560.0' fill='none' stroke='#22863a' stroke-width='2.6' stroke-linejoin='round' stroke-dasharray='8 5' marker-end='url(#a-ok)'/>
+<rect x='591.4' y='750.0' width='197.3' height='18' rx='3' fill='#ffffff' opacity='0.92'/>
+<text x='690.0' y='762.0' font-size='13' text-anchor='middle' font-weight='bold' fill='#22863a' font-family='Helvetica, Arial, sans-serif'>compare drift: the new job</text>
+<path d='M1040.0,380.0 L1040.0,410.0 L1250.0,410.0 L1250.0,625.0' fill='none' stroke='#c53030' stroke-width='2.6' stroke-linejoin='round' stroke-dasharray='8 5' marker-end='url(#a-warn)'/>
+<rect x='1258.0' y='458.0' width='241.0' height='18' rx='3' fill='#ffffff' opacity='0.92'/>
+<text x='1262.0' y='470.0' font-size='13' text-anchor='start' font-weight='bold' fill='#c53030' font-family='Helvetica, Arial, sans-serif'>needs the CPU planner re-enabled</text>
+<rect x='1258.0' y='475.0' width='219.1' height='18' rx='3' fill='#ffffff' opacity='0.92'/>
+<text x='1262.0' y='487.0' font-size='13' text-anchor='start' font-weight='bold' fill='#c53030' font-family='Helvetica, Arial, sans-serif'>+ a cost_map_interface plugin</text>
+</svg>

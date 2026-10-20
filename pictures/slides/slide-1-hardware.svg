@@ -1,0 +1,97 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900' width='1600' height='900'>
+<defs><marker id='a-pwr' viewBox='0 0 10 10' refX='9' refY='5' markerWidth='7' markerHeight='7' orient='auto-start-reverse'><path d='M0,0 L10,5 L0,10 z' fill='#d62828'/></marker><marker id='a-data' viewBox='0 0 10 10' refX='9' refY='5' markerWidth='7' markerHeight='7' orient='auto-start-reverse'><path d='M0,0 L10,5 L0,10 z' fill='#2b6cb0'/></marker><marker id='a-b2b' viewBox='0 0 10 10' refX='9' refY='5' markerWidth='7' markerHeight='7' orient='auto-start-reverse'><path d='M0,0 L10,5 L0,10 z' fill='#8a8a8a'/></marker><marker id='a-mod' viewBox='0 0 10 10' refX='9' refY='5' markerWidth='7' markerHeight='7' orient='auto-start-reverse'><path d='M0,0 L10,5 L0,10 z' fill='#b8860b'/></marker><marker id='a-warn' viewBox='0 0 10 10' refX='9' refY='5' markerWidth='7' markerHeight='7' orient='auto-start-reverse'><path d='M0,0 L10,5 L0,10 z' fill='#c53030'/></marker><marker id='a-ok' viewBox='0 0 10 10' refX='9' refY='5' markerWidth='7' markerHeight='7' orient='auto-start-reverse'><path d='M0,0 L10,5 L0,10 z' fill='#22863a'/></marker><marker id='a-ink' viewBox='0 0 10 10' refX='9' refY='5' markerWidth='7' markerHeight='7' orient='auto-start-reverse'><path d='M0,0 L10,5 L0,10 z' fill='#3d4752'/></marker></defs>
+<rect width='1600' height='900' fill='#ffffff'/>
+<rect width='1600' height='8' fill='#1f4e79'/>
+<text x='56.0' y='74.0' font-size='38' text-anchor='start' font-weight='bold' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>The aircraft, and the four places you modify it</text>
+<text x='56.0' y='110.0' font-size='20' text-anchor='start' font-weight='normal' fill='#56606d' font-family='Helvetica, Arial, sans-serif'>Every board on the Starling 2 Max and what connects them. Numbered boxes are the workstreams.</text>
+<line x1='56' y1='850' x2='1544' y2='850' stroke='#e2e6ec'/>
+<text x='56.0' y='878.0' font-size='14' text-anchor='start' font-weight='normal' fill='#56606d' font-family='Helvetica, Arial, sans-serif'>Sources: ModalAI REV4 compute diagram · bench session 2026-10-14 · owner hardware check 2026-10-20</text>
+<text x='1544.0' y='878.0' font-size='14' text-anchor='end' font-weight='normal' fill='#56606d' font-family='Helvetica, Arial, sans-serif'>Starling 2 Max · modification stack</text>
+<rect x='56' y='210' width='270' height='170' rx='12' fill='#e7f1ff' stroke='#2b6cb0' stroke-width='2.2'/>
+<text x='72.0' y='244.0' font-size='19' text-anchor='start' font-weight='bold' fill='#1f4e79' font-family='Helvetica, Arial, sans-serif'>Battery</text>
+<text x='72.0' y='272.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>2 × 2S 18650 packs</text>
+<text x='72.0' y='293.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>wired in series → 4S</text>
+<text x='72.0' y='314.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>12–16.8 V · XT30 × 2</text>
+<rect x='420' y='180' width='360' height='230' rx='12' fill='#e7f1ff' stroke='#2b6cb0' stroke-width='2.2'/>
+<text x='436.0' y='214.0' font-size='19' text-anchor='start' font-weight='bold' fill='#1f4e79' font-family='Helvetica, Arial, sans-serif'>M0129 ESC, 4-in-1</text>
+<text x='436.0' y='242.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>drives 4 motors; PX4 talks to it</text>
+<text x='436.0' y='263.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>over one UART (J18 ↔ J1)</text>
+<text x='436.0' y='284.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>VREG 5 V output powers the VOXL 2</text>
+<text x='436.0' y='305.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>LED pads: 3.3 V, 500–600 mA,</text>
+<text x='436.0' y='326.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>max 32 pixels</text>
+<rect x='880' y='150' width='380' height='270' rx='12' fill='#e7f1ff' stroke='#2b6cb0' stroke-width='2.2'/>
+<text x='896.0' y='184.0' font-size='19' text-anchor='start' font-weight='bold' fill='#1f4e79' font-family='Helvetica, Arial, sans-serif'>VOXL 2 (M0054-1)</text>
+<text x='896.0' y='212.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>Apps CPU: Linux, ROS 2 Foxy,</text>
+<text x='896.0' y='233.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>camera + MPA services</text>
+<text x='896.0' y='254.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>SLPI DSP: the whole PX4 v1.14</text>
+<text x='896.0' y='275.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>J19: GNSS + RC receiver</text>
+<text x='896.0' y='296.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>J6 + J7: M0173 camera board</text>
+<text x='896.0' y='317.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>throttles at ~95 °C</text>
+<rect x='1340' y='150' width='220' height='270' rx='12' fill='#f1f1f1' stroke='#8a8a8a' stroke-width='2.2'/>
+<text x='1356.0' y='184.0' font-size='19' text-anchor='start' font-weight='bold' fill='#8a8a8a' font-family='Helvetica, Arial, sans-serif'>J3 + J5 add-on</text>
+<text x='1356.0' y='212.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>Starling 1:</text>
+<text x='1356.0' y='233.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>5G carrier + EM9291</text>
+<text x='1356.0' y='254.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>+ USB WiFi dongle</text>
+<text x='1356.0' y='275.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'></text>
+<text x='1356.0' y='296.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>Starling 2:</text>
+<text x='1356.0' y='317.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>Sparrow WiFi board</text>
+<path d='M326.0,295.0 L420.0,295.0' fill='none' stroke='#d62828' stroke-width='2.6' stroke-linejoin='round' marker-end='url(#a-pwr)'/>
+<rect x='333.7' y='267.0' width='78.6' height='19' rx='3' fill='#ffffff' opacity='0.92'/>
+<text x='373.0' y='280.0' font-size='14' text-anchor='middle' font-weight='bold' fill='#d62828' font-family='Helvetica, Arial, sans-serif'>12–16.8 V</text>
+<path d='M780.0,245.0 L880.0,245.0' fill='none' stroke='#d62828' stroke-width='2.6' stroke-linejoin='round' marker-end='url(#a-pwr)'/>
+<rect x='814.2' y='219.0' width='31.5' height='19' rx='3' fill='#ffffff' opacity='0.92'/>
+<text x='830.0' y='232.0' font-size='14' text-anchor='middle' font-weight='bold' fill='#d62828' font-family='Helvetica, Arial, sans-serif'>5 V</text>
+<path d='M780.0,345.0 L880.0,345.0' fill='none' stroke='#2b6cb0' stroke-width='2.6' stroke-linejoin='round' marker-end='url(#a-data)' marker-start='url(#a-data)'/>
+<rect x='779.0' y='305.0' width='102.1' height='19' rx='3' fill='#ffffff' opacity='0.92'/>
+<text x='830.0' y='318.0' font-size='14' text-anchor='middle' font-weight='bold' fill='#2b6cb0' font-family='Helvetica, Arial, sans-serif'>UART: motors</text>
+<rect x='775.0' y='323.0' width='109.9' height='19' rx='3' fill='#ffffff' opacity='0.92'/>
+<text x='830.0' y='336.0' font-size='14' text-anchor='middle' font-weight='bold' fill='#2b6cb0' font-family='Helvetica, Arial, sans-serif'>+ LED colours</text>
+<path d='M1260.0,285.0 L1340.0,285.0' fill='none' stroke='#8a8a8a' stroke-width='2.6' stroke-linejoin='round' marker-end='url(#a-b2b)' marker-start='url(#a-b2b)'/>
+<rect x='1284.2' y='257.0' width='31.5' height='19' rx='3' fill='#ffffff' opacity='0.92'/>
+<text x='1300.0' y='270.0' font-size='14' text-anchor='middle' font-weight='bold' fill='#8a8a8a' font-family='Helvetica, Arial, sans-serif'>B2B</text>
+<rect x='56' y='520' width='240' height='150' rx='12' fill='#f1f1f1' stroke='#8a8a8a' stroke-width='2.2'/>
+<text x='72.0' y='554.0' font-size='19' text-anchor='start' font-weight='bold' fill='#8a8a8a' font-family='Helvetica, Arial, sans-serif'>Also on the VOXL 2</text>
+<text x='72.0' y='582.0' font-size='14' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>J19: GNSS + RC rx</text>
+<text x='72.0' y='602.0' font-size='14' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>J6+J7: M0173 + cameras</text>
+<text x='72.0' y='622.0' font-size='14' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>J9: USB-C, ADB</text>
+<rect x='330' y='520' width='300' height='150' rx='12' fill='#fff3cd' stroke='#b8860b' stroke-width='2.2'/>
+<circle cx='356' cy='547' r='15' fill='#b8860b'/>
+<text x='356.0' y='553.0' font-size='17' text-anchor='middle' font-weight='bold' fill='#fff' font-family='Helvetica, Arial, sans-serif'>③</text>
+<text x='380.0' y='554.0' font-size='19' text-anchor='start' font-weight='bold' fill='#b8860b' font-family='Helvetica, Arial, sans-serif'>Motors + props</text>
+<text x='346.0' y='582.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>4 × 1500 kV motors</text>
+<text x='346.0' y='603.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>7 × 3.7 × 3 props</text>
+<text x='346.0' y='624.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>S1: 2203.5 · S2: 2204</text>
+<rect x='670' y='520' width='300' height='150' rx='12' fill='#fff3cd' stroke='#b8860b' stroke-width='2.2'/>
+<circle cx='696' cy='547' r='15' fill='#b8860b'/>
+<text x='696.0' y='553.0' font-size='17' text-anchor='middle' font-weight='bold' fill='#fff' font-family='Helvetica, Arial, sans-serif'>②</text>
+<text x='720.0' y='554.0' font-size='19' text-anchor='start' font-weight='bold' fill='#b8860b' font-family='Helvetica, Arial, sans-serif'>LED strip</text>
+<text x='686.0' y='582.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>16 px on one data line</text>
+<text x='686.0' y='603.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>solder to ESC pads</text>
+<text x='686.0' y='624.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>330–470 Ω in series</text>
+<rect x='1010' y='520' width='280' height='150' rx='12' fill='#fff3cd' stroke='#b8860b' stroke-width='2.2'/>
+<circle cx='1036' cy='547' r='15' fill='#b8860b'/>
+<text x='1036.0' y='553.0' font-size='17' text-anchor='middle' font-weight='bold' fill='#fff' font-family='Helvetica, Arial, sans-serif'>①</text>
+<text x='1060.0' y='554.0' font-size='19' text-anchor='start' font-weight='bold' fill='#b8860b' font-family='Helvetica, Arial, sans-serif'>Cooling fan</text>
+<text x='1026.0' y='582.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>VOXL 2 J2 header</text>
+<text x='1026.0' y='603.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>25 × 25 × 7 mm, 5 V</text>
+<text x='1026.0' y='624.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>2 wires only</text>
+<rect x='1330' y='520' width='230' height='150' rx='12' fill='#f1f1f1' stroke='#8a8a8a' stroke-width='2.2' stroke-dasharray='8 5'/>
+<circle cx='1356' cy='547' r='15' fill='#8a8a8a'/>
+<text x='1356.0' y='553.0' font-size='17' text-anchor='middle' font-weight='bold' fill='#fff' font-family='Helvetica, Arial, sans-serif'>④</text>
+<text x='1380.0' y='554.0' font-size='19' text-anchor='start' font-weight='bold' fill='#8a8a8a' font-family='Helvetica, Arial, sans-serif'>Livox Mid-360</text>
+<text x='1346.0' y='582.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>265 g · deferred</text>
+<text x='1346.0' y='603.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>does not fit: ESC</text>
+<text x='1346.0' y='624.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>rated &lt; 750 g total</text>
+<path d='M520.0,410.0 L520.0,520.0' fill='none' stroke='#b8860b' stroke-width='2.6' stroke-linejoin='round' marker-end='url(#a-mod)'/>
+<rect x='527.9' y='457.0' width='94.2' height='19' rx='3' fill='#ffffff' opacity='0.92'/>
+<text x='575.0' y='470.0' font-size='14' text-anchor='middle' font-weight='bold' fill='#b8860b' font-family='Helvetica, Arial, sans-serif'>3-phase × 4</text>
+<path d='M700.0,410.0 L760.0,520.0' fill='none' stroke='#b8860b' stroke-width='2.6' stroke-linejoin='round' marker-end='url(#a-mod)'/>
+<rect x='727.9' y='452.0' width='94.2' height='19' rx='3' fill='#ffffff' opacity='0.92'/>
+<text x='775.0' y='465.0' font-size='14' text-anchor='middle' font-weight='bold' fill='#b8860b' font-family='Helvetica, Arial, sans-serif'>solder pads</text>
+<path d='M1070.0,420.0 L1120.0,520.0' fill='none' stroke='#b8860b' stroke-width='2.6' stroke-linejoin='round' marker-end='url(#a-mod)'/>
+<rect x='1099.0' y='457.0' width='102.1' height='19' rx='3' fill='#ffffff' opacity='0.92'/>
+<text x='1150.0' y='470.0' font-size='14' text-anchor='middle' font-weight='bold' fill='#b8860b' font-family='Helvetica, Arial, sans-serif'>J2 · 5 V PWM</text>
+<rect x='56' y='720' width='1504' height='100' rx='10' fill='#ffe3e3' stroke='#c53030' stroke-width='1.6'/>
+<text x='74.0' y='750.0' font-size='17' text-anchor='start' font-weight='bold' fill='#c53030' font-family='Helvetica, Arial, sans-serif'>⚠  The ESC that would power the LEDs is also the VOXL 2's power supply</text>
+<text x='74.0' y='775.0' font-size='17' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>A full-white strip command could brown out the flight computer. Cap the LED current in software, not just the brightness setting.</text>
+</svg>

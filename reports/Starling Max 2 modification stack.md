@@ -13,7 +13,7 @@ The third is the ESC part-number conflict in your own code. `svg_led_daemon.py` 
 The fourth is the LiDAR framing, and it is the most valuable. Your own vendored tree already contains a complete LiDAR path: `global_bringup/config/vdb_params.yaml` reads `sources: [lidar]`, `topic: sensors/ouster/point_cloud`, `sensor_origin_frame: ouster`, with the stereo source commented out. Upstream states the same in prose, "the VDB map takes the filtered LiDAR cloud" ([adding_a_world_model_and_planner.md](https://raw.githubusercontent.com/castacks/AirStack/main/docs/robot/autonomy/adding_a_world_model_and_planner.md)), and the path is CI-tested (`tests/conftest.py` sets `ENABLE_LIDAR=true`). The exploration planner is a second consumer. Any plan that treats "get LiDAR into AirStack's map" as the hard part is solving a solved problem. The unsolved parts are LiDAR-derived *pose* and LiDAR-driven *local* avoidance.
 ## How it ties together
 
-Three pictures, each drawn from your own tree plus ModalAI's documentation. The hardware sections below also carry ModalAI's and Livox's own drawings as primary reference — those images are reproduced from the vendors' public documentation for internal engineering use, each captioned with a link to the page it came from, and copied locally so they still render in the hangar with the WAN unplugged. The first is the aircraft and the four places these workstreams touch it; the second is the control path that flies today; the third is what the LiDAR goal actually changes. GitHub renders these natively — in a terminal pager they appear as code blocks.
+Three pictures, each drawn from your own tree plus ModalAI's documentation. The hardware sections below also carry ModalAI's and Livox's own drawings as primary reference — those images are reproduced from the vendors' public documentation for internal engineering use, each captioned with a link to the page it came from, and copied locally so they still render in the hangar with the WAN unplugged. The first is the aircraft and the four places these workstreams touch it; the second is the control path that flies today; the third is what the LiDAR goal actually changes. They are slide images in `pictures/slides/` (SVG, plus PNG copies and a `.pptx` deck, `starling-2-max-diagrams.pptx`, that also carries the two wiring drawings). `gen_slides.py` regenerates them.
 
 ### The aircraft, and the four places you are modifying it
 
@@ -22,47 +22,7 @@ Three pictures, each drawn from your own tree plus ModalAI's documentation. The 
 ***The airframe.** ModalAI CAD render of a Starling 2 Max V3 (SKU `MRB-D0012-4-V3-C28-M36-T7-K0`) — ModalAI/Livox documentation, retrieved 2026-10-09. Source: <https://forum.modalai.com/topic/5052/starling-2-max-cad (ModalAI staff post #25481, accompanying the STEP file at developer.modalai.com/asset/6)>*
 
 
-```mermaid
-flowchart TB
-    BAT["4S Li-ion — 2 × 2S 18650, XT30<br/>12–16.8 V"]
-
-    subgraph ESCB["ESC — M0129 ✅ confirmed on hardware 2026-10-14 (code comment saying M0138 is wrong)"]
-      ESC["4-in-1 ESC<br/>also regulates VOXL 2 power"]
-      LEDPAD["LED test pads<br/>data ⬇ 3.3 V · power ➕ 3.3 V / 500 mA<br/>max 32 NeoPixels"]
-    end
-
-    subgraph VOXLB["VOXL 2 — M0054 / M0154, same board (full size; NOT the M0104 Mini)"]
-      APPS["Apps CPU · QRB5165<br/>ROS 2 Foxy · throttles ~95 °C"]
-      SLPI["SLPI DSP coprocessor<br/>runs the WHOLE PX4 v1.14 flight stack"]
-      J2["J2 fan header<br/>5 V, ~400 mA, PWM"]
-      J3["J3 60-pin B2B<br/>WiFi daughterboard"]
-    end
-
-    WIFI["WiFi — the most VISIBLE difference between your two airframes<br/>(RC receiver and V3/V4 powertrain also differ)<br/>older: USB dongle (TP-Link TX20U Nano) on the M0090 5G carrier's hub → wlan0<br/>newer: Sparrow-based WiFi board (M0213-class, unconfirmed) → mlan0"]
-    MOTORS["4 × motors<br/>2204 1500kV (V4) / 2203.5 1500kV (V3)"]
-
-    FAN["① Fan — 25 × 25 mm, Sunon MC25060V1"]
-    PROPS["③ Props — 7-inch class, consumable"]
-    STRIP["② LED strip — SK6812/WS2812B, solder to pads"]
-    LIDAR["④ Livox Mid-360 — 265 g, 9–27 V<br/>needs M0062 eth add-on or USB-Ethernet<br/>(neither verified with this sensor)"]
-
-    BAT --> ESC
-    BAT -.->|"9–27 V direct, no BEC"| LIDAR
-    ESC --> MOTORS --> PROPS
-    ESC -->|"power"| APPS
-    LEDPAD -.->|"solder"| STRIP
-    J2 -.-> FAN
-    J3 --- WIFI
-    APPS --- SLPI
-    LIDAR -.->|"Ethernet"| APPS
-
-    classDef mod fill:#fff3cd,stroke:#b8860b,stroke-width:2px,color:#000
-    classDef hw fill:#e7f1ff,stroke:#2b6cb0,color:#000
-    classDef warn fill:#ffe3e3,stroke:#c53030,color:#000
-    class FAN,STRIP,LIDAR,PROPS mod
-    class BAT,ESC,APPS,SLPI,MOTORS,WIFI hw
-    class LEDPAD,J2,J3 warn
-```
+![Slide: the aircraft and the four places you modify it](../pictures/slides/slide-1-hardware.svg)
 
 The numbered boxes are your four workstreams. Note what the diagram makes obvious and prose hides: **the ESC that would power your LED strip is also VOXL 2's power source**, which is why a full-white strip command is a flight-controller brown-out risk and not merely a bright light.
 
@@ -80,11 +40,11 @@ Everything else is a sensor hanging off the VOXL 2. The two drawings below are t
 
 ![Starling 2 Max airframe layout, top view](../pictures/wiring/airframe-layout.svg)
 
-***Where everything sits.** Traced from ModalAI's top-down product photo and scaled to the datasheet's 322 mm motor diagonal. The motors sit 258 mm apart side to side but only 193 mm front to back, so the X is wide, not square. Orange shows the planned LED runs (4 px per arm, one daisy chain with plain-wire returns to the hub) and the fan. The ESC sits under the VOXL 2: the owner's 2026-10-20 check found its LED pads reachable just below the `J18` cable. The exact stack order and which VOXL 2 face points up still want a side photo, which would also give this drawing a side view.*
+***Where everything sits.** Seen from above with the **front to the right**, the same as the board drawing below. Traced from ModalAI's top-down product photo and scaled to the datasheet's 322 mm motor diagonal. The motors sit 258 mm apart side to side but only 193 mm front to back, so the X is wide, not square. Orange shows the planned LED runs (4 px per arm, one daisy chain with plain-wire returns to the hub) and the fan. Yellow ticks mark the rear edge, where the VOXL 2's `J4`/`J9` and the ESC's `J1`, VREG and LED pads all face (owner check 2026-10-20). The ESC sits under the VOXL 2, with its LED pads reachable just below the `J18` cable. A side photo of the stack would still add a side view.*
 
 ![Starling 2 Max board-level wiring, connectors at true positions](../pictures/wiring/board-level-wiring.svg)
 
-***Every board, every connector, every wire.** The VOXL 2 faces and the M0129 faces are drawn at 5 px = 1 mm, with connector positions traced from ModalAI's connector drawing and labelled photo. ModalAI draws the two VOXL 2 faces mirrored, so the left edge of one is the right edge of the other. Note the ESC-ID-to-motor mapping on the ESC pads: ESC ID0, the one that drives the NeoPixel pad, spins **M2, the rear-left motor**.*
+***Every board, every connector, every wire.** Every board is drawn **as seen from above, front to the right**, at 5 px = 1 mm, with connector positions traced from ModalAI's connector drawing and labelled photo. Faces that point down (the VOXL 2's bottom, the ESC's MCU side) are drawn as if seen through the board, so each connector sits where it really is in the aircraft, and ▶ marks show which way each cable leaves. The orientation comes from the owner's check: `J4`, `J9` and the ESC's `J1`, VREG and LED pads face the rear. With that, the VOXL 2's `J3`/`J5` face is up, which matches ModalAI's product photo. The ESC's power face being up is inferred: it is the only way up where each ESC corner sits next to the motor it drives. Note the ESC-ID-to-motor mapping on the ESC pads: ESC ID0, the one that drives the NeoPixel pad, spins **M2, the rear-left motor**.*
 
 **TX/RX naming trap.** VOXL 2 labels its header pins from its own side: `J18-2 TX` means "VOXL transmits here". The ESC labels its `J1` from *its* side, so the stock cable is straight-through (pin 2 to pin 2) and the crossover happens in the naming, not in the wire. If you ever re-pin a cable, match `TX` to `RX`, not pin number to pin number.
 
@@ -135,91 +95,13 @@ Two consequences fall out of the LED row. First, **the LED strip shares the ESC 
 
 ### The control path that flies today
 
-```mermaid
-flowchart LR
-    subgraph HANGAR["Hangar"]
-      CAMS["8 × OptiTrack cameras"] --> MOTIVE["Motive PC<br/>192.168.9.124 · broadcasts NatNet @ 50 Hz"]
-    end
-
-    subgraph LAPTOP["Ground laptop — ROS 2 Jazzy"]
-      BRIDGE["./mocap.sh<br/>motion_capture_tracking + pose relay"]
-      MB["mocap_bridge<br/>ENU → NED"]
-      OC["odometry_conversion<br/>overwrites map / drone_1/base_link · broadcasts TF"]
-      CMD["swarm_commander<br/>trajectory + CBF + geofence"]
-      PXI["px4_interface"]
-      AGENT["MicroXRCEAgent<br/>udp4 :8888"]
-      QGC["QGroundControl<br/>the ONLY arming display"]
-    end
-
-    subgraph DRONE["Starling 2 Max — VOXL 2"]
-      EKF["PX4 EKF2<br/>EKF2_EV_CTRL=11 · no GPS, no mag, no baro"]
-      CTRL["PX4 control loops"]
-      ESCD["ESC → motors"]
-      MAVSRV["voxl-mavlink-server<br/>on the apps CPU"]
-    end
-
-    RC["RC transmitter<br/>ch8 KILL · ch6 MANUAL"]
-
-    MOTIVE -->|"UDP broadcast"| BRIDGE
-    BRIDGE -->|"/drone_1/pose"| MB
-    MB -->|"fmu/in/vehicle_visual_odometry"| AGENT
-    AGENT <-->|"uXRCE-DDS · domain 1"| EKF
-    AGENT -->|"fmu/out/vehicle_odometry"| PXI
-    PXI -->|"interface/odometry"| OC
-    OC -->|"odometry_conversion/odometry"| CMD
-    CMD -->|"trajectory_command"| PXI
-    PXI -->|"fmu/in/trajectory_setpoint"| AGENT
-    EKF --> CTRL --> ESCD
-    CTRL --- MAVSRV
-    MAVSRV <-->|"MAVLink udp 14550"| QGC
-    RC ==>|"KILL or MANUAL only<br/>POSCTL/ALTCTL still obey the setpoints"| CTRL
-
-    classDef gnd fill:#e7f1ff,stroke:#2b6cb0,color:#000
-    classDef air fill:#e6ffed,stroke:#22863a,color:#000
-    classDef safety fill:#ffe3e3,stroke:#c53030,stroke-width:2px,color:#000
-    class BRIDGE,MB,OC,CMD,PXI,AGENT gnd
-    class EKF,CTRL,ESCD,MAVSRV air
-    class RC,QGC safety
-```
+![Slide: the control path that flies today](../pictures/slides/slide-2-control-path.svg)
 
 Two things worth reading off this. The mocap pose enters **PX4's estimator**, not AirStack's graph — which is why the drone can hold position at all. And the pose AirStack plans against comes back *out* of PX4 as `fmu/out/vehicle_odometry`, through `odometry_conversion`. Those are two separate seams, and the LiDAR goal has to fill both.
 
 ### What the LiDAR goal actually changes
 
-```mermaid
-flowchart LR
-    LIVOX["Livox Mid-360<br/>265 g · 0.1 m min range · 100BASE-TX"]
-    DRV["livox_ros_driver2<br/>you supply this — AirStack vendors no LiDAR driver"]
-    RAW["sensors/ouster/point_cloud_raw"]
-    FILT["lidar_point_cloud_filter<br/>near_range_m: 0.75"]
-    CLEAN["sensors/ouster/point_cloud"]
-    VDB["vdb_mapping_ros2<br/>sources: [lidar]"]
-    GLOBAL["random_walk (launched)<br/>exploration (in tree, NOT launched)"]
-
-    LIO["FAST-LIO2 / Point-LIO<br/>LiDAR-inertial odometry"]
-    EST["perception/my_estimator/odometry"]
-    OC2["odometry_conversion"]
-    CANON["odometry_conversion/odometry<br/>every consumer reads THIS"]
-    EKF2["PX4 EKF2<br/>external vision"]
-    MOCAP["OptiTrack mocap — flying TODAY<br/>new job: ground-truth scorer"]
-    DROAN["droan_gl local planner<br/>disparity-only — no LiDAR path"]
-
-    LIVOX --> DRV --> RAW --> FILT --> CLEAN --> VDB --> GLOBAL
-    LIVOX --> LIO --> EST
-    EST -->|"MAVROS path: one launch arg<br/>interface_odometry_in_topic<br/>PX4 path: edit the odometry_in remap"| OC2 --> CANON
-    EST -.->|"visual_odometry_in — unused today:<br/>every config uses px4_vio_mode: direct"| EKF2
-    MOCAP -->|"mocap_bridge → fmu/in/vehicle_visual_odometry"| EKF2
-    MOCAP -.->|"compare drift — the new job"| CANON
-    CLEAN -.->|"needs the CPU droan_local_planner re-enabled<br/>+ a cost_map_interface plugin"| DROAN
-
-    classDef exists fill:#e6ffed,stroke:#22863a,color:#000
-    classDef newwork fill:#fff3cd,stroke:#b8860b,stroke-width:2px,color:#000
-    classDef gap fill:#ffe3e3,stroke:#c53030,color:#000
-    class RAW,FILT,CLEAN,VDB,GLOBAL,OC2,CANON,EKF2 exists
-    class LIVOX,DRV,LIO,EST newwork
-    class DROAN gap
-    class MOCAP exists
-```
+![Slide: what the LiDAR goal actually changes](../pictures/slides/slide-3-lidar.svg)
 
 Green already exists in your tree — though only the LiDAR filter chain is CI-tested, and only under Isaac Sim. Amber is what you would build. Red is unsolved: `droan_gl` has no LiDAR path at all, and mocap's role changes from *the position source* to *the independent scorer* — which is the single most useful reframe in this report.
 ## Both aircraft carry the same VOXL 2; the frame, WiFi and software differ

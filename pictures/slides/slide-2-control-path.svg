@@ -1,0 +1,113 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900' width='1600' height='900'>
+<defs><marker id='a-pwr' viewBox='0 0 10 10' refX='9' refY='5' markerWidth='7' markerHeight='7' orient='auto-start-reverse'><path d='M0,0 L10,5 L0,10 z' fill='#d62828'/></marker><marker id='a-data' viewBox='0 0 10 10' refX='9' refY='5' markerWidth='7' markerHeight='7' orient='auto-start-reverse'><path d='M0,0 L10,5 L0,10 z' fill='#2b6cb0'/></marker><marker id='a-b2b' viewBox='0 0 10 10' refX='9' refY='5' markerWidth='7' markerHeight='7' orient='auto-start-reverse'><path d='M0,0 L10,5 L0,10 z' fill='#8a8a8a'/></marker><marker id='a-mod' viewBox='0 0 10 10' refX='9' refY='5' markerWidth='7' markerHeight='7' orient='auto-start-reverse'><path d='M0,0 L10,5 L0,10 z' fill='#b8860b'/></marker><marker id='a-warn' viewBox='0 0 10 10' refX='9' refY='5' markerWidth='7' markerHeight='7' orient='auto-start-reverse'><path d='M0,0 L10,5 L0,10 z' fill='#c53030'/></marker><marker id='a-ok' viewBox='0 0 10 10' refX='9' refY='5' markerWidth='7' markerHeight='7' orient='auto-start-reverse'><path d='M0,0 L10,5 L0,10 z' fill='#22863a'/></marker><marker id='a-ink' viewBox='0 0 10 10' refX='9' refY='5' markerWidth='7' markerHeight='7' orient='auto-start-reverse'><path d='M0,0 L10,5 L0,10 z' fill='#3d4752'/></marker></defs>
+<rect width='1600' height='900' fill='#ffffff'/>
+<rect width='1600' height='8' fill='#1f4e79'/>
+<text x='56.0' y='74.0' font-size='38' text-anchor='start' font-weight='bold' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>The control path that flies today</text>
+<text x='56.0' y='110.0' font-size='20' text-anchor='start' font-weight='normal' fill='#56606d' font-family='Helvetica, Arial, sans-serif'>Mocap pose goes INTO PX4's estimator; the pose AirStack plans against comes back OUT of PX4.</text>
+<line x1='56' y1='850' x2='1544' y2='850' stroke='#e2e6ec'/>
+<text x='56.0' y='878.0' font-size='14' text-anchor='start' font-weight='normal' fill='#56606d' font-family='Helvetica, Arial, sans-serif'>Source: this repo's launch files and RUNBOOK · PX4 v1.14 over uXRCE-DDS, domain 1</text>
+<text x='1544.0' y='878.0' font-size='14' text-anchor='end' font-weight='normal' fill='#56606d' font-family='Helvetica, Arial, sans-serif'>Starling 2 Max · modification stack</text>
+<rect x='40' y='140' width='290' height='580' rx='14' fill='#f7f9fc' stroke='#d6dde8' stroke-width='1.5'/>
+<text x='58.0' y='170.0' font-size='17' text-anchor='start' font-weight='bold' fill='#56606d' font-family='Helvetica, Arial, sans-serif'>HANGAR</text>
+<rect x='350' y='140' width='720' height='580' rx='14' fill='#f7f9fc' stroke='#d6dde8' stroke-width='1.5'/>
+<text x='368.0' y='170.0' font-size='17' text-anchor='start' font-weight='bold' fill='#56606d' font-family='Helvetica, Arial, sans-serif'>GROUND LAPTOP · ROS 2 JAZZY</text>
+<rect x='1090' y='140' width='470' height='580' rx='14' fill='#f7f9fc' stroke='#d6dde8' stroke-width='1.5'/>
+<text x='1108.0' y='170.0' font-size='17' text-anchor='start' font-weight='bold' fill='#56606d' font-family='Helvetica, Arial, sans-serif'>DRONE · VOXL 2</text>
+<rect x='60' y='190' width='250' height='90' rx='12' fill='#f1f1f1' stroke='#8a8a8a' stroke-width='2.2'/>
+<text x='76.0' y='224.0' font-size='19' text-anchor='start' font-weight='bold' fill='#8a8a8a' font-family='Helvetica, Arial, sans-serif'>OptiTrack</text>
+<text x='76.0' y='252.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>8 cameras</text>
+<rect x='60' y='340' width='250' height='110' rx='12' fill='#f1f1f1' stroke='#8a8a8a' stroke-width='2.2'/>
+<text x='76.0' y='374.0' font-size='19' text-anchor='start' font-weight='bold' fill='#8a8a8a' font-family='Helvetica, Arial, sans-serif'>Motive PC</text>
+<text x='76.0' y='402.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>192.168.9.124</text>
+<text x='76.0' y='423.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>NatNet broadcast 50 Hz</text>
+<path d='M185.0,280.0 L185.0,340.0' fill='none' stroke='#3d4752' stroke-width='2.6' stroke-linejoin='round' marker-end='url(#a-ink)'/>
+<rect x='380' y='190' width='250' height='90' rx='12' fill='#e7f1ff' stroke='#2b6cb0' stroke-width='2.2'/>
+<text x='396.0' y='224.0' font-size='19' text-anchor='start' font-weight='bold' fill='#1f4e79' font-family='Helvetica, Arial, sans-serif'>./mocap.sh</text>
+<text x='396.0' y='252.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>motion_capture_tracking</text>
+<rect x='790' y='620' width='250' height='80' rx='12' fill='#ffe3e3' stroke='#c53030' stroke-width='2.2'/>
+<text x='806.0' y='654.0' font-size='18' text-anchor='start' font-weight='bold' fill='#c53030' font-family='Helvetica, Arial, sans-serif'>QGroundControl</text>
+<text x='806.0' y='682.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>the ONLY arming display</text>
+<rect x='380' y='340' width='250' height='90' rx='12' fill='#e7f1ff' stroke='#2b6cb0' stroke-width='2.2'/>
+<text x='396.0' y='374.0' font-size='19' text-anchor='start' font-weight='bold' fill='#1f4e79' font-family='Helvetica, Arial, sans-serif'>mocap_bridge</text>
+<text x='396.0' y='402.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>ENU → NED</text>
+<rect x='790' y='340' width='250' height='90' rx='12' fill='#e7f1ff' stroke='#2b6cb0' stroke-width='2.2'/>
+<text x='806.0' y='374.0' font-size='19' text-anchor='start' font-weight='bold' fill='#1f4e79' font-family='Helvetica, Arial, sans-serif'>MicroXRCEAgent</text>
+<text x='806.0' y='402.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>udp4 :8888</text>
+<rect x='380' y='490' width='250' height='90' rx='12' fill='#e7f1ff' stroke='#2b6cb0' stroke-width='2.2'/>
+<text x='396.0' y='524.0' font-size='18' text-anchor='start' font-weight='bold' fill='#1f4e79' font-family='Helvetica, Arial, sans-serif'>odometry_conversion</text>
+<text x='396.0' y='552.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>restamps frames · TF</text>
+<rect x='790' y='490' width='250' height='90' rx='12' fill='#e7f1ff' stroke='#2b6cb0' stroke-width='2.2'/>
+<text x='806.0' y='524.0' font-size='19' text-anchor='start' font-weight='bold' fill='#1f4e79' font-family='Helvetica, Arial, sans-serif'>px4_interface</text>
+<text x='806.0' y='552.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>commands · ACK log</text>
+<rect x='380' y='620' width='250' height='80' rx='12' fill='#fff3cd' stroke='#b8860b' stroke-width='2.2'/>
+<text x='396.0' y='654.0' font-size='18' text-anchor='start' font-weight='bold' fill='#b8860b' font-family='Helvetica, Arial, sans-serif'>swarm_commander</text>
+<text x='396.0' y='682.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>trajectory + CBF + fence</text>
+<rect x='1120' y='190' width='200' height='90' rx='12' fill='#e6f6ec' stroke='#22863a' stroke-width='2.2'/>
+<text x='1136.0' y='224.0' font-size='19' text-anchor='start' font-weight='bold' fill='#22863a' font-family='Helvetica, Arial, sans-serif'>PX4 EKF2</text>
+<text x='1136.0' y='252.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>EV_CTRL = 11</text>
+<rect x='1340' y='190' width='200' height='90' rx='12' fill='#e6f6ec' stroke='#22863a' stroke-width='2.2'/>
+<text x='1356.0' y='224.0' font-size='17' text-anchor='start' font-weight='bold' fill='#22863a' font-family='Helvetica, Arial, sans-serif'>Estimator inputs</text>
+<text x='1356.0' y='252.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>no GPS · mag · baro</text>
+<rect x='1120' y='340' width='420' height='90' rx='12' fill='#e6f6ec' stroke='#22863a' stroke-width='2.2'/>
+<text x='1136.0' y='374.0' font-size='19' text-anchor='start' font-weight='bold' fill='#22863a' font-family='Helvetica, Arial, sans-serif'>PX4 control loops</text>
+<text x='1136.0' y='402.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>on the SLPI DSP inside the QRB5165</text>
+<rect x='1120' y='490' width='200' height='90' rx='12' fill='#e6f6ec' stroke='#22863a' stroke-width='2.2'/>
+<text x='1136.0' y='524.0' font-size='16' text-anchor='start' font-weight='bold' fill='#22863a' font-family='Helvetica, Arial, sans-serif'>voxl-mavlink-server</text>
+<text x='1136.0' y='552.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>apps CPU</text>
+<rect x='1340' y='490' width='200' height='90' rx='12' fill='#e6f6ec' stroke='#22863a' stroke-width='2.2'/>
+<text x='1356.0' y='524.0' font-size='19' text-anchor='start' font-weight='bold' fill='#22863a' font-family='Helvetica, Arial, sans-serif'>ESC → motors</text>
+<text x='1356.0' y='552.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>M0129 over J18</text>
+<rect x='1120' y='745' width='420' height='80' rx='12' fill='#ffe3e3' stroke='#c53030' stroke-width='2.2'/>
+<text x='1136.0' y='779.0' font-size='19' text-anchor='start' font-weight='bold' fill='#c53030' font-family='Helvetica, Arial, sans-serif'>RC transmitter</text>
+<text x='1136.0' y='807.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>ch8 KILL · ch6 MANUAL</text>
+<path d='M310.0,395.0 L340.0,395.0 L340.0,235.0 L380.0,235.0' fill='none' stroke='#3d4752' stroke-width='2.6' stroke-linejoin='round' marker-end='url(#a-ink)'/>
+<rect x='312.5' y='287.0' width='55.0' height='19' rx='3' fill='#ffffff' opacity='0.92'/>
+<text x='340.0' y='300.0' font-size='14' text-anchor='middle' font-weight='bold' fill='#3d4752' font-family='Helvetica, Arial, sans-serif'>NatNet</text>
+<rect x='324.2' y='305.0' width='31.5' height='19' rx='3' fill='#ffffff' opacity='0.92'/>
+<text x='340.0' y='318.0' font-size='14' text-anchor='middle' font-weight='bold' fill='#3d4752' font-family='Helvetica, Arial, sans-serif'>UDP</text>
+<path d='M505.0,280.0 L505.0,340.0' fill='none' stroke='#2b6cb0' stroke-width='2.6' stroke-linejoin='round' marker-end='url(#a-data)'/>
+<rect x='511.0' y='303.0' width='109.9' height='19' rx='3' fill='#ffffff' opacity='0.92'/>
+<text x='515.0' y='316.0' font-size='14' text-anchor='start' font-weight='bold' fill='#2b6cb0' font-family='Helvetica, Arial, sans-serif'>/drone_1/pose</text>
+<path d='M630.0,385.0 L790.0,385.0' fill='none' stroke='#2b6cb0' stroke-width='2.6' stroke-linejoin='round' marker-end='url(#a-data)'/>
+<rect x='655.6' y='341.0' width='108.8' height='17' rx='3' fill='#ffffff' opacity='0.92'/>
+<text x='710.0' y='352.0' font-size='12' text-anchor='middle' font-weight='bold' fill='#2b6cb0' font-family='Helvetica, Arial, sans-serif'>fmu/in/vehicle_</text>
+<rect x='655.6' y='357.0' width='108.8' height='17' rx='3' fill='#ffffff' opacity='0.92'/>
+<text x='710.0' y='368.0' font-size='12' text-anchor='middle' font-weight='bold' fill='#2b6cb0' font-family='Helvetica, Arial, sans-serif'>visual_odometry</text>
+<path d='M1040.0,385.0 L1080.0,385.0 L1080.0,235.0 L1120.0,235.0' fill='none' stroke='#2b6cb0' stroke-width='2.6' stroke-linejoin='round' marker-end='url(#a-data)' marker-start='url(#a-data)'/>
+<rect x='1040.7' y='283.0' width='78.6' height='19' rx='3' fill='#ffffff' opacity='0.92'/>
+<text x='1080.0' y='296.0' font-size='14' text-anchor='middle' font-weight='bold' fill='#2b6cb0' font-family='Helvetica, Arial, sans-serif'>uXRCE-DDS</text>
+<rect x='1040.7' y='301.0' width='78.6' height='19' rx='3' fill='#ffffff' opacity='0.92'/>
+<text x='1080.0' y='314.0' font-size='14' text-anchor='middle' font-weight='bold' fill='#2b6cb0' font-family='Helvetica, Arial, sans-serif'>over WiFi</text>
+<path d='M880.0,430.0 L880.0,490.0' fill='none' stroke='#2b6cb0' stroke-width='2.6' stroke-linejoin='round' marker-end='url(#a-data)'/>
+<rect x='691.3' y='454.0' width='182.7' height='18' rx='3' fill='#ffffff' opacity='0.92'/>
+<text x='870.0' y='466.0' font-size='13' text-anchor='end' font-weight='bold' fill='#2b6cb0' font-family='Helvetica, Arial, sans-serif'>fmu/out/vehicle_odometry</text>
+<path d='M960.0,490.0 L960.0,430.0' fill='none' stroke='#2b6cb0' stroke-width='2.6' stroke-linejoin='round' marker-end='url(#a-data)'/>
+<rect x='966.0' y='454.0' width='197.3' height='18' rx='3' fill='#ffffff' opacity='0.92'/>
+<text x='970.0' y='466.0' font-size='13' text-anchor='start' font-weight='bold' fill='#2b6cb0' font-family='Helvetica, Arial, sans-serif'>fmu/in/trajectory_setpoint</text>
+<path d='M790.0,535.0 L630.0,535.0' fill='none' stroke='#2b6cb0' stroke-width='2.6' stroke-linejoin='round' marker-end='url(#a-data)'/>
+<rect x='669.6' y='493.0' width='80.8' height='18' rx='3' fill='#ffffff' opacity='0.92'/>
+<text x='710.0' y='505.0' font-size='13' text-anchor='middle' font-weight='bold' fill='#2b6cb0' font-family='Helvetica, Arial, sans-serif'>interface/</text>
+<rect x='676.9' y='510.0' width='66.2' height='18' rx='3' fill='#ffffff' opacity='0.92'/>
+<text x='710.0' y='522.0' font-size='13' text-anchor='middle' font-weight='bold' fill='#2b6cb0' font-family='Helvetica, Arial, sans-serif'>odometry</text>
+<path d='M505.0,580.0 L505.0,620.0' fill='none' stroke='#2b6cb0' stroke-width='2.6' stroke-linejoin='round' marker-end='url(#a-data)'/>
+<rect x='356.6' y='585.0' width='142.4' height='17' rx='3' fill='#ffffff' opacity='0.92'/>
+<text x='495.0' y='596.0' font-size='12' text-anchor='end' font-weight='bold' fill='#2b6cb0' font-family='Helvetica, Arial, sans-serif'>odometry_conversion/</text>
+<rect x='437.2' y='601.0' width='61.8' height='17' rx='3' fill='#ffffff' opacity='0.92'/>
+<text x='495.0' y='612.0' font-size='12' text-anchor='end' font-weight='bold' fill='#2b6cb0' font-family='Helvetica, Arial, sans-serif'>odometry</text>
+<path d='M630.0,660.0 L710.0,660.0 L710.0,560.0 L790.0,560.0' fill='none' stroke='#b8860b' stroke-width='2.6' stroke-linejoin='round' marker-end='url(#a-mod)'/>
+<rect x='640.5' y='676.0' width='139.0' height='18' rx='3' fill='#ffffff' opacity='0.92'/>
+<text x='710.0' y='688.0' font-size='13' text-anchor='middle' font-weight='bold' fill='#b8860b' font-family='Helvetica, Arial, sans-serif'>trajectory_command</text>
+<path d='M1220.0,280.0 L1220.0,340.0' fill='none' stroke='#22863a' stroke-width='2.6' stroke-linejoin='round' marker-end='url(#a-ok)'/>
+<path d='M1440.0,430.0 L1440.0,490.0' fill='none' stroke='#22863a' stroke-width='2.6' stroke-linejoin='round' marker-end='url(#a-ok)'/>
+<path d='M1220.0,430.0 L1220.0,490.0' fill='none' stroke='#22863a' stroke-width='2.6' stroke-linejoin='round' marker-end='url(#a-ok)' marker-start='url(#a-ok)'/>
+<path d='M1220.0,580.0 L1220.0,660.0 L1040.0,660.0' fill='none' stroke='#c53030' stroke-width='2.6' stroke-linejoin='round' marker-end='url(#a-warn)' marker-start='url(#a-warn)'/>
+<rect x='1064.1' y='638.0' width='131.8' height='18' rx='3' fill='#ffffff' opacity='0.92'/>
+<text x='1130.0' y='650.0' font-size='13' text-anchor='middle' font-weight='bold' fill='#c53030' font-family='Helvetica, Arial, sans-serif'>MAVLink udp 14550</text>
+<path d='M1330.0,745.0 L1330.0,430.0' fill='none' stroke='#c53030' stroke-width='2.6' stroke-linejoin='round' marker-end='url(#a-warn)'/>
+<rect x='1336.0' y='628.0' width='146.3' height='18' rx='3' fill='#ffffff' opacity='0.92'/>
+<text x='1340.0' y='640.0' font-size='13' text-anchor='start' font-weight='bold' fill='#c53030' font-family='Helvetica, Arial, sans-serif'>KILL or MANUAL only</text>
+<text x='1340.0' y='658.0' font-size='12' text-anchor='start' font-weight='normal' fill='#c53030' font-family='Helvetica, Arial, sans-serif'>POSCTL / ALTCTL still obey setpoints</text>
+<rect x='40' y='745' width='1050' height='85' rx='10' fill='#e7f1ff' stroke='#2b6cb0' stroke-width='1.6'/>
+<text x='58.0' y='775.0' font-size='16' text-anchor='start' font-weight='bold' fill='#2b6cb0' font-family='Helvetica, Arial, sans-serif'>Two seams, and a LiDAR estimator has to fill both</text>
+<text x='58.0' y='799.0' font-size='16' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>① pose INTO PX4 (mocap_bridge → EKF2 external vision)   ② odometry OUT of PX4 into AirStack (px4_interface → odometry_conversion)</text>
+</svg>
