@@ -6,7 +6,7 @@ There are five ways to get more onboard compute. They are ranked below by how mu
 
 | # | Option | Compute gained | Added mass | Cost (USD) | Verdict |
 |---|---|---|---|---|---|
-| 1 | **Reclaim the VOXL 2** (stop unused services, perf mode, Docker for newer ROS 2) | ~1.4 cores freed, out of thermal throttling | 0 g | 0 | **Do first, regardless** |
+| 1 | **Use the VOXL 2's spare capacity** (Docker for newer ROS 2) | whatever the running services leave free | 0 g | 0 | **Measure first.** Stopping the camera and VIO services would free ~1.4 cores, but the owner keeps them enabled (2026-10-22) |
 | 2 | **Light companion** (Pi CM5, Pi 5 + Hailo, RK3588) beside the VOXL 2 | Modern Ubuntu/ROS 2, 4 more A76 cores, up to 26 TOPS | +40–90 g | ~$300–500 | **Fits.** Best next step if (1) is not enough |
 | 3 | **Jetson companion** (Orin Nano/NX) beside the VOXL 2 | 67–157 TOPS, CUDA/TensorRT | +170–200 g | ~$1,100–1,700 | **At or over the ESC's 750 g rating.** Not on this airframe |
 | 4 | **Replace the VOXL 2** with a flight controller + Jetson | as (3) | net +50–175 g | ~$1,000–1,500 + rework | **No.** Loses all cameras, and the ESC driver path is unproven |
@@ -20,10 +20,9 @@ There are five ways to get more onboard compute. They are ranked below by how mu
 - For multithreaded CPU work it is roughly on par with an Orin Nano (6 × A78) [I].
 - On neural networks it is **2–5× behind in usable throughput**, and it has no CUDA/TensorRT [I]. The "15 TOPS" is Qualcomm's combined marketing figure ([QRB5165 brief](https://www.qualcomm.com/content/dam/qcomm-martech/dm-assets/documents/qrb5165-soc-product-brief_87-28730-1-b_0.pdf)). ModalAI documents **no Hexagon delegate** for it, so most of that number is unreachable (see the tflite table below).
 
-**Where the headroom went.** On 2026-10-14 we measured `voxl-camera-server` at ~95 % CPU and `voxl-qvio-server` at ~48 %, with the board at 95–102 °C. That is already inside ModalAI's throttling band of ~90–95 °C ([forum post 18776](https://forum.modalai.com/post/18776)). A user found that disabling camera-server alone keeps a stationary board "cool indefinitely" ([forum post 22727](https://forum.modalai.com/post/22727)). We fly on mocap, so VIO is dead weight. **Stopping both services frees ~1.4 cores and should pull the board out of throttling.**
+**Where the headroom went.** On 2026-10-14 we measured `voxl-camera-server` at ~95 % CPU and `voxl-qvio-server` at ~48 %, with the board at 95–102 °C. That is already inside ModalAI's throttling band of ~90–95 °C ([forum post 18776](https://forum.modalai.com/post/18776)). A user found that disabling camera-server alone keeps a stationary board "cool indefinitely" ([forum post 22727](https://forum.modalai.com/post/22727)). Stopping both services would free ~1.4 cores and pull the board out of throttling. **The owner keeps them enabled (2026-10-22)** because they may be needed, so that headroom is not available and cooling has to come from a fan.
 - Pin performance mode persistently: `normal_cpu_mode: performance` in `/etc/modalai/voxl-cpu-monitor.conf` ([forum](https://forum.modalai.com/topic/3126/new-sdk-performance-mode); [forum post 15428](https://forum.modalai.com/post/15428)).
 - Watch throttling with `voxl-inspect-cpu`.
-- Check that `voxl-vision-hub` and the ToF pipeline don't need camera-server before disabling it.
 
 **What has actually been run on this chip:**
 
@@ -131,7 +130,7 @@ Two checks come before buying any LiDAR airframe:
 What do you want to run onboard?
 │
 ├─ MPC / CBF / planners / estimators (CPU, no camera)
-│     → Option 1: stop camera-server + qvio, perf mode. Humble in Docker if Foxy blocks you.
+│     → Option 1: the VOXL 2, if its spare capacity is enough. Humble in Docker if Foxy blocks you.
 │       acados NMPC already runs at 150 Hz on VOXL 2.          Cost: $0
 │
 ├─ Same, but you need native Humble/Jazzy or more CPU
@@ -151,7 +150,7 @@ What do you want to run onboard?
 
 ## Next steps, cheapest first
 
-1. **Stop `voxl-camera-server` and `voxl-qvio-server`** on Starling 1 and re-run `scripts/thermal_soak.sh`. This is free and measures how much CPU and thermal margin comes back.
+1. **Measure the VOXL 2's spare CPU** with all services running (`top` during a normal session). That's what an onboard algorithm has to fit into.
 2. **Email ModalAI support:** what is the M0129's real all-up limit on a D0012 (the 750 g rating vs the datasheet's "~930 g")? That one answer decides whether option 3 exists.
 3. **Bench-test USB NCM** on J9 with the laptop as USB host, running the same Foxy ↔ Humble DDS traffic a companion would.
 4. **Write down the algorithm list.** The decision tree turns on it, and nothing should be bought before it exists.

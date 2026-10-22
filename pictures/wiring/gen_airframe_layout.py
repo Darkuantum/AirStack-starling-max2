@@ -103,7 +103,7 @@ for k, (x, y, m, esc, rot) in motors.items():
     ly = cy - r - 14 if x < 0 else cy + r + 26
     text(cx, ly, f"{m} · {rot} · ESC {esc}", 12.5, "middle", "bold", "#333")
 
-order = ["FL", "FR", "RR", "RL"]
+order = ["RL", "FL", "FR", "RR"]   # ring from the arm nearest the LED pads (rear-left), clockwise
 pitch = 16.7
 for i, k in enumerate(order):
     (x, y, *_), (cx0, cy0) = motors[k], corner[k]
@@ -120,7 +120,7 @@ for i, k in enumerate(order):
     line(P(b[0] + nx * off, b[1] + ny * off), P(cx0 + nx * off, cy0 + ny * off), MOD, 1.8, "5 3")
     lab = P(b[0] + ux * 8 - nx * 13, b[1] + uy * 8 - ny * 13)
     text(lab[0], lab[1] + 4, f"px {4*i}–{4*i+3}", 12.5, "middle", "bold", MOD)
-line(P(0, 30), P(-27, -36), MOD, 1.8, "5 3")
+line(P(-10, 30), P(-27, 36), MOD, 1.8, "5 3")   # LED pads (rear-left) to the first arm
 
 fx, fy = motors["FR"][:2]; c0 = corner["FR"]
 L = math.hypot(fx - c0[0], fy - c0[1])
@@ -133,14 +133,14 @@ callout((14, 36), TXC, 300, ["Rear edge (yellow ticks)", "VOXL J4 + J9, ESC J1, 
 callout(((c0[0] + fx) / 2 + 4, (c0[1] + fy) / 2 + 3), TXC, 385,
         ["Arm: ~10 mm wide", f"~{L - 14:.0f} mm clear by photo scale", "(owner measured ~75 mm — re-check:",
          "at ≥ 100 mm, 6 px at 60/m fits)"], MOD)
-callout((-8, 0), TXC, 485, ["① Fan on VOXL J2 (front edge)", "position TBD: needs 25 × 25 × 7 mm"], MOD)
+callout((-8, 0), TXC, 485, ["① Fan: 3010 in a shroud at one stack end", "powered from the LED buck (J2 stays empty)"], MOD)
 callout((-40, 20), TXC, 545, ["Battery: 2 × 2S 18650 packs", "XT30 each, wired in series (4S)"], "#3f7d1c")
 callout((4, 53), TXC, 605, ["Hi-res down camera"], "#2f6db5")
 callout((0, 80), TXC, 650, ["GNSS + mag on rear mast", "fitted, unused indoors"], "#555")
 
-text(20, 990, "② LED chain (planned, orange): one data line, 16 px. ESC ⬇ OUT → arm FL px 0–3 → back to hub → "
-     "FR 4–7 → RR 8–11 → RL 12–15. Each run starts ~12 mm out from the plate; 4 px × 16.7 mm = 67 mm.", 12, fill="#333")
-text(20, 1006, "Dashed = plain 3-wire return to the hub. Order is a suggestion — fix it before soldering.", 12, fill="#333")
+text(20, 990, "② LED chain (planned, orange): one data line, 16 px, a ring from the arm nearest the pads (rear-left): M2 → M3 → M1 → M4, "
+     "skipping the crowded rear edge. If the pads turn out rear-right, mirror it. Each run starts ~12 mm out from the plate; 4 px = 67 mm.", 12, fill="#333")
+text(20, 1006, "Dashed = plain 3-wire return to the hub. Motor positions assume PX4 Quad X: confirm from CA_ROTOR* parameters.", 12, fill="#333")
 text(20, 1026, "Motors: PX4 Quad X numbering and spin (M1 FR CCW, M2 RL CCW, M3 FL CW, M4 RR CW). ESC ID → motor from "
      "VOXL_ESC_FUNC1–4 = 102,103,101,104. Verify spin against your props before relying on it.", 12, fill="#333")
 sx0, sy0 = 40, 1052

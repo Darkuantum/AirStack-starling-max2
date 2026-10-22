@@ -74,6 +74,23 @@ Every board is drawn from above, front to the right, at 5 px = 1 mm. Downward fa
 
 > **TX/RX naming trap.** Each board labels pins from its own side. `J18-2 TX` (VOXL transmits) goes to `J1-2 RX` (ESC receives): the stock cable is straight-through, pin 2 to pin 2. If you re-pin a cable, match TX to RX, not pin number to pin number.
 
+### Power
+
+No step-up anywhere: everything is stepped **down** from the battery.
+
+```
+4S battery 12–16.8 V ──┬─▶ ESC main regulator ── 5.0 V, 5 A ──▶ VOXL 2 J4
+                       │                                          ├─▶ VOXL 5 V rail ──▶ J19 GNSS + RC · add-ons (J2 empty)
+                       │                                          └─▶ VOXL steps down to its chip rails (3.8 / 3.3 / 1.8 V…)
+                       ├─▶ ESC AUX regulator ── 3.3 V, 500 mA ──▶ LED pad ➕ VAUX (unused in scenario B)
+                       ├─▶ LED buck module (planned) ── 5 V ──▶ LED strip · fan · 74HCT125
+                       └─▶ motor drivers
+```
+
+- **The 3.3 V is only the LED pad**, and scenario B doesn't use it.
+- **Planned (scenario B):** a separate 5 V buck module off the battery pads feeds the LED strip, the fan and the 74HCT125, so a wiring fault on an arm can't reach the VOXL 2's supply. Details: [MODIFICATIONS.md](MODIFICATIONS.md#power-and-data-scenario-b-chosen-2026-10-22).
+- **Adding a 5 V load** (LED strip on 5 V, a companion computer): use its own buck module from the battery pads. Never the ESC's main 5 V (it feeds the VOXL 2) or a VOXL connector (~1 A).
+
 ### Connectors
 
 | Port | Type | Pins in use | Goes to | Notes |
@@ -81,12 +98,12 @@ Every board is drawn from above, front to the right, at 5 px = 1 mm. Downward fa
 | **ESC** battery pads | solder pads | + / − | 2 × XT30 in series | Unregulated 12–16.8 V. Never tap for 5 V parts |
 | **ESC** VREG OUT | solder pads | + / − | VOXL `J4` | 5 V, 5 A |
 | **ESC** `J1` | JST GH 4-pin (mate GHR-04V-S) | 1 NC · 2 RX · 3 TX · 4 GND | VOXL `J18` | The ESC's only real connector |
-| **ESC** LED pads | solder pads, MCU face | `G` · `⬇ OUT` · `➕ VAUX` | LED strip (planned) | 3.3 V data, no level shifter; VAUX 3.3 V 📄, ⏳ not yet measured |
+| **ESC** LED pads | solder pads, MCU face, behind the VREG pads | `G` · `⬇ OUT` · `➕ VAUX` | planned: `⬇ OUT` → 74HCT125 → strip; `G` common; `VAUX` unused | 3.3 V data, no level shifter; VAUX 3.3 V 📄, ⏳ not yet measured |
 | **ESC** motor pads | solder pads | A / B / C × 4 | motors | `esc_address` 2,3,1,4 = PX4 motor numbers, not a fault |
 | **VOXL** `J4` | 4-pin | 1 +5 V · 2 GND · 3–4 not wired | ESC VREG | 5 V ± 5 %, needs ≥ 6 A inrush |
 | **VOXL** `J18` | 4-pin | 1 NC · 2 TX · 3 RX · 4 GND | ESC `J1` | 3.3 V UART, owned by PX4 on the SLPI |
 | **VOXL** `J19` | 12-pin | 1 +5 V · 2–3 GNSS UART · 4–5 mag I²C · 6 GND · 10–11 RC UART · 12 GND | GNSS/mag + RC receiver | Pin 1's 5 V is shared by GNSS and RC |
-| **VOXL** `J2` | JST SH 1.0 2-pin (mate SHR-02V-S) | 1 +5 V always on · 2 PWM-switched GND ≤ 400 mA | fan (planned) | **Empty** ✅. No tach line |
+| **VOXL** `J2` | JST SH 1.0 2-pin (mate SHR-02V-S) | 1 +5 V always on · 2 PWM-switched GND ≤ 400 mA | nothing | **Empty** ✅ and stays empty: the fan runs from the LED buck (scenario B) |
 | **VOXL** `J3` + `J5` | 60-pin + 120-pin B2B, top face | — | add-on board | Both taken on both aircraft ✅ |
 | **VOXL** `J6` + `J7` | 60-pin camera B2B | — | M0173 camera board | ✅ |
 | **VOXL** `J9` | USB-C | ADB | laptop | ADB only ✅. Needs no network |
@@ -121,7 +138,7 @@ Two consequences of the LED path:
 | Thing | Limit | |
 |---|---|---|
 | All-up mass | < 750 g (ESC rating) | 📄 |
-| ESC LED pad (VAUX) | 3.3 V default, 500–600 mA; 5 V select disabled in firmware | 📄 ⏳ measure |
+| ESC LED pad (VAUX) | 3.3 V default, 500–600 mA; 5 V select disabled in firmware | 📄 (unused in scenario B) |
 | ESC LED data | 3.3 V from ESC ID0, no level shifter; WS2812/NeoPixel protocol, RGB or RGBW | 📄 |
 | LED pixel count | ≤ 32 (firmware) | 📄 |
 | ESC main 5 V output | 5 A, shared with the VOXL 2 | 📄 |
@@ -142,8 +159,8 @@ What is left for a companion computer or other add-ons. Plan: [MODIFICATIONS.md]
 | `J11`, USB 3 on the 5G carrier | **free on Starling 1** | Wired link for a companion (USB-Ethernet adapter) |
 | `J9`, USB-C | both aircraft | ADB today. Can also act as a USB network device (NCM) |
 | `J8` camera connector, `J10` SPI | free | Not useful for a companion link |
-| 5 V supply | **not from the aircraft** | ESC 5 V feeds the VOXL 2; VOXL connector outputs are ~1 A. Use a BEC off the 4S battery |
-| Battery tap | XT30 Y-lead | 12–16.8 V |
+| 5 V supply | **not from the aircraft** | ESC 5 V feeds the VOXL 2; VOXL connector outputs are ~1 A. Use a 5 V buck module (or BEC) off the 4S battery |
+| Battery tap | the ESC battery pads, or an XT30 Y-lead | 12–16.8 V |
 | Ethernet | **none** on the VOXL 2 | |
 
 ## Identify an aircraft over ADB

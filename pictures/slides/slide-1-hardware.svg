@@ -67,16 +67,16 @@
 <circle cx='696' cy='547' r='15' fill='#b8860b'/>
 <text x='696.0' y='553.0' font-size='17' text-anchor='middle' font-weight='bold' fill='#fff' font-family='Helvetica, Arial, sans-serif'>②</text>
 <text x='720.0' y='554.0' font-size='19' text-anchor='start' font-weight='bold' fill='#b8860b' font-family='Helvetica, Arial, sans-serif'>LED strip</text>
-<text x='686.0' y='582.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>16 px on one data line</text>
-<text x='686.0' y='603.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>solder to ESC pads</text>
-<text x='686.0' y='624.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>330–470 Ω in series</text>
+<text x='686.0' y='582.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>16 px, 4 per arm</text>
+<text x='686.0' y='603.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>own 5 V buck (+ fan)</text>
+<text x='686.0' y='624.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>data via 74HCT125</text>
 <rect x='1010' y='520' width='280' height='150' rx='12' fill='#fff3cd' stroke='#b8860b' stroke-width='2.2'/>
 <circle cx='1036' cy='547' r='15' fill='#b8860b'/>
 <text x='1036.0' y='553.0' font-size='17' text-anchor='middle' font-weight='bold' fill='#fff' font-family='Helvetica, Arial, sans-serif'>①</text>
 <text x='1060.0' y='554.0' font-size='19' text-anchor='start' font-weight='bold' fill='#b8860b' font-family='Helvetica, Arial, sans-serif'>Cooling fan</text>
-<text x='1026.0' y='582.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>VOXL 2 J2 header</text>
-<text x='1026.0' y='603.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>25 × 25 × 7 mm, 5 V</text>
-<text x='1026.0' y='624.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>2 wires only</text>
+<text x='1026.0' y='582.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>3010 fan in a shroud at</text>
+<text x='1026.0' y='603.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>the stack end (2 mm gaps)</text>
+<text x='1026.0' y='624.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>5 V from the LED buck</text>
 <rect x='1330' y='520' width='230' height='150' rx='12' fill='#f1f1f1' stroke='#8a8a8a' stroke-width='2.2' stroke-dasharray='8 5'/>
 <circle cx='1356' cy='547' r='15' fill='#8a8a8a'/>
 <text x='1356.0' y='553.0' font-size='17' text-anchor='middle' font-weight='bold' fill='#fff' font-family='Helvetica, Arial, sans-serif'>④</text>
@@ -91,8 +91,8 @@
 <rect x='727.9' y='452.0' width='94.2' height='19' rx='3' fill='#ffffff' opacity='0.92'/>
 <text x='775.0' y='465.0' font-size='14' text-anchor='middle' font-weight='bold' fill='#b8860b' font-family='Helvetica, Arial, sans-serif'>solder pads</text>
 <path d='M1070.0,420.0 L1120.0,520.0' fill='none' stroke='#b8860b' stroke-width='2.6' stroke-linejoin='round' marker-end='url(#a-mod)'/>
-<rect x='1099.0' y='457.0' width='102.1' height='19' rx='3' fill='#ffffff' opacity='0.92'/>
-<text x='1150.0' y='470.0' font-size='14' text-anchor='middle' font-weight='bold' fill='#b8860b' font-family='Helvetica, Arial, sans-serif'>J2 · 5 V PWM</text>
+<rect x='1096.4' y='457.0' width='47.2' height='19' rx='3' fill='#ffffff' opacity='0.92'/>
+<text x='1120.0' y='470.0' font-size='14' text-anchor='middle' font-weight='bold' fill='#b8860b' font-family='Helvetica, Arial, sans-serif'>cools</text>
 <rect x='56' y='720' width='1504' height='100' rx='10' fill='#ffe3e3' stroke='#c53030' stroke-width='1.6'/>
 <text x='74.0' y='750.0' font-size='17' text-anchor='start' font-weight='bold' fill='#c53030' font-family='Helvetica, Arial, sans-serif'>⚠  The ESC that would power the LEDs is also the VOXL 2's power supply</text>
 <text x='74.0' y='775.0' font-size='17' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>A full-white strip command could brown out the flight computer. Cap the LED current in software, not just the brightness setting.</text>

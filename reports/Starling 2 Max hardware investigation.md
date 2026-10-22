@@ -9,7 +9,7 @@
 | More compute onboard | [Onboard compute alternatives 2026-10-20](Onboard%20compute%20alternatives%202026-10-20.md) |
 | Raw desk research behind this report | `research_notes/Starling Max 2 modification stack/` |
 
-**Contents:** [Timeline](#timeline) · [Corrections log](#corrections-log) · [Identification evidence](#identification-evidence) · [Bench session results](#bench-session-results-2026-10-14) · [LED strip background](#led-strip-background) · [Thermal investigation](#thermal-investigation) · [Propeller research](#propeller-research) · [LiDAR research (deferred)](#lidar-research-deferred) · [Companion computer research](#companion-computer-research) · [Procurement research](#procurement-research) · [Lessons](#lessons)
+**Contents:** [Timeline](#timeline) · [Corrections log](#corrections-log) · [Identification evidence](#identification-evidence) · [Bench session results](#bench-session-results-2026-10-14) · [LED strip background](#led-strip-background) · [Thermal investigation](#thermal-investigation) · [Propeller research](#propeller-research) · [LiDAR research (deferred)](#lidar-research-deferred) · [Companion computer research](#companion-computer-research) · [Fan airflow model](#fan-airflow-model) · [Partner reference build](#partner-reference-build) · [LED supply voltage](#led-supply-voltage) · [Sim Lim Tower sourcing](#sim-lim-tower-sourcing-2026-10-22) · [Procurement research](#procurement-research) · [Lessons](#lessons)
 
 ---
 
@@ -19,6 +19,7 @@
 |---|---|---|
 | 2026-10-09 | Desk research on LEDs, cooling, props, board identity, LiDAR and AirStack integration. Vendor drawings copied into `pictures/modalai/` and `pictures/livox/` | The four workstreams scoped; the questions only the hardware could answer were listed |
 | 2026-10-14 | **ADB bench session on both aircraft**: `scripts/identify_drone.sh`, `probe_led_fan.sh`, thermal runs. Transcripts in `drone-backups/ident-*.txt` | Board, ESC, WiFi hardware, airframe revisions, cameras and software baselines settled; thermal cause found |
+| 2026-10-22 | Owner decisions and checks: services stay enabled; ~2 mm board gaps; partner build photos; Sim Lim Tower-only sourcing | Fan plan → shrouded 3010; LED 5 V option re-specified; sheet reworked |
 | 2026-10-20 | **Owner's hardware inspection**: connectors, the Starling 1 modem carrier, arm size, receivers. Onboard-compute research | Wiring confirmed; M0151 assumption overturned; ESC 750 g rating found, which rules out LiDAR on this airframe |
 
 ## Corrections log
@@ -44,7 +45,11 @@ Every belief that turned out wrong, so it isn't repeated.
 | A 5 V supply alone fixes the 3.3 V LED pad | It also needs a **74HCT125** buffer: a 5 V strip needs ~3.5 V data | WS2812B/SK6812 input threshold | 10-20 |
 | A Mid-360 fits the "500 g payload" | ESC rated **< 750 g all-up** → ~184 g margin; Mid-360 is 265 g | [ModalAI M0129 page](https://www.modalai.com/products/voxl-esc-mini) | 10-20 |
 | A Jetson could replace the VOXL 2, or run its firmware | PX4 runs on the SLPI DSP inside the QRB5165; a Jetson has neither. A companion rides **alongside** the VOXL 2 | VOXL 2 architecture; PX4 docs | 10-20 |
-| More onboard compute needs a Jetson | The VOXL 2's CPU is roughly an Orin Nano's; its two unused services waste ~1.4 cores. A Jetson (~170–200 g) is at or over the 750 g limit | Compute research | 10-20 |
+| More onboard compute needs a Jetson | The VOXL 2's CPU is roughly an Orin Nano's (the camera and VIO services use ~1.4 of its 8 cores). A Jetson (~170–200 g) is at or over the 750 g limit | Compute research | 10-20 |
+| Stop the camera and VIO services to fix the heat | **They stay enabled** (owner: they may be needed). Cooling has to come from a fan; `en_vio: false` stays as a flight-safety setting | Owner decision | 10-22 |
+| The fan is a 25 mm axial blowing onto the board | The boards are stacked with ~2 mm gaps, so air must go in from the side. Plan: a 3010 square fan in a shroud at the stack end (as a partner university does), blower as backup | Owner; partner photos; airflow model | 10-22 |
+| The LED strip "needs" 3.3 V | 3.3 V is just what the ESC pad gives. No addressable chip is rated for a 3.3 V supply; WS2812B v4+ reads 3.3 V data on a 5 V supply | Chip ratings ([Watterott](https://learn.watterott.com/kb/ws281x/)) | 10-22 |
+| The 5 V option needs an XT30 Y-lead and an RC "BEC" | A generic 5 V buck module soldered to the ESC battery pads does the same, and is stocked by component shops | Sim Lim Tower sourcing | 10-22 |
 
 ---
 
@@ -97,6 +102,7 @@ Both aircraft were probed over ADB on `J9` (USB-C), which needs no network, rout
 
 - **Owner, 10-20:** VOXL `J4`/`J9` and ESC `J1`/VREG/LED pads face the rear; the ESC sits under the VOXL 2.
 - **VOXL 2 top face up:** inferred. ModalAI's product photo shows the shield over the SIP toward the front, consistent with `J4`/`J9` at the rear only this way up.
+- **LED pad position, 2026-10-22.** The owner confirmed the ESC's power face orientation (battery at the front, VREG to the VOXL 2 at the rear-left, J1 UART at the rear-right), which matches the drawing. ModalAI's bottom-face photo is already mirrored: corner 0 is top-right in the top photo and top-left in the bottom one. Lining the two up puts the LED pads on the underside directly behind the VREG pads, at the rear-left. The owner first read them as rear-right (flipping the bottom photo a second time). Not critical: the LED chain starts at whichever arm is nearest, then goes round away from the rear edge. Motor numbers still assume PX4's standard Quad X layout until `CA_ROTOR*` is read.
 - **ESC power face up:** inferred. With `J1` to the rear, it's the only way up where each ESC corner sits next to its motor (ID1 front-left = M3, ID2 front-right = M1, ID0 rear-left = M2, ID3 rear-right = M4).
 
 ### Software baselines
@@ -170,7 +176,9 @@ Never measured: ESC firmware version (`esc_status` doesn't carry it; old notes s
 - Another thread: `voxl-portal` open in a browser heats the board fast ([topic 4484](https://forum.modalai.com/topic/4484/temperature-issue-with-voxl-2.md)).
 
 **Fan hardware.**
-- ModalAI specifies the Sunon MC25060V1-000U-A99 (25 × 25 × 6.9 mm, 5 V, ~3 CFM, ~5 g) with an SHR-02V-S plug on `J2`.
+- ModalAI specifies the Sunon MC25060V1-000U-A99 (25 × 25 × 6.9 mm, 5 V, ~3 CFM, ~5 g) with an SHR-02V-S plug on `J2`. That series has been obsolete since 2018; the replacement is the MF25060V1-1000U-A99 ([DigiKey forum](https://forum.digikey.com/t/sunon-000u/9928)).
+- **30 mm is an option, not a deviation** (owner's question, 2026-10-22). The 25 mm size is ModalAI's choice, not a measured fit. Sunon's MF30060V1-1000U-A99 (30 × 30 × 6 mm) moves 4.9 CFM at 9,100 RPM against 3.0 CFM at 13,000 RPM for the 25 mm, for ~0.56 W either way ([DigiKey](https://azcus.digikey.com/en/products/detail/sunon-fans/MF30060V1-1000U-A99/10441401); [RS](https://uk.rs-online.com/web/p/axial-fans/2025391)). The cost is space: the VOXL 2 is 36 mm wide, and the face that needs airflow points down at the camera board and ESC. Mass (~7–8 g, estimated) doesn't matter.
+- **Side airflow means a blower** (owner, 2026-10-22: the boards are stacked, so air must enter from the side). An axial fan stood edge-on wastes most of its face and stalls against a thin, long slot. A blower's higher pressure and slot-shaped outlet fit the job, like laptop cooling. Example of a documented 5 V blower: Wakefield-Vette DB0300405H1A-2T0, 30 × 30 × 4 mm, 0.76 CFM, 86 Pa, 100 mA ([DigiKey](https://www.digikey.com/en/products/detail/wakefield-vette/DB0300405H1A-2T0/12610241)), against 42 Pa for the 30 mm axial. No 5 V 3010 blower with a published datasheet was found; they're common, undocumented hobby parts. ModalAI publishes no measured fan data ([thermal page](https://docs.modalai.com/voxl2-thermal-performance/)), so the pass/fail test in MODIFICATIONS.md is the way to decide.
 - `J2`: pin 1 permanent 5 V, pin 2 PWM-switched return ≤ ~400 mA ([thermal](https://docs.modalai.com/voxl2-thermal-performance/); [connectors](https://docs.modalai.com/voxl2-connectors/)).
 - Low-side switching is why the fan must be 2-wire. A generic 2-wire fan is low-risk; the failure mode is "won't spin at `slow`", not damage.
 - Conflict: one 2024 forum thread says `J2` is "always on" with no software control ([topic 3228](https://forum.modalai.com/topic/3228/starling-fan-attachment-and-optimization)). Unresolved.
@@ -285,6 +293,80 @@ Done 2026-10-20 by three parallel research passes. The full report, with prices,
 **The link is the real obstacle.** `J3` + `J5` are taken. A ModalAI staff recipe turns `J9` into a USB network device ([post 25777](https://forum.modalai.com/post/25777)), untested with a Pi or Jetson as host. On Starling 1 the carrier's free `J11` takes a USB-Ethernet adapter.
 
 **Successor board.** VOXL 3 (M0254, QCS6490) runs Ubuntu 24.04 natively but has *less* AI compute (12 TOPS), takes battery power directly on a moved `J4`, and has no availability date ([feature matrix](https://docs.modalai.com/m0254-feature-matrix/)). It fixes the OS, not the compute.
+
+---
+
+## Fan airflow model
+
+Owner's question, 2026-10-22: blower or shrouded square fan, given stacked boards with ~2 mm gaps?
+
+**Method.**
+- Each fan's datasheet gives two endpoints: free-air flow (CFM) and maximum static pressure. Its curve is approximated as a straight line between them.
+- The gaps are modelled as parallel-plate channels 70 mm long, 36 mm wide: laminar friction (12 μ L q / w h³) plus 1.5 × ½ρv² for entry and exit.
+- The operating point is where the two curves cross. It is converted to watts carried per 10 °C air temperature rise (ρ c<sub>p</sub> Q ΔT).
+
+**Fans** ([DigiKey MF30100V1](https://azcus.digikey.com/en/products/detail/sunon-fans/MF30100V1-1000U-A99/10441403); [DigiKey MF30060V1](https://azcus.digikey.com/en/products/detail/sunon-fans/MF30060V1-1000U-A99/10441401); [DigiKey Wakefield blower](https://www.digikey.com/en/products/detail/wakefield-vette/DB0300405H1A-2T0/12610241)):
+
+| Fan | Free air | Max pressure | Current |
+|---|---|---|---|
+| Sunon MF30100V1, 30 × 30 × 10 axial | 5.5 CFM | 49.8 Pa | 120 mA |
+| Sunon MF30060V1, 30 × 30 × 6 axial | 4.9 CFM | 42.3 Pa | 112 mA |
+| Wakefield-Vette DB0300405H1A-2T0, 30 × 30 × 4 blower | 0.76 CFM | 86.2 Pa | 100 mA |
+
+**Results at 2 mm gaps** (watts carried per 10 °C air rise; the VOXL 2 draws up to ~7 W):
+
+| Gaps fed | 3010 axial | 3006 axial | 4 mm blower |
+|---|---|---|---|
+| 1 | 0.78 CFM → 4.4 W | 0.70 → 4.0 W | 0.54 → 3.1 W |
+| 2 | **1.42 CFM → 8.1 W** | 1.27 → 7.2 W | 0.65 → 3.7 W |
+| 3 | **1.94 CFM → 11.0 W** | 1.74 → 9.9 W | 0.69 → 3.9 W |
+
+**Reading it.**
+- Below ~30 % of free flow an axial fan nears stall and its real curve sags, so the one-gap axial figures are optimistic. Blower curves stay close to straight.
+- No 5 V 3010 *blower* with a datasheet was found. These hobby parts likely move 2–3× the 4 mm blower's flow, which could make a blower win in the one-gap case.
+- **Not modelled:** connectors and components in the gaps, shroud leakage, and heat transfer from the board into the air.
+- **The [fan test](../docs/MODIFICATIONS.md#step-3--fit-a-fan) decides.**
+
+## Partner reference build
+
+Photos from a partner university's Starlings, shown to us 2026-10-22. Photos not stored in this repo. Observations, with confidence:
+
+- **Cooling:** a ~30 mm square fan in a black 3D-printed shroud, mounted upright on **one end of the board stack** (probably the rear: a USB-C port sits on the board just above it), blowing along the gaps. 2-wire. This is option A in MODIFICATIONS.md.
+- **LEDs:** a narrow strip on top of each arm beside the motor wires, ~4–5 pixels visible toward the motor end, held by red heat-shrink and zip ties. Consistent with our 60 LED/m, 4-per-arm plan.
+- **Mocap:** a raised carbon-rod marker tree on a printed hub, 6+ markers. **Each marker is wired**, so probably active (IR LED) markers, perhaps driven by a board on top with an "A05057" sticker. Unconfirmed.
+- **Same generation as our Starling 1:** a TP-Link USB WiFi dongle under the stack; motor label reads "…5KV1500" (2203.5); ModalAI-logo props. Two flat black blades and a stiff wire are probably antennas.
+
+**Questions for the partner:**
+1. Fan model and size, which end, on `J2`?, and measured temperatures on the bench and in flight.
+2. LED pixel count, 3.3 V pad or 5 V supply, and how the data runs between arms.
+3. Active markers: which system, and any ghost markers from the LED strips.
+4. All-up mass and flight time.
+5. Whether they'd share the shroud and marker-tree print files.
+
+## LED supply voltage
+
+- **No common addressable LED is rated for a 3.3 V supply:** SK6812 3.5–5.5 V, WS281x 3.7–5.3 V, SK6805-EC15 3.7–5.5 V ([Watterott](https://learn.watterott.com/kb/ws281x/); [Electrokit](https://www.electrokit.com/en/led-smd5050-rgb-adresserbar-sk6812); [LCSC via Flux](https://www.flux.ai/lcsc/sk6805-ec15~wwta/files)). Running the strip from the ESC's 3.3 V pad is below spec. It often works, but blue and green dim first.
+- **WS2812B version 4 and later (WS2812B-Mini v2 and later) accept 3.3 V data on a 5 V supply** (high level ≥ 2.7 V) ([Watterott](https://learn.watterott.com/kb/ws281x/)). With one of those, a 5 V supply alone is enough, no level shifter. The version usually can't be checked at a shop counter, so the 74HCT125 stays as insurance.
+- **The LED data is not on the UART pads.** The colour packets ride the VOXL 2 ↔ ESC UART (`J18` ↔ `J1`). The ESC's ID0 microcontroller then generates the WS2812 signal on its own pin (PB6) to the separate `⬇ OUT` pad.
+
+**Power scenarios considered (2026-10-22).** The 5 V, 5 A rail has the capacity for everything (~2 A typical, ~3.3 A worst case); the question was fault isolation.
+
+| Scenario | LED supply | Data | If the LED wiring shorts |
+|---|---|---|---|
+| A | ESC 3.3 V AUX pad | direct | only the AUX regulator collapses; but below every chip's supply rating |
+| **B (chosen)** | own 5 V buck from the battery; fan on it too | 74HCT125 | only the buck collapses |
+| C | ESC main 5 V through a 0.5 A PTC fuse | 74HCT125 | fuse trips; the VOXL's rail may dip briefly |
+
+Boosting the 3.3 V pad to 5 V for fan + strip was ruled out: ~0.55 A from a 500–600 mA pad, more at fan start-up. **B was chosen by the owner** because it removes every dependency on the strip's chip version, the 3.3 V pad and a JST SH plug.
+
+## Sim Lim Tower sourcing (2026-10-22)
+
+Constraint from the owner: everything on the shopping sheet must be buyable at Sim Lim Tower.
+- **Online listings found:** WS2812B at Sun-Light Electronics #03-09; crimped small-pitch JST leads at E-top Electronics (Level 3), from a ~2-year-old directory ([pic-control](https://www.pic-control.com/electronic-component-shops-in-singapore/)); general components at Continental (#B1-25) and Davjones (#B1-47).
+- **No online stock listing found for:** 3010 fans or blowers, or the 74HCT125, anywhere in Sim Lim. Both are common parts, so: call first.
+- **Changed to fit:**
+  - The "5 V BEC" (an RC-hobby part) became a generic 5 V buck module (Mini-360 / MP1584).
+  - The XT30 Y-lead (an FPV part) was dropped by soldering the buck module to the ESC battery pads.
 
 ---
 

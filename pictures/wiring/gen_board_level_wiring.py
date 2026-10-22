@@ -18,7 +18,7 @@ Usage: gen_board_level_wiring.py OUT.svg
 """
 import sys
 
-W, H = 1360, 980
+W, H = 1360, 1010
 S = 5
 out = []
 add = out.append
@@ -135,7 +135,8 @@ conn(T(5.2, 1.9), T(24.4, 7.0), "J5 · 120-pin B2B")
 conn(T(5.5, 27.6), T(28.4, 35.9), "J3 · 60-pin B2B")
 conn(T(28.8, 30.0), T(48.1, 36.4), "J19", exit="D")
 conn(T(49.2, 31.6), T(63.5, 36.4), "J10 · empty", unused=True, exit="D")
-conn(T(64.5, 26.2), T(71.2, 31.4), "J2", size=10.5, exit="R")
+conn(T(64.5, 26.2), T(71.2, 31.4), "J2", size=10.5, unused=True)
+text(*T(64.5, 39.5), "J2 · empty", 10, fill="#777", italic=True)
 dot(*T(30.0, 34.6), 2.6, "#e00"); dot(*T(66.0, 27.4), 2.6, "#e00")
 
 # ---- VOXL 2 bottom face (faces down), x-ray: bottom drawing mirrored -------
@@ -186,14 +187,14 @@ for idn, (xs, yc, m, where) in {"ID0": (31.3, 15.0, "M2", "rear-left"), "ID1": (
 
 # ---- ESC MCU face (faces down), x-ray -----------------------------------
 FX, FY = 1135, 560
-def F(xb, yb): return FX + yb * S, FY + (36.5 - xb) * S
+def F(xb, yb): return FX + yb * S, FY + xb * S   # bottom photo mirrored to a from-above view: LED pads behind the VREG pads (rear-left)
 board(FX, FY, 36.5 * S, 36.5 * S, "M0129 — MCU face down", "seen through · same orientation")
 for hx, hy in [(2.2, 2.2), (34.3, 2.2), (2.2, 34.3), (34.3, 34.3)]:
     hole(*F(hx, hy))
 gpad, opad, vpad = F(6.4, 4.3), F(10.9, 4.3), F(13.1, 4.3)
 for p in (gpad, opad, vpad):
     pad(*p)
-text(gpad[0] + 10, vpad[1] - 8, "NeoPixel pads", 10, weight="bold")
+text(gpad[0] - 6, gpad[1] - 10, "NeoPixel pads (behind VREG OUT)", 9.5, weight="bold")
 text(gpad[0] + 10, vpad[1] + 4, "VAUX", 9.5, fill=C["sub"])
 text(gpad[0] + 10, opad[1] + 4, "⬇ OUT", 9.5, fill=C["sub"])
 text(gpad[0] + 10, gpad[1] + 4, "GND", 9.5, fill=C["sub"])
@@ -243,12 +244,8 @@ box(540, 385, 240, 100, "RC receiver", [
     "Starling 1: ELRS · Starling 2: Ghost", "J19-11 RX ← receiver TX", "J19-10 TX → receiver RX (ELRS only)",
     "J19-1 +5 V (shared) · J19-12 GND"], C["uart"])
 
-# ---- J2 -> fan (planned) ---------------------------------------------------
-j2 = T(71.2, 28.8)
-wire([j2, (700, j2[1]), (700, 300)], C["mod"], 2.6, "7 4")
-box(678, 300, 220, 84, "① Fan (planned · J2 empty)", [
-    "25 × 25 × 7 mm · 5 V · 2 wires", "plug SHR-02V-S (JST SH 1.0)", "pin 1 +5 V always on",
-    "pin 2 PWM-switched GND ≤ 400 mA"], C["mod"], "7 4")
+# ---- fan: powered from the LED buck (scenario B), J2 stays empty --------
+box(888, 752, 165, 72, "① Fan (planned)", ["3010, shroud at stack end", "5 V · 2 wires · always on"], C["mod"], "7 4", 10.5, 13.5)
 
 # ---- J3/J5 -> add-on board -------------------------------------------------
 rect(TX - 4, TY - 3, 70 * S + 8, 36 * S + 7, "none", C["b2b"], 1.8, rx=6, dash="6 4")
@@ -271,29 +268,30 @@ box(670, 588, 161, 136, "M0173 camera board", [
 for jj, yy in ((j6, 610), (j7, 690)):
     wire([(jj[2], (jj[1] + jj[3]) / 2), (650, (jj[1] + jj[3]) / 2), (650, yy), (670, yy)], C["b2b"], 2, "6 4")
 
-# ---- NeoPixel -> LED chain (planned) --------------------------------------
-lx = 1105
-wire([(vpad[0] - 5, vpad[1]), (lx + 14, vpad[1]), (lx + 14, 800), (1214, 800)], C["pwr"], 2, "7 4")
-wire([(opad[0] - 5, opad[1]), (lx + 4, opad[1]), (lx + 4, 806)], C["mod"], 2.2, "7 4")
-rect(lx - 2, 754, 12, 22, "#fff", C["mod"], 1.6)
-wire([(lx + 4, 808), (lx + 4, 810), (1214, 810)], C["mod"], 2.2, "7 4")
-wire([(gpad[0] - 5, gpad[1]), (lx - 6, gpad[1]), (lx - 6, 820), (1214, 820)], C["gnd"], 2, "7 4")
-text(lx - 12, 770, "330–470 Ω", 10, "end", "bold", C["mod"])
-sx = 1218
+# ---- scenario B: buck + 74HCT125 feed the LED chain and the fan (planned) -
+BXB, BYB = 1125, 752
+box(BXB, BYB, 205, 92, "② 5 V buck + 74HCT125", ["buck: battery pads → 5.0 V", "OUT → 74HCT125 → 330 Ω → DIN", "VAUX not connected"], C["mod"], "7 4", 10.5, 13.5)
+wire([(opad[0] - 5, opad[1]), (1112, opad[1]), (1112, BYB)], C["mod"], 2.2, "7 4")          # data
+wire([(gpad[0] - 5, gpad[1]), (1102, gpad[1]), (1102, BYB)], C["gnd"], 2, "7 4")             # ground reference
+wire([(1076, 798), (BXB, 798)], C["gnd"], 2, "7 4")                                            # battery − in
+wire([(1060, 810), (BXB, 810)], C["pwr"], 2, "7 4")                                            # battery + in
+wire([(BXB, 780), (1053, 780)], C["pwr"], 2, "7 4")                                            # 5 V to fan
+sx, sy = 1140, 870
+wire([(sx + 20, BYB + 92), (sx + 20, sy - 5)], C["mod"], 2.2, "7 4")
 for arm in range(4):
-    for p in range(4):
-        rect(sx + arm * 33 + p * 7.5, 805, 6, 10, "#fff4e0", C["mod"], 1)
-text(sx, 845, "② LED chain · 16 px", 11.5, weight="bold", fill=C["mod"])
-lines(sx, 859, ["4 arms × 4 px, 60 LED/m", "returns via the hub", "470–1000 µF at strip", "5 V BEC only if VAUX = 3.3 V"], 10, 12.5)
+    for q in range(4):
+        rect(sx + arm * 33 + q * 7.5, sy - 5, 6, 10, "#fff4e0", C["mod"], 1)
+text(sx, sy + 26, "LED chain · 16 px, 4 per arm, 60 LED/m", 10.5, weight="bold", fill=C["mod"])
+lines(sx, sy + 40, ["ring from the arm nearest the pads", "470 µF at the strip"], 10, 12.5)
 
 # ---- stack note + footnote -------------------------------------------------
 box(20, 800, 268, 118, "Stack, top to bottom", [
     "add-on board (J3 + J5)", "VOXL 2, top face up", "M0173 cameras (J6 + J7)",
     "ESC, power face up — LED pads", "underneath, reached below J18"], "#1f4e79", None, 11, 14)
-text(20, 952, "Motors: PX4 Quad X (M1 front-right, M2 rear-left, M3 front-left, M4 rear-right). "
+text(20, 982, "Motors: PX4 Quad X (M1 front-right, M2 rear-left, M3 front-left, M4 rear-right). "
      "ESC ID → motor from VOXL_ESC_FUNC1–4 = 102,103,101,104 on both aircraft; with the power face up, "
      "each ESC corner sits next to its own motor. ESC ID0 also drives the NeoPixel pad.", 10.5, fill=C["sub"])
-text(20, 968, "⚪ = drawn by ModalAI, not inspected on our aircraft.", 10.5, fill=C["sub"])
+text(20, 998, "⚪ = drawn by ModalAI, not inspected on our aircraft.", 10.5, fill=C["sub"])
 
 add("</svg>")
 open(sys.argv[1], "w").write("\n".join(out))
