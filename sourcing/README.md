@@ -1,6 +1,6 @@
 # Printable parts-sourcing sheet
 
-`parts-sourcing.pdf`: 9 pages, A4, to carry to Sim Lim Tower (components) and Sim Lim Square (propellers).
+`parts-sourcing.pdf`: 8 pages, A4, to carry to Sim Lim Tower (components) and Sim Lim Square (propellers).
 Quantities cover **both** drones.
 
 | Page | Contents |
@@ -9,11 +9,10 @@ Quantities cover **both** drones.
 | 2 | 1 · LED strip |
 | 3 | 2 · Cooling fan (3010 square fan + backup blower) |
 | 4 | 3 · 5 V buck module · 4 · 74HCT125 level shifter |
-| 5 | 5 · resistors · 6 · capacitors (470 µF + 100 nF) |
-| 6 | 7 · silicone wire · 8 · Kapton tape + heat-shrink |
-| 7 | 9 · Propellers (Sim Lim Square) |
-| 8 | Price log: two rows per item, to compare shops |
-| 9 | Where to go: Tower and Square shops, prop and fan fallbacks |
+| 5 | 5 · resistors · 6 · capacitors (470 µF + 100 nF) · 7 · disconnect connectors (JST-PH 2/4-pin, JST-SM 3-pin) |
+| 6 | 8 · silicone wire · 9 · Kapton tape + heat-shrink |
+| 7 | 10 · Propellers (Sim Lim Square) |
+| 8 | Where to go: Tower and Square shops, prop and fan fallbacks |
 
 Every item card has the same layout:
 - a photo;
@@ -48,6 +47,7 @@ Credits are printed under each photo; the source list is `img/CREDITS.tsv`.
 | `img/fan-3010-blower.jpg` | The Pi Hut |
 | `img/resistor.jpg` | oomlout, Wikimedia Commons, CC BY-SA 2.0 |
 | `img/capacitor-470uf.jpg` | Elcap, Wikimedia Commons, CC0 |
+| `img/conn-jst-ph.jpg` | Adafruit (product 4714) |
 | `img/wire-silicone.jpg` | Adafruit (product 1970) |
 | `img/kapton-tape.jpg` | Jérôme, Wikimedia Commons, CC BY-SA 3.0 |
 | `img/ic-dip14.jpg` | Stefan Riepl, Wikimedia Commons, public domain |

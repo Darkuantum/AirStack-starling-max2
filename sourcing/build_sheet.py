@@ -88,7 +88,7 @@ ITEMS = [
       ],
       dont=["Large 25 V+ cans (heavier than needed)", "Ceramic capacitors (much smaller value)"],
       layout="compact"),
- dict(key="wire", short="26 AWG silicone, stranded, 3 colours", n=7, name="Silicone hook-up wire", where=TOWER, qty="~2 m each, 3 colours",
+ dict(key="wire", short="26 AWG silicone, stranded, 3 colours", n=8, name="Silicone hook-up wire", where=TOWER, qty="~2 m each, 3 colours",
       qty_note="red, black and one other colour",
       photos=["wire-silicone"],
       ask="“26 AWG silicone wire, stranded, in red, black and one other colour.”",
@@ -99,7 +99,7 @@ ITEMS = [
       ],
       dont=["PVC hook-up wire", "Solid-core wire"],
       layout="compact"),
- dict(key="tape", short="Kapton ~10 mm; heat-shrink 1.5–6 mm + 15–20 mm clear", n=8, name="Kapton tape + heat-shrink", where=TOWER, qty="1 roll + assortment + 20 cm clear",
+ dict(key="tape", short="Kapton ~10 mm; heat-shrink 1.5–6 mm + 15–20 mm clear", n=9, name="Kapton tape + heat-shrink", where=TOWER, qty="1 roll + assortment + 20 cm clear",
       photos=["kapton-tape"],
       ask="“Kapton tape, the amber polyimide kind, about 10 millimetres wide. A small heat-shrink assortment, 1.5 to 6 millimetres, and a short length of clear 15 to 20 millimetre heat-shrink.”",
       specs=[
@@ -131,7 +131,18 @@ ITEMS = [
       ],
       dont=["Linear 7805 regulators (would burn ~6 W as heat)", "Big LM2596 boards (heavy)"],
       layout="compact"),
- dict(key="prop", short="Gemfan 7037-3: 7 in, 3.7 pitch, 3 blades, 5 mm hole", n=9, name="Propellers", where=SQUARE, qty="at least 2 sets of 4",
+ dict(key="conn", short="JST-PH 2.0 pairs (2- and 4-pin) + JST-SM 3-pin LED pairs", n=7, name="Disconnect connectors", where=TOWER,
+      qty="3 pairs of each type",
+      photos=["conn-jst-ph"],
+      ask="“JST PH 2.0 mm connector pairs with wires, 2-pin and 4-pin, plus 3-pin JST SM LED strip connector pairs.”",
+      specs=[
+        ("Fan ↔ buck", "<b>JST-PH 2-pin</b>", "Fan and shroud come off"),
+        ("ESC ↔ driver", "<b>JST-PH 4-pin</b>", "Battery +, GND, data, spare"),
+        ("Driver ↔ strips", "<b>JST-SM 3-pin</b> (latching)", "LED ring comes off in one go"),
+      ],
+      dont=["JST-SH / GH (too small)", "Dupont jumpers (shake loose)"],
+      layout="compact"),
+ dict(key="prop", short="Gemfan 7037-3: 7 in, 3.7 pitch, 3 blades, 5 mm hole", n=10, name="Propellers", where=SQUARE, qty="at least 2 sets of 4",
       qty_note="each set is 2 clockwise + 2 counter-clockwise; props are consumables",
       photos=["prop.webp", "prop2.webp"],
       ask="“Gemfan 7037, three-blade, 7 inch, 5 millimetre centre hole.”",
@@ -279,8 +290,8 @@ def page_list():
   <div class='section'>{tag(SQUARE)} 1 Rochor Canal Road · hobby / FPV · next door</div>
   <table class='list'>{head}{rows(square)}</table>
   <div class='two'>
-    <div class='box'><h3>Bring</h3>This sheet (prices go on the <b>price log</b>, page 8) · the <b>printed prop gauge</b> and <b>30 × 30 × 10 fan block</b> · a ruler or calipers</div>
-    <div class='box'><h3>Every purchase</h3>Ask for an <b>itemised receipt</b> with the shop's name and GST number. Compare two or three shops before buying.</div>
+    <div class='box'><h3>Bring</h3>This sheet · the <b>printed prop gauge</b> and <b>30 × 30 × 10 fan block</b> · a ruler or calipers</div>
+    <div class='box'><h3>Every purchase</h3>Ask each shop for a quote, and for an <b>itemised receipt</b> with the shop's name and GST number when you buy.</div>
   </div>
   <div class='box'><h3>Why a buck module and a chip?</h3>The LED strip and fan get their own 5 V supply (item 3), so a wiring fault on an arm can't take down the flight computer. The chip (item 4) makes the LED data signal strong enough for a 5 V strip.</div>
 </div>"""
@@ -289,17 +300,6 @@ def page_list():
 def page_items(items, title, intro=""):
     body = "".join(card(i, quote=False) for i in items)
     return f"<div class='page'>{header(title, 'Starling 2 Max parts')}{intro}{body}</div>"
-
-
-def page_prices():
-    rows = "".join(f"<tr><td rowspan='2'><b>{i['n']}</b> {E(i['name'])}<div class='alt'>{E(i['qty'])}</div></td>"
-                   f"<td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr>" for i in ITEMS)
-    return f"""
-<div class='page'>
-  {header("Price log", "Compare two or three shops before buying")}
-  <table class='quote prices'><tr><th style='width:30%'>Item · qty</th><th style='width:26%'>Shop / unit</th>
-  <th style='width:24%'>Exact item seen</th><th style='width:11%'>Price S$</th><th>Bought?</th></tr>{rows}</table>
-</div>"""
 
 
 def page_shops():
@@ -312,14 +312,14 @@ def page_shops():
     <tr><td><b>J.C.W. Electronic</b></td><td>—</td><td>Fans (item 2) — <b>call first</b>; LED strip</td></tr>
     <tr><td><b>Sun-Light Electronics</b></td><td>#03-09</td><td>WS2812B LED strip (item 1)</td></tr>
         <tr><td><b>Davjones Technology</b></td><td>#B1-47/11</td><td>Buck modules, 74HCT125 (items 3–4)</td></tr>
-    <tr><td><b>Continental Electronic Enterprise</b></td><td>#B1-25</td><td>Resistors, capacitors, wire, tape, heat-shrink (items 5–8)</td></tr>
+    <tr><td><b>Continental Electronic Enterprise</b></td><td>#B1-25</td><td>Resistors, capacitors, JST connectors, wire, tape, heat-shrink (items 5–9)</td></tr>
   </table>
   <div class='alt'>From a shop directory about two years old. No online listing confirms the fans, blower or 74HCT125 in stock anywhere in Sim Lim — call first.</div>
 
   <div class='section'>{tag(SQUARE)} 1 Rochor Canal Road — hobby / FPV</div>
   <table class='list'>
     <tr><th>Shop</th><th>Unit</th><th>Try here for</th></tr>
-    <tr><td><b>Hobby Square</b></td><td>#02-60</td><td><b>Propellers (item 9)</b>; also silicone wire (item 7). Listed hours Mon–Sat 12:30–7:30 pm</td></tr>
+    <tr><td><b>Hobby Square</b></td><td>#02-60</td><td><b>Propellers (item 10)</b>; also silicone wire (item 8) and JST-PH leads (item 7). Listed hours Mon–Sat 12:30–7:30 pm</td></tr>
   </table>
 
   <div class='section'>If Hobby Square has no 7037 props</div>
@@ -350,10 +350,9 @@ def build():
         page_items([by["led"]], "1 · LED strip"),
         page_items([by["fan"]], "2 · Cooling fan"),
         page_items([by["buck"], by["hct"]], "3–4 · Buck module and level shifter", wiring_intro),
-        page_items([by["res"], by["cap"]], "5–6 · Resistors and capacitors"),
-        page_items([by["wire"], by["tape"]], "7–8 · Wire, tape, heat-shrink"),
-        page_items([by["prop"]], "9 · Propellers"),
-        page_prices(),
+        page_items([by["res"], by["cap"], by["conn"]], "5–7 · Resistors, capacitors, connectors"),
+        page_items([by["wire"], by["tape"]], "8–9 · Wire, tape, heat-shrink"),
+        page_items([by["prop"]], "10 · Propellers"),
         page_shops(),
     ]
     doc = (f"<!doctype html><html lang='en'><head><meta charset='utf-8'><title>Parts Sourcing</title>"

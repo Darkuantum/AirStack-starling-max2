@@ -270,14 +270,14 @@ for jj, yy in ((j6, 610), (j7, 690)):
 
 # ---- scenario B: buck + 74HCT125 feed the LED chain and the fan (planned) -
 BXB, BYB = 1125, 752
-box(BXB, BYB, 205, 92, "② 5 V buck + 74HCT125", ["buck: battery pads → 5.0 V", "OUT → 74HCT125 → 330 Ω → DIN", "VAUX not connected"], C["mod"], "7 4", 10.5, 13.5)
+box(BXB, BYB, 205, 106, "② 5 V buck + 74HCT125", ["buck: battery pads → 5.0 V", "OUT → 74HCT125 → 330 Ω → DIN", "VAUX not connected", "plugs: PH-4 in · SM-3 out · PH-2 fan"], C["mod"], "7 4", 10.5, 13.5)
 wire([(opad[0] - 5, opad[1]), (1112, opad[1]), (1112, BYB)], C["mod"], 2.2, "7 4")          # data
 wire([(gpad[0] - 5, gpad[1]), (1102, gpad[1]), (1102, BYB)], C["gnd"], 2, "7 4")             # ground reference
 wire([(1076, 798), (BXB, 798)], C["gnd"], 2, "7 4")                                            # battery − in
 wire([(1060, 810), (BXB, 810)], C["pwr"], 2, "7 4")                                            # battery + in
 wire([(BXB, 780), (1053, 780)], C["pwr"], 2, "7 4")                                            # 5 V to fan
-sx, sy = 1140, 870
-wire([(sx + 20, BYB + 92), (sx + 20, sy - 5)], C["mod"], 2.2, "7 4")
+sx, sy = 1140, 880
+wire([(sx + 20, BYB + 106), (sx + 20, sy - 5)], C["mod"], 2.2, "7 4")
 for arm in range(4):
     for q in range(4):
         rect(sx + arm * 33 + q * 7.5, sy - 5, 6, 10, "#fff4e0", C["mod"], 1)

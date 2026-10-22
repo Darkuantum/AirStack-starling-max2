@@ -138,6 +138,7 @@ Full list with photos and "do not buy" warnings: [sourcing/parts-sourcing.pdf](.
 | Tape / sleeving | ~10 mm Kapton; small heat-shrink for joints; **15–20 mm clear heat-shrink** to insulate the buck module and chip |
 | **Buck module** | MP1584 (preferred) or Mini-360, set to 5.0 V. Powers the strip and the fan |
 | **Level shifter** | **74HCT125** (DIP-14) + a **100 nF** ceramic capacitor; small perfboard scrap |
+| **Connectors** | pre-crimped pairs: **JST-PH 2.0 mm 4-pin** (ESC ↔ driver), **JST-SM 3-pin** (driver ↔ strips), **JST-PH 2-pin** (fan) |
 
 **Do not buy:** APA102 / DotStar / SK9822 / WS2801 (4-wire); WS2815 (12 V); non-addressable strip; 74HC125 / 74LS125.
 
@@ -158,6 +159,11 @@ ESC ⬇ OUT ──▶ 74HCT125 pin 2 (1A) │ pin 1 (1OE) → GND │ pin 3 (1Y)
 ESC G pad ─── common ground: buck GND, chip pin 7, strip GND, fan black
 Unused channels: pins 4, 10, 13 (OE) → 5 V   ·   pins 5, 9, 12 (inputs) → GND
 VAUX: not connected
+
+Disconnects (so nothing needs desoldering to take parts off):
+  ESC pads ─[JST-PH 4-pin: batt +, GND, data, spare]─ LED driver (buck + 74HCT125)
+  LED driver ─[JST-SM 3-pin: 5 V, data, GND]─ strip harness (the 4-arm ring)
+  buck 5 V ─[JST-PH 2-pin]─ fan
 ```
 
 - **Buck module:** MP1584 preferred (~3 A rated); a Mini-360 also works. Worst-case load is ~0.8 A: full-white LEDs plus the fan.
@@ -169,6 +175,7 @@ VAUX: not connected
 2. Mount near the ESC's LED pads, at the **rear-left arm root**: on the underside of the centre plate, or on top of the arm beside the motor wires. That stays clear of the battery packs (sides), the camera (front), and the `J4`/`J9` cables and fan shroud (rear end).
 3. Put the chip, 100 nF capacitor and 330 Ω resistor on a scrap of perfboard (or glue the chip upside down and wire it directly). Fix with foam tape plus a zip tie.
 4. Keep the `⬇ OUT` → chip wire **under 5 cm**; twist the buck module's input pair.
+5. **Disconnects** at three points only (ESC ↔ driver, driver ↔ strips, fan ↔ buck). The runs between arms stay soldered. Mark polarity on each pair; after mating, secure with Kapton or a zip tie (a dab of hot glue on the JST-PH ones).
 
 **After building:** run the LEDs at their capped maximum with the fan spinning, and confirm the VOXL 2 doesn't reboot or throttle. Keep the **software current cap** on the LEDs.
 
