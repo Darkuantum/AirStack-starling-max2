@@ -1,56 +1,71 @@
 # Printable parts-sourcing sheet
 
-`parts-sourcing.pdf` — 7 pages, A4, for carrying to Sim Lim Tower / Sim Lim Square.
-One page per item: a large photo of the real part, the exact spec, a "do not buy" list, and a
-blank table for writing quotes in so shops can be compared before buying.
-
-Photos print large on purpose — they are the reason the sheet exists. Source images were
-auto-cropped of their white borders (40–45% of each file), so the part fills the frame.
+`parts-sourcing.pdf`: 9 pages, A4, to carry to Sim Lim Tower (components) and Sim Lim Square (propellers).
+Quantities cover **both** drones.
 
 | Page | Contents |
 |---|---|
-| 1 | Checklist with tick boxes + the two buildings |
-| 2 | LED strip — WS2812B/SK6812, 5 V, 60 LED/m (4 px per ~75 mm arm), chipsets to avoid |
-| 3 | Fan — "2507", 5 V, **2 wires only**, with a wire-count diagram |
-| 4 | JST SH 1.0 mm connector, resistors, wire, capacitor, Kapton tape |
-| 5 | 5 V backup kit — BEC + 74HCT125 + XT30 Y-lead, all three or none |
-| 6 | Propellers — 7 × 3.7 × 3, with the pitch warning |
-| 7 | Shop addresses and fallbacks |
+| 1 | Shopping list with tick boxes and thumbnails, grouped by building; what to bring; why the buck module and chip |
+| 2 | 1 · LED strip |
+| 3 | 2 · Cooling fan (3010 square fan + backup blower) |
+| 4 | 3 · 5 V buck module · 4 · 74HCT125 level shifter |
+| 5 | 5 · resistors · 6 · capacitors (470 µF + 100 nF) |
+| 6 | 7 · silicone wire · 8 · Kapton tape + heat-shrink |
+| 7 | 9 · Propellers (Sim Lim Square) |
+| 8 | Price log: two rows per item, to compare shops |
+| 9 | Where to go: Tower and Square shops, prop and fan fallbacks |
 
-## Images and attribution
+Every item card has the same layout:
+- a photo;
+- **Ask for**: a sentence to read out at the counter;
+- a spec table where each row says what it must be and why;
+- **Do not buy** and **Check** lines (the checks use the printed reference pieces: prop gauge, 30 × 30 × 10 fan block).
 
-| File | Source | Licence |
-|---|---|---|
-| `img/led-strip.jpg`, `img/led-strip-detail.jpg` | Cytron Technologies, product DS-6812-WS-601M | vendor product photo |
-| `img/prop.webp` | OddityRC / Gemfan 7037-3 listing | vendor product photo |
-| `img/prop2.webp` | OddityRC / Gemfan 7037-3 listing | vendor product photo |
-| `img/jst-sh.jpg` | Christopher.nunez via Wikimedia Commons | CC BY-SA 3.0 |
+Where a photo differs from the spec (wrong pin count, thickness), a bold note under it says what to buy instead.
 
-**The fan page has no photo, deliberately.** No openly-licensed photo of a 25×25×7 mm
-("2507") 5 V 2-wire fan was findable, and two candidates were rejected for being actively
-misleading: a Commons "small fan" image that turned out to be a bracket of THREE-wire server
-fans, and a Sunon trade-show display of 8×8 to 30×30 mm micro-blowers — the wrong form factor
-entirely. The page uses a dimensioned drawing plus a 2/3/4-wire comparison, which convey the
-only two things that matter (size and wire count) better than a photo of a different fan, and
-leads with the size code **"2507"**, which is what shops actually recognise.
+## Editing and rebuilding
 
-⚠️ Two of these are **third-party vendor photos in a public repository**. If that is a problem,
-delete `sourcing/img/` and `parts-sourcing.pdf`, keep the HTML, and re-fetch locally when
-printing.
-
-## Regenerating
-
-Edit `parts-sourcing.html`, then:
+All item data (specs, quantities, photos, shops) lives in `build_sheet.py`, so pages can't drift apart. Edit it, then:
 
 ```sh
+python3 build_sheet.py
 google-chrome --headless=new --disable-gpu --no-pdf-header-footer \
   --print-to-pdf=parts-sourcing.pdf "file://$PWD/parts-sourcing.html"
 ```
 
-Diagrams are inline SVG; photos live in `img/`. Nothing is fetched at render time.
+Check the page count afterwards (`pdfinfo parts-sourcing.pdf`): cards never split across pages, so an overfull page pushes a card onto an extra page.
 
-## Specs come from
+Specs come from `docs/MODIFICATIONS.md` (§① cooling, §② LED strip incl. scenario B, §③ propellers). If a spec changes there, change it here too. Shop details were web-sourced 2026-10-14/22, partly from a ~2-year-old directory: **call before travelling**.
 
-`docs/MODIFICATIONS.md` (§② LED strip, §① Cooling, §③ Propellers). If a spec changes there,
-change it here too. Shop details were web-sourced 2026-10-14 and some directory listings were
-already ~2 years old — **call before travelling**.
+## Photo credits
+
+Credits are printed under each photo; the source list is `img/CREDITS.tsv`.
+
+| File | Credit |
+|---|---|
+| `img/led-strip-bare.jpg` | John McMaster, Wikimedia Commons, CC BY 4.0 |
+| `img/fan-3010-axial.jpg` | Adafruit (product 3368) |
+| `img/fan-3010-blower.jpg` | The Pi Hut |
+| `img/resistor.jpg` | oomlout, Wikimedia Commons, CC BY-SA 2.0 |
+| `img/capacitor-470uf.jpg` | Elcap, Wikimedia Commons, CC0 |
+| `img/wire-silicone.jpg` | Adafruit (product 1970) |
+| `img/kapton-tape.jpg` | Jérôme, Wikimedia Commons, CC BY-SA 3.0 |
+| `img/ic-dip14.jpg` | Stefan Riepl, Wikimedia Commons, public domain |
+| `img/buck-mini360.jpg` | Kunkune |
+| `img/buck-mp1584.jpg` | Kunkune |
+| `img/prop.webp` | OddityRC, Gemfan 7037-3 listing |
+| `img/prop2.webp` | OddityRC, Gemfan 7037-3 listing |
+
+Wikimedia Commons photos are used under their stated licences. The others are manufacturer or retailer product photos, used here for internal reference with attribution. If that is a problem in a public repository, delete them from `img/` and the sheet prints "(photo pending)" in their place.
+
+## 3D-printed size reference
+
+`print/prop-gauge-7037.stl`: a flat size gauge for the 7 × 3.7 × 3 prop (preview: `print/prop-gauge-7037.svg`).
+
+| Feature | Size | Use |
+|---|---|---|
+| Ring | outer edge Ø 178 mm | Lay a shop prop on it: its tips should reach the outer edge |
+| Blades | 3, approximate planform, 2 mm thick | Blade count and rough shape |
+| Hub | Ø 14 × 7 mm, bore 5.2 mm | Hub thickness; M5 + 0.2 mm clearance. Push onto a motor shaft (prop nut off) to confirm M5 |
+
+Not a flyable prop, and it can't show pitch: read pitch off the prop's label ("7037" = 7 in, 3.7 pitch). Print flat side down, no supports, ~11 cm³, bed ≥ 180 × 180 mm. Regenerate with `print/gen_prop_gauge.py OUT_DIR` (needs `trimesh`, `shapely`, `mapbox-earcut`, `manifold3d`).

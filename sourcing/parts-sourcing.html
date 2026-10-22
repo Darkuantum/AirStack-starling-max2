@@ -1,329 +1,196 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8">
-<title>Parts Sourcing</title>
-<style>
-  @page { size: A4; margin: 14mm 14mm 12mm 14mm; }
-  * { box-sizing: border-box; }
-  body { font-family: "DejaVu Sans", Arial, Helvetica, sans-serif; color:#111; margin:0; font-size:11pt; line-height:1.45; }
-  .page { page-break-after: always; }
-  .page:last-child { page-break-after: auto; }
-  h1 { font-size:26pt; margin:0 0 2mm; letter-spacing:-0.5px; }
-  h2 { font-size:14pt; margin:4mm 0 1.5mm; border-bottom:2px solid #111; padding-bottom:1mm; }
-  .sub { font-size:11pt; color:#555; margin:0 0 5mm; }
-  .cn { font-size:15pt; color:#000; font-weight:bold; }
-  .big { font-size:19pt; font-weight:bold; line-height:1.3; }
-  table { width:100%; border-collapse:collapse; margin:2.2mm 0; font-size:10pt; }
-  th,td { border:1px solid #999; padding:1.6mm 2.2mm; text-align:left; vertical-align:top; }
-  th { background:#eee; font-weight:bold; }
-  .yes { background:#e8f5e9; }
-  .no  { background:#ffebee; }
-  .spec { background:#f4f4f4; border-left:5px solid #111; padding:2.6mm 3.2mm; margin:2.4mm 0; }
-  .spec .k { font-size:18pt; font-weight:bold; display:block; }
-  .warn { border:2.5px solid #c62828; padding:2.4mm 3mm; margin:2.4mm 0; }
-  .warn b { color:#c62828; font-size:13pt; }
-  ul { margin:1.5mm 0 1.5mm 5mm; padding:0; }
-  li { margin:0.8mm 0; }
-  .row { display:flex; gap:6mm; align-items:flex-start; }
-  .col { flex:1; }
-  .tick { font-size:16pt; letter-spacing:2px; }
-  .note { font-size:9.5pt; color:#555; font-style:italic; }
-  svg { display:block; }
-  .cap { font-size:9pt; color:#555; text-align:center; margin-top:1mm; }
-  .hdr { display:flex; justify-content:space-between; align-items:baseline; border-bottom:3px solid #111; padding-bottom:2mm; margin-bottom:4mm; }
-  .hdr .n { font-size:11pt; color:#666; }
-  img { max-width:100%; border:1px solid #bbb; display:block; }
-  .photo { text-align:center; }
-  .photo img { margin:0 auto; } .big-img { max-height:110mm; } .half-img { max-height:88mm; }
-  .attr { font-size:7.5pt; color:#777; margin-top:0.8mm; }
-  .quote { margin-top:3mm; border:2px solid #111; }
-  .quote .qh { background:#111; color:#fff; padding:1.8mm 3mm; font-size:11pt; font-weight:bold; }
-  .quote table { margin:0; border:0; }
-  .quote th { background:#f0f0f0; font-size:9.5pt; }
-  .quote td { height:6.5mm; }
+<!doctype html><html lang='en'><head><meta charset='utf-8'><title>Parts Sourcing</title><style>
+@page { size: A4; margin: 11mm 12mm 11mm 12mm; }
+* { box-sizing: border-box; }
+body { font-family: "DejaVu Sans", Helvetica, Arial, sans-serif; color: #15202b; margin: 0; font-size: 9.6pt; line-height: 1.38; }
+.page { page-break-after: always; position: relative; }
+.page:last-child { page-break-after: auto; }
+.top { display: flex; justify-content: space-between; align-items: center; border-bottom: 2.5px solid #15202b; padding-bottom: 2mm; margin-bottom: 4mm; }
+.top h1 { font-size: 19pt; margin: 0; letter-spacing: -0.3px; }
+.top .meta { font-size: 8.5pt; color: #5b6673; text-align: right; }
+.tag { display: inline-block; font-size: 8pt; font-weight: bold; padding: 0.6mm 2.2mm; border-radius: 2mm; color: #fff; }
+.tag.tower { background: #1f4e79; } .tag.square { background: #2e7d32; } .tag.kit { background: #8a6d00; }
+.card { border: 1.4px solid #c9d1db; border-radius: 3mm; padding: 2.6mm 3.4mm; margin-bottom: 2.6mm; break-inside: avoid; }
+.card h2 { font-size: 13.5pt; margin: 0 0 1.6mm; display: flex; align-items: center; gap: 2.5mm; }
+.num { display: inline-flex; width: 7.5mm; height: 7.5mm; border-radius: 50%; background: #15202b; color: #fff; font-size: 10.5pt; align-items: center; justify-content: center; flex: none; }
+.qty { margin-left: auto; font-size: 9.5pt; font-weight: bold; background: #eef2f6; border-radius: 2mm; padding: 0.8mm 2.4mm; white-space: nowrap; }
+.qtynote { font-size: 8.3pt; color: #5b6673; margin: -0.6mm 0 1.6mm 10mm; }
+.grid { display: grid; grid-template-columns: 62mm 1fr; gap: 4mm; }
+.grid.compact { grid-template-columns: 38mm 1fr; }
+.photos img { width: 100%; max-height: 56mm; object-fit: contain; border: 1px solid #d5dbe2; border-radius: 1.5mm; background: #fff; display: block; margin-bottom: 1.4mm; }
+.grid.compact .photos img { max-height: 27mm; }
+.pnote { font-size: 7.8pt; font-weight: bold; color: #5b6673; line-height: 1.25; margin: -0.4mm 0 0.4mm; }
+.credit { font-size: 6.3pt; color: #8a939d; line-height: 1.2; margin-bottom: 1.2mm; }
+.ask { background: #fff8e1; border-left: 3.5px solid #b8860b; padding: 1.5mm 2.4mm; font-size: 9.8pt; margin-bottom: 1.6mm; }
+.ask b { color: #8a6d00; font-size: 8pt; text-transform: uppercase; letter-spacing: 0.4px; display: block; }
+table { width: 100%; border-collapse: collapse; font-size: 8.8pt; }
+th, td { border-bottom: 1px solid #e1e6ec; padding: 1.1mm 1.6mm; text-align: left; vertical-align: top; }
+th { color: #5b6673; font-size: 7.8pt; text-transform: uppercase; letter-spacing: 0.3px; border-bottom: 1.4px solid #c9d1db; }
+td.w { font-weight: bold; white-space: nowrap; width: 22mm; }
+td.why { color: #5b6673; font-size: 8.2pt; }
+.dont { margin-top: 1.8mm; font-size: 8.6pt; color: #8b1a1a; }
+.dont b { color: #c53030; }
+.check { margin-top: 1.4mm; font-size: 8.6pt; background: #eef6ee; border-radius: 1.5mm; padding: 1.2mm 2.2mm; }
+.alt { margin-top: 1.2mm; font-size: 8.4pt; color: #5b6673; }
+.quote { margin-top: 2mm; }
+.quote td { height: 5.6mm; border: 1px solid #c9d1db; }
+.prices td { height: 7.4mm; }
+.quote th { border: 1px solid #c9d1db; background: #f4f6f8; }
+.list td, .list th { border-bottom: 1px solid #e1e6ec; }
+.list td.tick { font-size: 13pt; width: 7mm; }
+.list img { height: 11mm; width: 15mm; object-fit: contain; display: block; }
+.section { font-size: 11pt; font-weight: bold; margin: 3mm 0 1mm; display: flex; gap: 2.5mm; align-items: center; }
+.box { border: 1.4px solid #c9d1db; border-radius: 3mm; padding: 2.6mm 3.4mm; margin-top: 3mm; font-size: 9pt; }
+.box h3 { margin: 0 0 1.2mm; font-size: 10.5pt; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; }
+.kitnote { border: 1.4px dashed #b8860b; border-radius: 3mm; padding: 2.4mm 3.4mm; margin-bottom: 3.5mm; font-size: 9pt; background: #fffdf5; }
 </style></head><body>
-
-<!-- ============ PAGE 1 : CHECKLIST ============ -->
-<div class="page">
-  <h1>Parts to buy</h1>
-  <p class="sub">ModalAI Starling 2 Max — LED strip, cooling fan, propellers. Each item has its own page with a picture, exact specs and a box to write prices in.<br>
-  <b style="color:#c62828">Keep every receipt</b> — ask for an itemised invoice showing the shop's name and GST registration number.</p>
-
-  <table>
-    <tr><th style="width:8%">✓</th><th style="width:30%">Item</th><th style="width:38%">Key spec</th><th>Where</th></tr>
-    <tr><td class="tick">☐</td><td><b>Addressable LED strip</b></td>
-        <td><b>WS2812B or SK6812</b><br>5 V · 60 LED/m · need 16 pixels (≈27 cm) · buy 1 m<br>(1 m also covers 6 px per arm if the arms re-measure at ~100 mm)</td><td>Sim Lim <b>Tower</b></td></tr>
-    <tr><td class="tick">☐</td><td><b>Cooling fan</b></td>
-        <td><b>25 × 25 × 7 mm · 5 V · 2 WIRES ONLY</b><br>≤ 150 mA</td><td>Sim Lim <b>Tower</b></td></tr>
-    <tr><td class="tick">☐</td><td><b>JST SH 1.0 mm connector</b></td>
-        <td>2-pin, with pigtail wires (×2–3 spare)</td><td>Sim Lim <b>Tower</b></td></tr>
-    <tr><td class="tick">☐</td><td><b>Resistors</b></td>
-        <td>330 Ω or 470 Ω, 1/4 W (×10)</td><td>Sim Lim <b>Tower</b></td></tr>
-    <tr><td class="tick">☐</td><td><b>Hook-up wire</b></td>
-        <td>Thin stranded, 3 colours, ~2 m each</td><td>Sim Lim <b>Tower</b></td></tr>
-    <tr><td class="tick">☐</td><td><b>Capacitor</b></td>
-        <td>470 µF electrolytic, ≥ 6.3 V (×2) · goes at the strip end</td><td>Sim Lim <b>Tower</b></td></tr>
-    <tr><td class="tick">☐</td><td><b>Kapton tape</b> or clear heat-shrink</td>
-        <td>~10 mm tape, or heat-shrink to fit a 10 mm arm</td><td>Sim Lim <b>Tower</b></td></tr>
-    <tr><td class="tick">☐</td><td><b>Propellers</b></td>
-        <td><b>7 inch · 3.7 pitch · 3 blades</b><br>(7037-3 / 7×3.7×3)</td><td>Sim Lim <b>Square</b></td></tr>
-    <tr><td class="tick">☐</td><td><i>Backup kit</i> (buy all three or none)</td>
-        <td>5 V BEC ≥ 1 A · <b>74HCT125</b> or 74AHCT125 chip (×2) · XT30 Y-lead</td><td>Sim Lim <b>Tower</b></td></tr>
-  </table>
-
-  <h2 style="margin-top:4mm">Two buildings, side by side</h2>
-  <div class="row">
-    <div class="col spec"><span class="k">Sim Lim TOWER</span>
-      10 Jalan Besar<br><b>Electronic components</b><br>
-      LED strip · fan · connectors · resistors · wire<br>
-      <span class="note">Closes ~7:30 pm.</span></div>
-    <div class="col spec"><span class="k">Sim Lim SQUARE</span>
-      1 Rochor Canal Road<br><b>Drone / FPV parts</b><br>
-      Propellers — ask for <b>Hobby Square</b><br>
-      <span class="note">Mon–Sat 12:30–7:30 pm.</span></div>
+<div class='page'>
+  <div class='top'><h1>Starling 2 Max — shopping list</h1><div class='meta'>Quantities cover <b>both</b> drones<br>Each item has its own card on the following pages</div></div>
+  <div class='section'><span class='tag tower'>Sim Lim Tower</span> 10 Jalan Besar · components · most shops close ~7:30 pm</div>
+  <table class='list'><tr><th></th><th></th><th>Item</th><th>Qty</th><th>Key spec</th></tr><tr><td class='tick'>☐</td><td><img src='img/led-strip-bare.jpg' alt=''></td><td><b>1. Addressable LED strip</b></td><td>1 metre</td><td>WS2812B, 5 V, 60 LED/m, ≤ 10 mm wide, bare, 3 wires</td></tr><tr><td class='tick'>☐</td><td><img src='img/fan-3010-axial.jpg' alt=''></td><td><b>2. Cooling fan (+ backup blower)</b></td><td>2 square fans + 1 blower</td><td>30×30×10 mm, 5 V, 2 wires, ≤ 0.15 A; + 3010 blower</td></tr><tr><td class='tick'>☐</td><td><img src='img/resistor.jpg' alt=''></td><td><b>5. Resistors</b></td><td>10</td><td>330 Ω (or 470 Ω), 1/4 W</td></tr><tr><td class='tick'>☐</td><td><img src='img/capacitor-470uf.jpg' alt=''></td><td><b>6. Capacitors</b></td><td>4 × 470 µF + 4 × 100 nF</td><td>470 µF 10–16 V electrolytic + 100 nF ceramic</td></tr><tr><td class='tick'>☐</td><td><img src='img/wire-silicone.jpg' alt=''></td><td><b>7. Silicone hook-up wire</b></td><td>~2 m each, 3 colours</td><td>26 AWG silicone, stranded, 3 colours</td></tr><tr><td class='tick'>☐</td><td><img src='img/kapton-tape.jpg' alt=''></td><td><b>8. Kapton tape + heat-shrink</b></td><td>1 roll + assortment + 20 cm clear</td><td>Kapton ~10 mm; heat-shrink 1.5–6 mm + 15–20 mm clear</td></tr><tr><td class='tick'>☐</td><td><img src='img/ic-dip14.jpg' alt=''></td><td><b>4. Level-shifter chip</b></td><td>2 (+1 spare)</td><td>74HCT125, DIP-14</td></tr><tr><td class='tick'>☐</td><td><img src='img/buck-mp1584.jpg' alt=''></td><td><b>3. 5 V step-down (buck) module</b></td><td>2 (+1 spare)</td><td>MP1584 (or Mini-360), 5 V out, ≥ 1 A</td></tr></table>
+  <div class='section'><span class='tag square'>Sim Lim Square</span> 1 Rochor Canal Road · hobby / FPV · next door</div>
+  <table class='list'><tr><th></th><th></th><th>Item</th><th>Qty</th><th>Key spec</th></tr><tr><td class='tick'>☐</td><td><img src='img/prop.webp' alt=''></td><td><b>9. Propellers</b></td><td>at least 2 sets of 4</td><td>Gemfan 7037-3: 7 in, 3.7 pitch, 3 blades, 5 mm hole</td></tr></table>
+  <div class='two'>
+    <div class='box'><h3>Bring</h3>This sheet (prices go on the <b>price log</b>, page 8) · the <b>printed prop gauge</b> and <b>30 × 30 × 10 fan block</b> · a ruler or calipers</div>
+    <div class='box'><h3>Every purchase</h3>Ask for an <b>itemised receipt</b> with the shop's name and GST number. Compare two or three shops before buying.</div>
   </div>
-</div>
-
-<!-- ============ PAGE 2 : LED STRIP ============ -->
-<div class="page">
-  <div class="hdr"><h1>1 &middot; LED strip</h1><span class="n">addressable / NeoPixel type</span></div>
-
-  <div class="row">
-    <div class="col photo"><img src="img/led-strip.jpg" class="half-img">
-      <div class="cap"><b>The right type</b> &mdash; flexible addressable strip</div></div>
-    <div class="col photo"><img src="img/led-strip-detail.jpg" class="half-img">
-      <div class="cap"><b>Count the wires: THREE</b></div></div>
-  </div>
-  <div class="attr" style="text-align:center">Photos: Cytron Technologies, product DS-6812-WS-601M. Example shown is 60 LED/m &mdash; exactly the density you want.</div>
-
-  <div class="spec"><span class="k">WS2812B &nbsp;or&nbsp; SK6812</span>
-    <b>5 V</b> &nbsp;&middot;&nbsp; <b>60 LED / metre</b> &nbsp;&middot;&nbsp; <b>1 metre</b> &nbsp;&middot;&nbsp; must be <b>individually addressable</b>
-    <br><span style="font-size:0.85em">Width: <b>as narrow as possible</b> &mdash; arm is ~10 mm, thinner at the motor. <b>5 mm &ldquo;narrow&rdquo; strip ideal</b>, 10 mm bare strip is the maximum.</span></div>
-
-  <table>
-    <tr><th class="no" style="width:34%">DO NOT BUY</th><th>Why</th></tr>
-    <tr><td><b>APA102</b> / DotStar / <b>SK9822</b> / <b>WS2801</b></td><td>need a 4th clock wire &mdash; will not work</td></tr>
-    <tr><td><b>WS2815</b></td><td>12 V &mdash; wrong voltage</td></tr>
-    <tr><td>Non-addressable RGB strip</td><td>whole strip one colour only</td></tr>
-    <tr><td>Silicone-sleeved / waterproof tube strip (~14.5 mm)</td><td>wider than the ~10 mm arm</td></tr>
-  </table>
-
-  <div class="warn"><b>Ask the shop:</b> &ldquo;Is this individually addressable, 5 volt, with <b>3 wires</b> &mdash; data, +5 V, ground?&rdquo;
-    If it needs <b>4 wires</b>, it is the wrong type.</div>
-
-  <div class="quote"><div class="qh">Quotes</div>
-  <table><tr><th style="width:40%">Shop / unit no.</th><th style="width:22%">Price S$</th><th>Notes</th></tr>
-  <tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table></div>
-</div>
-
-<!-- ============ PAGE 3 : FAN ============ -->
-<div class="page">
-  <div class="hdr"><h1>2 · Cooling fan</h1><span class="n">size code “2507”</span></div>
-
-  <div class="row">
-    <div class="col">
-      <svg width="100%" viewBox="0 0 300 240" xmlns="http://www.w3.org/2000/svg">
-        <rect x="40" y="30" width="180" height="180" rx="6" fill="#e8e8e8" stroke="#333" stroke-width="2.5"/>
-        <circle cx="130" cy="120" r="76" fill="#fafafa" stroke="#555" stroke-width="1.6"/>
-        <circle cx="130" cy="120" r="26" fill="#ccc" stroke="#555" stroke-width="1.6"/>
-        <g fill="#bbb" stroke="#666" stroke-width="1.2">
-          <path d="M130 94 Q166 88 170 118 Q146 104 130 94"/><path d="M156 120 Q162 156 132 160 Q148 136 156 120"/>
-          <path d="M130 146 Q94 152 90 122 Q114 136 130 146"/><path d="M104 120 Q98 84 128 80 Q112 104 104 120"/>
-        </g>
-        <g fill="#fff" stroke="#333" stroke-width="2">
-          <circle cx="58" cy="48" r="7"/><circle cx="202" cy="48" r="7"/>
-          <circle cx="58" cy="192" r="7"/><circle cx="202" cy="192" r="7"/>
-        </g>
-        <path d="M220 150 Q252 156 262 176" stroke="#c62828" stroke-width="3.5" fill="none"/>
-        <path d="M220 162 Q250 170 258 190" stroke="#111" stroke-width="3.5" fill="none"/>
-        <text x="268" y="178" font-size="12" font-family="Arial" fill="#c62828">+5V</text>
-        <text x="264" y="198" font-size="12" font-family="Arial" fill="#111">GND</text>
-        <g stroke="#1565c0" stroke-width="1.4" fill="none">
-          <line x1="40" y1="20" x2="220" y2="20"/><line x1="40" y1="15" x2="40" y2="25"/><line x1="220" y1="15" x2="220" y2="25"/>
-        </g>
-        <text x="130" y="14" text-anchor="middle" font-size="12" font-family="Arial" fill="#1565c0">25 mm</text>
-        <g stroke="#1565c0" stroke-width="1.4" fill="none">
-          <line x1="28" y1="30" x2="28" y2="210"/><line x1="23" y1="30" x2="33" y2="30"/><line x1="23" y1="210" x2="33" y2="210"/>
-        </g>
-        <text x="16" y="124" text-anchor="middle" font-size="12" font-family="Arial" fill="#1565c0" transform="rotate(-90 16 124)">25 mm</text>
-      </svg>
-      <div class="cap">25 × 25 mm, 7 mm thick, exactly two wires</div>
-      <p class="note" style="margin-top:2mm">Drawn rather than photographed on purpose: the size and the wire count are what matter, and a photo of a different fan would mislead.</p>
-    </div>
-    <div class="col">
-      <div class="spec"><span class="k">25 × 25 × 7 mm</span>
-        <b>5 V DC</b> · <b>2 WIRES ONLY</b> · ≤ 150 mA<br>
-        <span style="font-size:13pt">Size code: <b>“2507”</b></span></div>
-      <p class="note" style="margin-top:0">Shops know this size as <b>2507</b>. Asking for “a 2507 5 volt 2-wire fan” is the fastest way to be understood.</p>
-      <table>
-        <tr><th colspan="2" class="no">DO NOT BUY ✗</th></tr>
-        <tr><td><b>12 V</b> fan</td><td>wrong voltage</td></tr>
-        <tr><td><b>3-wire</b> (has tacho)</td><td>will not work</td></tr>
-        <tr><td><b>4-wire</b> (PWM input)</td><td>will not work</td></tr>
-      </table>
-      <p class="note">Prefer a <b>ball bearing</b> fan over sleeve — it is going on a flying drone and will be vibrating.</p>
-      <p class="note">30 mm or 20 mm is acceptable <b>only</b> if 25 mm is unavailable — ask me before buying a different size.</p>
+  <div class='box'><h3>Why a buck module and a chip?</h3>The LED strip and fan get their own 5 V supply (item 3), so a wiring fault on an arm can't take down the flight computer. The chip (item 4) makes the LED data signal strong enough for a 5 V strip.</div>
+</div><div class='page'><div class='top'><h1>1 · LED strip</h1><div class='meta'>Starling 2 Max parts</div></div>
+<div class='card'>
+  <h2><span class='num'>1</span>Addressable LED strip <span class='tag tower'>Sim Lim Tower</span><span class='qty'>Buy: 1 metre</span></h2><div class='qtynote'>covers both drones (2 × 16 LEDs) with spares</div>
+  <div class='grid'>
+    <div class='photos'><img src='img/led-strip-bare.jpg' alt='Addressable LED strip'><div class='pnote'>One bare WS2812B segment: 3 pads at each cut (+5V, Din/DO, GND)</div><div class='credit'>Photo: John McMaster, Wikimedia Commons, CC BY 4.0</div></div>
+    <div>
+      <div class='ask'><b>Ask for</b>“Do you have WS2812B addressable LED strip, 5 volt, 60 LEDs per metre, the narrow bare kind without the silicone sleeve? The newest version, V5, if you have it.”</div>
+      <table><tr><th>Spec</th><th>Must be</th><th>Why</th></tr><tr><td class='w'>Type</td><td>Individually addressable, single data wire: <b>WS2812B</b> (or SK6812)</td><td class='why'>The drone sends one data signal that sets each LED separately</td></tr><tr><td class='w'>Wires</td><td><b>3</b>: +5 V, data, ground</td><td class='why'>4-wire strips need a clock line the drone doesn't have</td></tr><tr><td class='w'>Voltage</td><td><b>5 V</b></td><td class='why'>12 V strips won't light</td></tr><tr><td class='w'>LED spacing</td><td><b>60 LEDs per metre</b> (16.7 mm apart)</td><td class='why'>4 LEDs fit on each ~75 mm arm</td></tr><tr><td class='w'>Width</td><td><b>10 mm or less</b>; 5 mm “narrow” is ideal</td><td class='why'>The arms are about 10 mm wide</td></tr><tr><td class='w'>Finish</td><td><b>Bare</b> (IP30), no silicone sleeve or tube</td><td class='why'>A sleeve makes it ~14.5 mm wide and heavier</td></tr><tr><td class='w'>Colours</td><td>RGB is fine; RGBW (SK6812) also works</td><td class='why'>Software handles both</td></tr><tr><td class='w'>Chip version</td><td><b>WS2812B V5</b> preferred, if the shop knows</td><td class='why'>Accepts the drone's 3.3 V data even on a 5 V supply</td></tr></table>
+      <div class='dont'><b>✗ Do not buy:</b> APA102, DotStar, SK9822 or WS2801 (4 wires) · WS2815 (12 V) · Non-addressable RGB strip (whole strip one colour) · Silicone-sleeved or tube “waterproof” strip · 30 LEDs per metre (only 2 fit per arm)</div><div class='check'><b>✓ Check:</b> Hold the strip against a ruler: 10 LEDs should span ~167 mm, and the width must be ≤ 10 mm.</div>
     </div>
   </div>
-
-  <h2>Why the wire count matters</h2>
-  <svg width="100%" viewBox="0 0 640 110" xmlns="http://www.w3.org/2000/svg">
-    <g font-family="Arial" font-size="12">
-      <rect x="30" y="20" width="62" height="62" rx="4" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2.5"/>
-      <circle cx="61" cy="51" r="22" fill="#fff" stroke="#2e7d32"/>
-      <line x1="92" y1="62" x2="130" y2="72" stroke="#c62828" stroke-width="3"/>
-      <line x1="92" y1="70" x2="130" y2="82" stroke="#111" stroke-width="3"/>
-      <text x="61" y="100" text-anchor="middle" fill="#2e7d32" font-weight="bold">2 wires ✓</text>
-      <text x="140" y="52" fill="#2e7d32" font-weight="bold">CORRECT</text>
-
-      <rect x="250" y="20" width="62" height="62" rx="4" fill="#ffebee" stroke="#c62828" stroke-width="2.5"/>
-      <circle cx="281" cy="51" r="22" fill="#fff" stroke="#c62828"/>
-      <line x1="312" y1="58" x2="350" y2="66" stroke="#c62828" stroke-width="3"/>
-      <line x1="312" y1="66" x2="350" y2="76" stroke="#111" stroke-width="3"/>
-      <line x1="312" y1="74" x2="350" y2="86" stroke="#f9a825" stroke-width="3"/>
-      <text x="281" y="100" text-anchor="middle" fill="#c62828" font-weight="bold">3 wires ✗</text>
-
-      <rect x="450" y="20" width="62" height="62" rx="4" fill="#ffebee" stroke="#c62828" stroke-width="2.5"/>
-      <circle cx="481" cy="51" r="22" fill="#fff" stroke="#c62828"/>
-      <line x1="512" y1="54" x2="550" y2="60" stroke="#c62828" stroke-width="3"/>
-      <line x1="512" y1="62" x2="550" y2="70" stroke="#111" stroke-width="3"/>
-      <line x1="512" y1="70" x2="550" y2="80" stroke="#f9a825" stroke-width="3"/>
-      <line x1="512" y1="78" x2="550" y2="90" stroke="#1565c0" stroke-width="3"/>
-      <text x="481" y="100" text-anchor="middle" fill="#c62828" font-weight="bold">4 wires ✗</text>
-      <text x="560" y="52" fill="#c62828" font-weight="bold">WRONG</text>
-    </g>
-  </svg>
-  <p class="note">The drone switches the fan's <b>ground</b> on and off to control speed. A 3- or 4-wire fan has extra pins that need a constant ground, so it will stutter or not start.</p>
-  <div class="quote"><div class="qh">Quotes — write the price here</div>
-  <table><tr><th style="width:36%">Shop / unit no.</th><th style="width:28%">Exact item seen</th><th style="width:18%">Price S$</th><th>Bought?</th></tr>
-  <tr><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr></table></div>
-
-</div>
-
-<!-- ============ PAGE 4 : CONNECTOR + RESISTOR ============ -->
-<div class="page">
-  <div class="hdr"><h1>3 · Connector, resistors, wire</h1><span class="n">small parts</span></div>
-
-  <div class="row">
-    <div class="col">
-      <svg width="100%" viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg">
-        <rect x="60" y="45" width="78" height="46" rx="3" fill="#f0f0f0" stroke="#333" stroke-width="2"/>
-        <rect x="68" y="52" width="26" height="32" rx="2" fill="#ddd" stroke="#666"/>
-        <rect x="104" y="52" width="26" height="32" rx="2" fill="#ddd" stroke="#666"/>
-        <line x1="138" y1="58" x2="200" y2="58" stroke="#c62828" stroke-width="3.5"/>
-        <line x1="138" y1="78" x2="200" y2="78" stroke="#111" stroke-width="3.5"/>
-        <g stroke="#1565c0" stroke-width="1.3" fill="none">
-          <line x1="68" y1="110" x2="130" y2="110"/><line x1="68" y1="105" x2="68" y2="115"/><line x1="130" y1="105" x2="130" y2="115"/>
-        </g>
-        <text x="99" y="128" text-anchor="middle" font-size="11" font-family="Arial" fill="#1565c0">1.0 mm pitch</text>
-        <text x="99" y="36" text-anchor="middle" font-size="12" font-family="Arial" fill="#111" font-weight="bold">2 pins</text>
-      </svg>
-      <div class="photo" style="margin:2mm 0"><img src="img/jst-sh.jpg" style="max-height:40mm">
-        <div class="cap"><b>This shape</b> — 2-pin housing with two wires already crimped on</div>
-        <div class="attr">Photo: Christopher.nunez, CC BY-SA 3.0, via Wikimedia Commons. Shown for shape only — confirm the pitch is 1.0 mm.</div></div>
-      <div class="spec"><span class="k">JST SH 1.0 mm</span>
-        <b>2-pin</b>, female, <b>with wires attached</b><br>(a “pigtail”)</div>
-      <p class="note">This is the <b>small</b> JST — 1.0 mm between pins. Do <b>not</b> buy JST PH (2.0 mm) or XH (2.5 mm); they are bigger and will not fit.<br>Buy 2–3 spares, they are easy to damage.</p>
-    </div>
-    <div class="col">
-      <svg width="100%" viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg">
-        <line x1="20" y1="68" x2="98" y2="68" stroke="#111" stroke-width="2.5"/>
-        <line x1="202" y1="68" x2="280" y2="68" stroke="#111" stroke-width="2.5"/>
-        <rect x="98" y="52" width="104" height="32" rx="7" fill="#d7b98e" stroke="#7a5c33" stroke-width="1.6"/>
-        <rect x="112" y="52" width="9" height="32" fill="#f57f17"/>
-        <rect x="128" y="52" width="9" height="32" fill="#f57f17"/>
-        <rect x="144" y="52" width="9" height="32" fill="#5d4037"/>
-        <rect x="178" y="52" width="9" height="32" fill="#b8860b"/>
-        <text x="150" y="112" text-anchor="middle" font-size="12" font-family="Arial" fill="#555">orange-orange-brown = 330 Ω</text>
-      </svg>
-      <div class="spec"><span class="k">330 Ω or 470 Ω</span>
-        1/4 watt, ordinary carbon film<br>Buy <b>10</b> — they cost cents</div>
-      <p class="note">Either value works. Anything between 300 and 500 Ω is fine.</p>
-      <div class="spec"><span class="k">Hook-up wire</span>
-        Thin stranded, <b>3 colours</b> (red / black / any)<br>~2 m of each · 24–28 AWG</div>
+</div></div><div class='page'><div class='top'><h1>2 · Cooling fan</h1><div class='meta'>Starling 2 Max parts</div></div>
+<div class='card'>
+  <h2><span class='num'>2</span>Cooling fan (+ backup blower) <span class='tag tower'>Sim Lim Tower</span><span class='qty'>Buy: 2 square fans + 1 blower</span></h2><div class='qtynote'>one fan per drone; the blower is a backup if the shroud can&#x27;t feed the gaps</div>
+  <div class='grid'>
+    <div class='photos'><img src='img/fan-3010-axial.jpg' alt='Cooling fan (+ backup blower)'><div class='pnote'>Shape shown is 8 mm thick: buy 30 × 30 × 10 mm</div><div class='credit'>Photo: Adafruit (product 3368)</div><img src='img/fan-3010-blower.jpg' alt='Cooling fan (+ backup blower)'><div class='pnote'>Backup blower: side outlet. Must be 30 × 30, 5 V, 2 wires</div><div class='credit'>Photo: The Pi Hut</div></div>
+    <div>
+      <div class='ask'><b>Ask for</b>“A 30 by 30 by 10 millimetre DC fan, 5 volt, two wires only. And a 30 millimetre blower fan, 5 volt, also two wires.”</div>
+      <table><tr><th>Spec</th><th>Must be</th><th>Why</th></tr><tr><td class='w'>Size</td><td><b>30 × 30 × 10 mm</b> (“3010”)</td><td class='why'>Fits the 36 mm-wide board stack; the 10 mm-thick version pushes harder through the 2 mm gaps</td></tr><tr><td class='w'>Voltage</td><td><b>5 V DC</b></td><td class='why'>The drone's fan port gives 5 V; a 12 V fan barely turns</td></tr><tr><td class='w'>Wires</td><td><b>Exactly 2</b>: red (+) and black (−)</td><td class='why'>Speed is controlled by switching the ground; 3- and 4-wire fans stutter or won't start</td></tr><tr><td class='w'>Current</td><td><b>0.15 A (150 mA) or less</b> on the label</td><td class='why'>The fan port is limited to ~0.4 A including start-up</td></tr><tr><td class='w'>Bearing</td><td><b>Ball</b> or fluid / hydraulic (“FDB”)</td><td class='why'>It will vibrate; plain sleeve bearings wear out</td></tr><tr><td class='w'>Plug</td><td>Any</td><td class='why'>Cut off: the fan is soldered to the buck module (item 3)</td></tr><tr><td class='w'>Backup blower</td><td><b>30 × 30 × 10 mm blower</b> (“snail shell”, side outlet), 5 V, 2 wires, ≤ 0.15 A</td><td class='why'>Pushes harder into a single narrow gap</td></tr><tr><td class='w'>Reference part</td><td>Sunon MF30100V1-1000U-A99 (5.5 CFM, 0.12 A)</td><td class='why'>Any brand matching the rows above is fine</td></tr></table>
+      <div class='dont'><b>✗ Do not buy:</b> 12 V or 24 V fans · 3-wire (tacho) or 4-wire (PWM) fans · 25 mm or 40 mm sizes · Sleeve-bearing fans</div><div class='check'><b>✓ Check:</b> Compare against your printed 30 × 30 × 10 mm reference block.</div>
     </div>
   </div>
-
-  <div class="spec"><span class="k">Capacitor · Kapton tape</span>
-    <b>470 µF electrolytic, ≥ 6.3 V</b> (×2), across + and GND at the strip start; the stripe marks the negative leg.<br>
-    <b>~10 mm Kapton tape</b> or heat-shrink that fits over a 10 mm arm, to hold the strip ends on the carbon.</div>
-
-  <div class="quote"><div class="qh">Quotes — write the price here</div>
-  <table><tr><th style="width:36%">Shop / unit no.</th><th style="width:28%">Exact item seen</th><th style="width:18%">Price S$</th><th>Bought?</th></tr>
-  <tr><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr></table></div>
-
-</div>
-
-<!-- ============ PAGE 4b : 5 V BACKUP KIT ============ -->
-<div class="page">
-  <div class="hdr"><h1>3b · 5 V backup kit</h1><span class="n">all three, or none</span></div>
-  <p class="sub">Only needed if the strip misbehaves on the ESC&rsquo;s 3.3 V pad. Cheap, so buying it now saves a second trip.</p>
-  <div class="spec"><span class="k">5 V BEC + 74HCT125 + XT30 Y-lead</span>
-    The ESC's LED pad gives only <b>3.3 V</b>. If the strip is too dim or glitches on 3.3 V, power it from 5 V instead:<br>
-    <b>5 V BEC</b>, 1 A or more, input <b>7–17 V</b> (runs from the 4S battery) · <b>XT30 Y-lead</b> to tap the battery for it ·
-    <b>74HCT125</b> or <b>74AHCT125</b> chip (×2) to lift the 3.3 V data signal to 5 V.<br>
-    <span class="note"><b>Do not buy 74HC125 or 74LS125</b> — wrong input levels. A 5 V strip on 3.3 V data without this chip may work on the bench and fail in flight.</span></div>
-  <div class="quote"><div class="qh">Quotes — write the price here</div>
-  <table><tr><th style="width:36%">Shop / unit no.</th><th style="width:28%">Exact item seen</th><th style="width:18%">Price S$</th><th>Bought?</th></tr>
-  <tr><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr></table></div>
-</div>
-
-<!-- ============ PAGE 5 : PROPELLERS ============ -->
-<div class="page">
-  <div class="hdr"><h1>4 &middot; Propellers</h1><span class="n">7 inch tri-blade</span></div>
-
-  <div class="row">
-    <div class="col photo"><img src="img/prop2.webp" class="half-img">
-      <div class="cap"><b>Three blades</b>, M5 centre bore</div></div>
-    <div class="col photo"><img src="img/prop.webp" class="half-img">
-      <div class="cap"><b>The bag to look for</b> &mdash; label reads <b>GEMFAN 7037-3</b></div></div>
+</div></div><div class='page'><div class='top'><h1>3–4 · Buck module and level shifter</h1><div class='meta'>Starling 2 Max parts</div></div><div class='kitnote'><b>How these are used:</b> the buck module turns the battery's 12–16.8 V into 5 V for the LED strip and the fan, separately from the flight computer. The 74HCT125 lifts the drone's 3.3 V LED data signal to 5 V.</div>
+<div class='card'>
+  <h2><span class='num'>3</span>5 V step-down (buck) module <span class='tag tower'>Sim Lim Tower</span><span class='qty'>Buy: 2 (+1 spare)</span></h2><div class='qtynote'>one per drone: powers the LED strip and the fan</div>
+  <div class='grid compact'>
+    <div class='photos'><img src='img/buck-mp1584.jpg' alt='5 V step-down (buck) module'><div class='pnote'>MP1584EN (~22 × 17 mm)</div><div class='credit'>Photo: Kunkune</div><img src='img/buck-mini360.jpg' alt='5 V step-down (buck) module'><div class='pnote'>Mini-360 (~17 × 11 mm)</div><div class='credit'>Photo: Kunkune</div></div>
+    <div>
+      <div class='ask'><b>Ask for</b>“An MP1584 step-down buck converter module. A Mini-360 is also fine.”</div>
+      <table><tr><th>Spec</th><th>Must be</th><th>Why</th></tr><tr><td class='w'>Output</td><td><b>5.0 V</b>, <b>1 A or more</b> (MP1584 ~3 A)</td><td class='why'>Powers the LED strip and fan, separately from the flight computer</td></tr><tr><td class='w'>Input</td><td>Accepts <b>≥ 17 V</b> (MP1584 28 V, Mini-360 23 V max)</td><td class='why'>Runs from the 4S battery, up to 16.8 V</td></tr><tr><td class='w'>Size</td><td>MP1584 ~22 × 17 mm; Mini-360 ~17 × 11 mm</td><td class='why'>Light; mounts at an arm root</td></tr><tr><td class='w'>Adjustable?</td><td>Trim screw: <b>set 5.0 V with a multimeter</b> before use</td><td class='why'>Often shipped at another voltage</td></tr></table>
+      <div class='dont'><b>✗ Do not buy:</b> Linear 7805 regulators (would burn ~6 W as heat) · Big LM2596 boards (heavy)</div>
+    </div>
   </div>
-  <div class="attr" style="text-align:center">Photos: OddityRC / Gemfan 7037-3 product listing</div>
-
-  <div class="spec"><span class="k">7 &times; 3.7 &times; 3</span>
-    <b>7 inch</b> diameter (178 mm) &nbsp;&middot;&nbsp; <b>3.7</b> pitch &nbsp;&middot;&nbsp; <b>3 blades</b> &nbsp;&middot;&nbsp; <b>M5</b> bore<br>
-    Ask for <b>&ldquo;7037&rdquo;</b>. Buy <b>2 sets of 4</b> (each set is 2 CW + 2 CCW).</div>
-
-  <div class="warn"><b>PITCH MUST NOT EXCEED 3.7.</b> Do not accept 7040, 7042, 7045 or any &ldquo;freestyle&rdquo; propeller &mdash;
-    a higher-pitch prop will overheat the motors and ESC on this aircraft. 7035 (3.5 pitch) is an acceptable substitute.</div>
-
-  <p class="note">The same propeller fits both of our aircraft, even though their frames and motors differ.</p>
-
-  <div class="quote"><div class="qh">Quotes</div>
-  <table><tr><th style="width:40%">Shop / unit no.</th><th style="width:22%">Price S$</th><th>Notes</th></tr>
-  <tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table></div>
 </div>
-
-<!-- ============ PAGE 6 : SHOPS ============ -->
-<div class="page">
-  <div class="hdr"><h1>Where to go</h1><span class="n">call before travelling</span></div>
-
-  <h2>Components — Sim Lim Tower, 10 Jalan Besar</h2>
-  <table>
-    <tr><th style="width:30%">Shop</th><th style="width:34%">Known for</th><th>Buy here</th></tr>
-    <tr><td><b>J.C.W. Electronic</b></td><td>LED components, <b>DC fans</b>, power adapters</td><td>LED strip + fan — try here first, it may have both</td></tr>
-    <tr><td><b>Continental Electronic Enterprise</b></td><td>General hobby electronics</td><td>Resistors, wire, connectors</td></tr>
-    <tr><td><b>Kuriosity</b></td><td>Arduino / Raspberry Pi</td><td>Addressable LED strip, JST pigtails</td></tr>
-  </table>
-  <p class="note">Directory is ~2 years old — unit numbers may have changed. Most shops shut by ~7:30 pm regardless of posted hours. Prices vary between units; ask two or three.</p>
-
-  <h2>Propellers — Sim Lim Square, 1 Rochor Canal Road</h2>
-  <table>
-    <tr><td style="width:30%"><b>Hobby Square</b></td><td>FPV drone shop inside Sim Lim Square. Lists propellers from 1" to 12" including carbon fibre. Listed hours Mon–Sat 12:30 pm – 7:30 pm.</td></tr>
-  </table>
-
-  <h2>If Hobby Square has no 7037</h2>
-  <table>
-    <tr><th style="width:30%">Shop</th><th>Notes</th></tr>
-    <tr><td><b>Sky Hobbies</b><br>skyhobbies.com.sg</td><td>Jalan Sultan area. Claims to be the largest HQProps stockist in Singapore.</td></tr>
-    <tr><td><b>Helicopter Smartfly</b><br>smartfly.com.sg</td><td>Queensway Shopping Centre. Mon–Sat 12–7 pm, Sun 3–7 pm, <b>closed Wednesday</b>.</td></tr>
-    <tr><td><b>Rotor Hobby</b><br>shop.rotor.com.sg</td><td>French Road, Kitchener Complex. Tel +65 6296 3686.</td></tr>
-  </table>
-
-  <h2>Fan fallback</h2>
-  <table>
-    <tr><td style="width:30%"><b>Amicus</b><br>amicus.com.sg</td><td>8 Ubi Road 2, #03-13 Zervex. Tel +65 6980 6783. Stocks 5 V brushless fans with order collection — <b>call first</b>, the listed model is 60 mm not 25 mm.</td></tr>
-  </table>
-
+<div class='card'>
+  <h2><span class='num'>4</span>Level-shifter chip <span class='tag tower'>Sim Lim Tower</span><span class='qty'>Buy: 2 (+1 spare)</span></h2>
+  <div class='grid compact'>
+    <div class='photos'><img src='img/ic-dip14.jpg' alt='Level-shifter chip'><div class='pnote'>Shown: a 74-series DIP-14 chip. Buy 74HCT125</div><div class='credit'>Photo: Stefan Riepl, Wikimedia Commons, public domain</div></div>
+    <div>
+      <div class='ask'><b>Ask for</b>“74HCT125, the quad buffer chip, in DIP-14.” (The letter T matters.)</div>
+      <table><tr><th>Spec</th><th>Must be</th><th>Why</th></tr><tr><td class='w'>Part</td><td><b>74HCT125</b> (or 74AHCT125)</td><td class='why'>Raises the drone's 3.3 V LED data signal to 5 V for the strip</td></tr><tr><td class='w'>Package</td><td>DIP-14 (through-hole)</td><td class='why'>Easy to hand-solder onto a scrap of perfboard</td></tr><tr><td class='w'>With it</td><td>a <b>100 nF</b> ceramic capacitor (item 6) and a small perfboard scrap</td><td class='why'>Standard decoupling for logic chips; keeps the assembly tidy</td></tr></table>
+      <div class='dont'><b>✗ Do not buy:</b> 74HC125 or 74LS125 (wrong input levels)</div><div class='check'><b>✓ Check:</b> If there&#x27;s no 74HCT125 anywhere: RS Singapore / element14 Singapore stock it online.</div>
+    </div>
+  </div>
+</div></div><div class='page'><div class='top'><h1>5–6 · Resistors and capacitors</h1><div class='meta'>Starling 2 Max parts</div></div>
+<div class='card'>
+  <h2><span class='num'>5</span>Resistors <span class='tag tower'>Sim Lim Tower</span><span class='qty'>Buy: 10</span></h2><div class='qtynote'>they cost cents</div>
+  <div class='grid compact'>
+    <div class='photos'><img src='img/resistor.jpg' alt='Resistors'><div class='pnote'>330 Ω: orange-orange-brown</div><div class='credit'>Photo: oomlout, Wikimedia Commons, CC BY-SA 2.0</div></div>
+    <div>
+      <div class='ask'><b>Ask for</b>“330 ohm resistors, quarter watt.” (470 ohm is also fine.)</div>
+      <table><tr><th>Spec</th><th>Must be</th><th>Why</th></tr><tr><td class='w'>Value</td><td><b>330 Ω</b> (bands orange-orange-brown) or <b>470 Ω</b> (yellow-violet-brown)</td><td class='why'>Protects the LED data line; anything 300–500 Ω works</td></tr><tr><td class='w'>Rating</td><td>1/4 W, carbon or metal film, through-hole</td><td class='why'>Ordinary, smallest common size</td></tr></table>
+      <div class='dont'><b>✗ Do not buy:</b> SMD chip resistors (too small to hand-solder onto wires)</div>
+    </div>
+  </div>
 </div>
+<div class='card'>
+  <h2><span class='num'>6</span>Capacitors <span class='tag tower'>Sim Lim Tower</span><span class='qty'>Buy: 4 × 470 µF + 4 × 100 nF</span></h2><div class='qtynote'>one per strip + spares</div>
+  <div class='grid compact'>
+    <div class='photos'><img src='img/capacitor-470uf.jpg' alt='Capacitors'><div class='pnote'>Various sizes shown: buy 470 µF, 10–16 V. Stripe = negative leg</div><div class='credit'>Photo: Elcap, Wikimedia Commons, CC0</div></div>
+    <div>
+      <div class='ask'><b>Ask for</b>“470 microfarad electrolytic capacitor, 10 or 16 volt, the smallest size you have. And some 100 nanofarad ceramic capacitors, code 104.”</div>
+      <table><tr><th>Spec</th><th>Must be</th><th>Why</th></tr><tr><td class='w'>Value</td><td><b>470 µF</b></td><td class='why'>Smooths the LED strip's power where it starts</td></tr><tr><td class='w'>Voltage</td><td><b>10 V or 16 V</b> (6.3 V is the minimum)</td><td class='why'>Strip runs at 3.3 or 5 V</td></tr><tr><td class='w'>Type</td><td>Radial aluminium electrolytic, small (≤ 8 mm wide)</td><td class='why'>Light; the stripe marks the negative leg</td></tr><tr><td class='w'>Also</td><td><b>100 nF ceramic</b> (marked “104”), ×4</td><td class='why'>Sits across the 74HCT125's supply pins</td></tr></table>
+      <div class='dont'><b>✗ Do not buy:</b> Large 25 V+ cans (heavier than needed) · Ceramic capacitors (much smaller value)</div>
+    </div>
+  </div>
+</div></div><div class='page'><div class='top'><h1>7–8 · Wire, tape, heat-shrink</h1><div class='meta'>Starling 2 Max parts</div></div>
+<div class='card'>
+  <h2><span class='num'>7</span>Silicone hook-up wire <span class='tag tower'>Sim Lim Tower</span><span class='qty'>Buy: ~2 m each, 3 colours</span></h2><div class='qtynote'>red, black and one other colour</div>
+  <div class='grid compact'>
+    <div class='photos'><img src='img/wire-silicone.jpg' alt='Silicone hook-up wire'><div class='pnote'>26 AWG silicone stranded wire</div><div class='credit'>Photo: Adafruit (product 1970)</div></div>
+    <div>
+      <div class='ask'><b>Ask for</b>“26 AWG silicone wire, stranded, in red, black and one other colour.”</div>
+      <table><tr><th>Spec</th><th>Must be</th><th>Why</th></tr><tr><td class='w'>Gauge</td><td><b>26 AWG</b></td><td class='why'>Enough for the LED current; thin enough for the ESC's small solder pads</td></tr><tr><td class='w'>Insulation</td><td><b>Silicone</b></td><td class='why'>Doesn't melt back while soldering; flexes with vibration</td></tr><tr><td class='w'>Core</td><td><b>Stranded</b> (many fine strands)</td><td class='why'>Solid core cracks with vibration</td></tr></table>
+      <div class='dont'><b>✗ Do not buy:</b> PVC hook-up wire · Solid-core wire</div>
+    </div>
+  </div>
+</div>
+<div class='card'>
+  <h2><span class='num'>8</span>Kapton tape + heat-shrink <span class='tag tower'>Sim Lim Tower</span><span class='qty'>Buy: 1 roll + assortment + 20 cm clear</span></h2>
+  <div class='grid compact'>
+    <div class='photos'><img src='img/kapton-tape.jpg' alt='Kapton tape + heat-shrink'><div class='pnote'>Kapton tape: amber, thin</div><div class='credit'>Photo: Jérôme, Wikimedia Commons, CC BY-SA 3.0</div></div>
+    <div>
+      <div class='ask'><b>Ask for</b>“Kapton tape, the amber polyimide kind, about 10 millimetres wide. A small heat-shrink assortment, 1.5 to 6 millimetres, and a short length of clear 15 to 20 millimetre heat-shrink.”</div>
+      <table><tr><th>Spec</th><th>Must be</th><th>Why</th></tr><tr><td class='w'>Kapton width</td><td><b>~10 mm</b> (6–12 mm OK), polyimide, amber</td><td class='why'>Wraps the strip ends onto the 10 mm arms; heat-proof, holds under vibration</td></tr><tr><td class='w'>Heat-shrink</td><td><b>1.5–6 mm</b> assortment, plus <b>15–20 mm clear</b></td><td class='why'>Small: solder joints. Large: insulates the buck module and chip, since carbon fibre conducts</td></tr></table>
+      <div class='dont'><b>✗ Do not buy:</b> Electrical PVC tape (adhesive creeps) · Heat-shrink in large sizes only (&gt; 10 mm)</div>
+    </div>
+  </div>
+</div></div><div class='page'><div class='top'><h1>9 · Propellers</h1><div class='meta'>Starling 2 Max parts</div></div>
+<div class='card'>
+  <h2><span class='num'>9</span>Propellers <span class='tag square'>Sim Lim Square</span><span class='qty'>Buy: at least 2 sets of 4</span></h2><div class='qtynote'>each set is 2 clockwise + 2 counter-clockwise; props are consumables</div>
+  <div class='grid'>
+    <div class='photos'><img src='img/prop.webp' alt='Propellers'><div class='pnote'>The bag to look for: Gemfan 7037-3</div><div class='credit'>Photo: OddityRC, Gemfan 7037-3 listing</div><img src='img/prop2.webp' alt='Propellers'><div class='pnote'>7037-3: three blades, 5 mm centre hole</div><div class='credit'>Photo: OddityRC, Gemfan 7037-3 listing</div></div>
+    <div>
+      <div class='ask'><b>Ask for</b>“Gemfan 7037, three-blade, 7 inch, 5 millimetre centre hole.”</div>
+      <table><tr><th>Spec</th><th>Must be</th><th>Why</th></tr><tr><td class='w'>Diameter</td><td><b>7 inch</b> (178 mm)</td><td class='why'>Same as the drone's stock props</td></tr><tr><td class='w'>Pitch</td><td><b>3.7</b> (3.5 acceptable) — <b>never higher</b></td><td class='why'>Higher pitch overheats the small motors and the ESC</td></tr><tr><td class='w'>Blades</td><td><b>3</b></td><td class='why'>Matches stock</td></tr><tr><td class='w'>Centre hole</td><td><b>5 mm</b> (M5)</td><td class='why'>Fits the motor shaft</td></tr><tr><td class='w'>Hub</td><td>~7 mm thick</td><td class='why'>Fits the prop nut</td></tr><tr><td class='w'>Rotation</td><td>Set must include both <b>CW and CCW</b></td><td class='why'>Two motors spin each way</td></tr><tr><td class='w'>Label</td><td>“7037-3” or “7×3.7×3”</td><td class='why'>First number = diameter, second = pitch</td></tr></table>
+      <div class='dont'><b>✗ Do not buy:</b> 7040, 7042, 7045 or any “freestyle” prop (pitch too high) · Two-blade props (e.g. 7035-2) · 6 or 8 inch props · Props without a 5 mm centre hole</div><div class='check'><b>✓ Check:</b> Lay it on your printed prop gauge: tips reach the outer ring; the hole fits the gauge&#x27;s 5 mm hub.</div><div class='alt'>Genuine ModalAI part: MRP-D0012-1-00 (US$29.99 / 4), online only.</div>
+    </div>
+  </div>
+</div></div>
+<div class='page'>
+  <div class='top'><h1>Price log</h1><div class='meta'>Compare two or three shops before buying</div></div>
+  <table class='quote prices'><tr><th style='width:30%'>Item · qty</th><th style='width:26%'>Shop / unit</th>
+  <th style='width:24%'>Exact item seen</th><th style='width:11%'>Price S$</th><th>Bought?</th></tr><tr><td rowspan='2'><b>1</b> Addressable LED strip<div class='alt'>1 metre</div></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr><tr><td rowspan='2'><b>2</b> Cooling fan (+ backup blower)<div class='alt'>2 square fans + 1 blower</div></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr><tr><td rowspan='2'><b>5</b> Resistors<div class='alt'>10</div></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr><tr><td rowspan='2'><b>6</b> Capacitors<div class='alt'>4 × 470 µF + 4 × 100 nF</div></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr><tr><td rowspan='2'><b>7</b> Silicone hook-up wire<div class='alt'>~2 m each, 3 colours</div></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr><tr><td rowspan='2'><b>8</b> Kapton tape + heat-shrink<div class='alt'>1 roll + assortment + 20 cm clear</div></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr><tr><td rowspan='2'><b>4</b> Level-shifter chip<div class='alt'>2 (+1 spare)</div></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr><tr><td rowspan='2'><b>3</b> 5 V step-down (buck) module<div class='alt'>2 (+1 spare)</div></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr><tr><td rowspan='2'><b>9</b> Propellers<div class='alt'>at least 2 sets of 4</div></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr></table>
+</div>
+<div class='page'>
+  <div class='top'><h1>Where to go</h1><div class='meta'>Call ahead: stock and unit numbers change</div></div>
+  <div class='section'><span class='tag tower'>Sim Lim Tower</span> 10 Jalan Besar — electronic components</div>
+  <table class='list'>
+    <tr><th>Shop</th><th>Unit</th><th>Try here for</th></tr>
+    <tr><td><b>J.C.W. Electronic</b></td><td>—</td><td>Fans (item 2) — <b>call first</b>; LED strip</td></tr>
+    <tr><td><b>Sun-Light Electronics</b></td><td>#03-09</td><td>WS2812B LED strip (item 1)</td></tr>
+        <tr><td><b>Davjones Technology</b></td><td>#B1-47/11</td><td>Buck modules, 74HCT125 (items 3–4)</td></tr>
+    <tr><td><b>Continental Electronic Enterprise</b></td><td>#B1-25</td><td>Resistors, capacitors, wire, tape, heat-shrink (items 5–8)</td></tr>
+  </table>
+  <div class='alt'>From a shop directory about two years old. No online listing confirms the fans, blower or 74HCT125 in stock anywhere in Sim Lim — call first.</div>
 
-</body></html>
+  <div class='section'><span class='tag square'>Sim Lim Square</span> 1 Rochor Canal Road — hobby / FPV</div>
+  <table class='list'>
+    <tr><th>Shop</th><th>Unit</th><th>Try here for</th></tr>
+    <tr><td><b>Hobby Square</b></td><td>#02-60</td><td><b>Propellers (item 9)</b>; also silicone wire (item 7). Listed hours Mon–Sat 12:30–7:30 pm</td></tr>
+  </table>
+
+  <div class='section'>If Hobby Square has no 7037 props</div>
+  <table class='list'>
+    <tr><th>Shop</th><th>Where</th><th>Notes</th></tr>
+    <tr><td><b>Sky Hobbies</b></td><td>Jalan Sultan</td><td>skyhobbies.com.sg · large HQProp stockist</td></tr>
+    <tr><td><b>Helicopter Smartfly</b></td><td>Queensway Shopping Centre</td><td>smartfly.com.sg · Mon–Sat 12–7 pm, Sun 3–7 pm, closed Wednesday</td></tr>
+    <tr><td><b>Rotor Hobby</b></td><td>Kitchener Complex, French Road</td><td>shop.rotor.com.sg · +65 6296 3686</td></tr>
+    <tr><td><b>OddityRC</b></td><td>Paya Lebar Square (pickup)</td><td>oddityrc.com · stocks Gemfan 7037-3 online; allow 5–8 days</td></tr>
+  </table>
+
+  <div class='section'>Other fallbacks</div>
+  <table class='list'>
+    <tr><td><b>Fans</b></td><td>Amicus, 8 Ubi Road 2 #03-13 Zervex · +65 6980 6783 · 5 V fans by order; call first</td></tr>
+    <tr><td><b>Online, Singapore</b></td><td>Cytron SG and Kuriosity.sg (LED strip, buck modules) · RS Singapore and element14 Singapore (74HCT125, Sunon fans; fast delivery) · DigiKey (a few days)</td></tr>
+    <tr><td><b>Online, blower</b></td><td>3D-printer parts sellers and local Shopee sellers (“3010 blower 5V”)</td></tr>
+  </table>
+</div></body></html>

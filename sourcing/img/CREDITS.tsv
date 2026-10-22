@@ -1,0 +1,13 @@
+# file	credit	note printed above the credit
+led-strip-bare.jpg	Photo: John McMaster, Wikimedia Commons, CC BY 4.0	One bare WS2812B segment: 3 pads at each cut (+5V, Din/DO, GND)
+fan-3010-axial.jpg	Photo: Adafruit (product 3368)	Shape shown is 8 mm thick: buy 30 × 30 × 10 mm
+fan-3010-blower.jpg	Photo: The Pi Hut	Backup blower: side outlet. Must be 30 × 30, 5 V, 2 wires
+resistor.jpg	Photo: oomlout, Wikimedia Commons, CC BY-SA 2.0	330 Ω: orange-orange-brown
+capacitor-470uf.jpg	Photo: Elcap, Wikimedia Commons, CC0	Various sizes shown: buy 470 µF, 10–16 V. Stripe = negative leg
+wire-silicone.jpg	Photo: Adafruit (product 1970)	26 AWG silicone stranded wire
+kapton-tape.jpg	Photo: Jérôme, Wikimedia Commons, CC BY-SA 3.0	Kapton tape: amber, thin
+ic-dip14.jpg	Photo: Stefan Riepl, Wikimedia Commons, public domain	Shown: a 74-series DIP-14 chip. Buy 74HCT125
+buck-mini360.jpg	Photo: Kunkune	Mini-360 (~17 × 11 mm)
+buck-mp1584.jpg	Photo: Kunkune	MP1584EN (~22 × 17 mm)
+prop.webp	Photo: OddityRC, Gemfan 7037-3 listing	The bag to look for: Gemfan 7037-3
+prop2.webp	Photo: OddityRC, Gemfan 7037-3 listing	7037-3: three blades, 5 mm centre hole
