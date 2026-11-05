@@ -1,7 +1,7 @@
 # file	credit	note printed above the credit
 led-strip-bare.jpg	Photo: John McMaster, Wikimedia Commons, CC BY 4.0	One bare WS2812B segment: 3 pads at each cut (+5V, Din/DO, GND)
 fan-3010-axial.jpg	Photo: Adafruit (product 3368)	Shape shown is 8 mm thick: buy 30 × 30 × 10 mm
-fan-3010-blower.jpg	Photo: The Pi Hut	Backup blower: side outlet. Must be 30 × 30, 5 V, 2 wires
+fan-3010-blower.jpg	Photo: The Pi Hut	Blower: side outlet. Must be 30 × 30, 2 wires
 resistor.jpg	Photo: oomlout, Wikimedia Commons, CC BY-SA 2.0	330 Ω: orange-orange-brown
 capacitor-470uf.jpg	Photo: Elcap, Wikimedia Commons, CC0	Various sizes shown: buy 470 µF, 10–16 V. Stripe = negative leg
 wire-silicone.jpg	Photo: Adafruit (product 1970)	26 AWG silicone stranded wire
@@ -11,4 +11,9 @@ buck-mini360.jpg	Photo: Kunkune	Mini-360 (~17 × 11 mm)
 buck-mp1584.jpg	Photo: Kunkune	MP1584EN (~22 × 17 mm)
 prop.webp	Photo: OddityRC, Gemfan 7037-3 listing	The bag to look for: Gemfan 7037-3
 prop2.webp	Photo: OddityRC, Gemfan 7037-3 listing	7037-3: three blades, 5 mm centre hole
-conn-jst-ph.jpg	Photo: Adafruit (product 4714)	JST-PH 2.0 mm, 2-pin shown. Also buy 4-pin, and the JST-SM 3-pin LED pairs (black, latching)
+conn-jst-ph.jpg	Photo: Adafruit (product 4714)	JST-PH 2.0 mm, 2-pin
+xt30-splitter.jpg	Photo: Pyrodrone (XT30 Parallel Adapter)	1 in → 2 out, parallel. A short cable “Y” version is also fine
+xt30-pigtail.jpg	Photo: Rotor Riot (XT30 Pigtail)	XT30 plug with leads: buy male + female
+ptc-fuse.jpg	Photo: Shaddack, Wikimedia Commons, public domain	Radial PTC fuses: small dipped discs, size grows with rating (cm ruler)
+jst-sh-pigtail.jpg	Photo: Adafruit (product 5765)	Shown: a 3-pin JST SH cable. Buy 2-pin
+conn-jst-sm.jpg	Photo: Adafruit (product 1663)	JST-SM 3-pin plug + receptacle pair

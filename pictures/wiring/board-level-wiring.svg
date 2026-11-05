@@ -44,9 +44,8 @@
 <rect x='556.0' y='308.0' width='71.5' height='24.0' rx='0' fill='#c4c4c4' stroke='#555' stroke-width='1.2'/>
 <text x='591.8' y='324.0' font-size='11' text-anchor='middle' font-weight='bold' fill='#666' font-family='Helvetica, Arial, sans-serif'>J10 · empty</text>
 <polygon points='585.8,334.0 597.8,334.0 591.8,342.4' fill='#444'/>
-<rect x='632.5' y='281.0' width='33.5' height='26.0' rx='0' fill='#c4c4c4' stroke='#555' stroke-width='1.2'/>
-<text x='649.2' y='298.0' font-size='10.5' text-anchor='middle' font-weight='bold' fill='#666' font-family='Helvetica, Arial, sans-serif'>J2</text>
-<text x='632.5' y='347.5' font-size='10' text-anchor='start' font-weight='normal' fill='#777' font-family='Helvetica, Arial, sans-serif' font-style='italic'>J2 · empty</text>
+<rect x='632.5' y='281.0' width='33.5' height='26.0' rx='0' fill='#f2f2f2' stroke='#555' stroke-width='1.2'/>
+<text x='649.2' y='298.0' font-size='10.5' text-anchor='middle' font-weight='bold' fill='#111' font-family='Helvetica, Arial, sans-serif'>J2</text>
 <circle cx='460.0' cy='323.0' r='2.6' fill='#e00'/>
 <circle cx='640.0' cy='287.0' r='2.6' fill='#e00'/>
 <rect x='400.0' y='560.0' width='0.0' height='0.0' rx='4' fill='#dbe7f3' stroke='#1f4e79' stroke-width='2'/>
@@ -186,10 +185,17 @@
 <text x='550.0' y='436.5' font-size='11.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>J19-11 RX ← receiver TX</text>
 <text x='550.0' y='451.0' font-size='11.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>J19-10 TX → receiver RX (ELRS only)</text>
 <text x='550.0' y='465.5' font-size='11.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>J19-1 +5 V (shared) · J19-12 GND</text>
-<rect x='888.0' y='752.0' width='165.0' height='72.0' rx='6' fill='#fff' stroke='#e07b00' stroke-width='1.6' stroke-dasharray='7 4'/>
-<text x='898.0' y='771.0' font-size='12.5' text-anchor='start' font-weight='bold' fill='#e07b00' font-family='Helvetica, Arial, sans-serif'>① Fan (planned)</text>
-<text x='898.0' y='789.0' font-size='10.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>3010, shroud at stack end</text>
-<text x='898.0' y='802.5' font-size='10.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>5 V · 2 wires · always on</text>
+<rect x='745.0' y='258.0' width='205.0' height='72.0' rx='6' fill='#fff' stroke='#e07b00' stroke-width='1.6' stroke-dasharray='7 4'/>
+<text x='755.0' y='277.0' font-size='12.5' text-anchor='start' font-weight='bold' fill='#e07b00' font-family='Helvetica, Arial, sans-serif'>① Fan — phase 1, on J2</text>
+<text x='755.0' y='295.0' font-size='10.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>3010, shroud at stack end</text>
+<text x='755.0' y='308.5' font-size='10.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>5 V · 2 wires · 100 nF across · SH 2-pin</text>
+<path d='M667.0,294.0 L745.0,294.0' fill='none' stroke='#fff' stroke-width='6.2' stroke-linejoin='round'/>
+<path d='M667.0,294.0 L745.0,294.0' fill='none' stroke='#e07b00' stroke-width='2.2' stroke-linejoin='round' stroke-linecap='round' stroke-dasharray='7 4'/>
+<rect x='888.0' y='752.0' width='165.0' height='84.0' rx='6' fill='#fff' stroke='#777' stroke-width='1.6' stroke-dasharray='3 3'/>
+<text x='898.0' y='771.0' font-size='12.5' text-anchor='start' font-weight='bold' fill='#777' font-family='Helvetica, Arial, sans-serif'>Phase 2 (only if needed)</text>
+<text x='898.0' y='789.0' font-size='10' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>XT30 bus off BATT pads:</text>
+<text x='898.0' y='802.0' font-size='10' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>LED → 5 V buck + 74HCT125</text>
+<text x='898.0' y='815.0' font-size='10' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>fan → that buck, or fused 12/24 V</text>
 <rect x='306.0' y='147.0' width='358.0' height='187.0' rx='6' fill='none' stroke='#888888' stroke-width='1.8' stroke-dasharray='6 4'/>
 <rect x='20.0' y='150.0' width='268.0' height='205.0' rx='6' fill='#fff' stroke='#888888' stroke-width='1.6' stroke-dasharray='6 4'/>
 <text x='30.0' y='169.0' font-size='12.5' text-anchor='start' font-weight='bold' fill='#888888' font-family='Helvetica, Arial, sans-serif'>Stacked on J3 + J5 (both aircraft)</text>
@@ -217,21 +223,17 @@
 <path d='M615.0,699.2 L650.0,699.2 L650.0,690.0 L670.0,690.0' fill='none' stroke='#fff' stroke-width='6' stroke-linejoin='round'/>
 <path d='M615.0,699.2 L650.0,699.2 L650.0,690.0 L670.0,690.0' fill='none' stroke='#888888' stroke-width='2' stroke-linejoin='round' stroke-linecap='round' stroke-dasharray='6 4'/>
 <rect x='1125.0' y='752.0' width='205.0' height='106.0' rx='6' fill='#fff' stroke='#e07b00' stroke-width='1.6' stroke-dasharray='7 4'/>
-<text x='1135.0' y='771.0' font-size='12.5' text-anchor='start' font-weight='bold' fill='#e07b00' font-family='Helvetica, Arial, sans-serif'>② 5 V buck + 74HCT125</text>
-<text x='1135.0' y='789.0' font-size='10.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>buck: battery pads → 5.0 V</text>
-<text x='1135.0' y='802.5' font-size='10.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>OUT → 74HCT125 → 330 Ω → DIN</text>
-<text x='1135.0' y='816.0' font-size='10.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>VAUX not connected</text>
-<text x='1135.0' y='829.5' font-size='10.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>plugs: PH-4 in · SM-3 out · PH-2 fan</text>
+<text x='1135.0' y='771.0' font-size='12.5' text-anchor='start' font-weight='bold' fill='#e07b00' font-family='Helvetica, Arial, sans-serif'>② LED — phase 1, pads direct</text>
+<text x='1135.0' y='789.0' font-size='10.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>VAUX 3.3 V → strip +</text>
+<text x='1135.0' y='802.5' font-size='10.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>⬇ OUT → 330 Ω → DIN</text>
+<text x='1135.0' y='816.0' font-size='10.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>GND → strip GND</text>
+<text x='1135.0' y='829.5' font-size='10.5' text-anchor='start' font-weight='normal' fill='#111' font-family='Helvetica, Arial, sans-serif'>plug: JST-SM 3-pin</text>
+<path d='M1151.5,625.5 L1092.0,625.5 L1092.0,782.0 L1125.0,782.0' fill='none' stroke='#fff' stroke-width='6' stroke-linejoin='round'/>
+<path d='M1151.5,625.5 L1092.0,625.5 L1092.0,782.0 L1125.0,782.0' fill='none' stroke='#d62828' stroke-width='2' stroke-linejoin='round' stroke-linecap='round' stroke-dasharray='7 4'/>
 <path d='M1151.5,614.5 L1112.0,614.5 L1112.0,752.0' fill='none' stroke='#fff' stroke-width='6.2' stroke-linejoin='round'/>
 <path d='M1151.5,614.5 L1112.0,614.5 L1112.0,752.0' fill='none' stroke='#e07b00' stroke-width='2.2' stroke-linejoin='round' stroke-linecap='round' stroke-dasharray='7 4'/>
 <path d='M1151.5,592.0 L1102.0,592.0 L1102.0,752.0' fill='none' stroke='#fff' stroke-width='6' stroke-linejoin='round'/>
 <path d='M1151.5,592.0 L1102.0,592.0 L1102.0,752.0' fill='none' stroke='#222222' stroke-width='2' stroke-linejoin='round' stroke-linecap='round' stroke-dasharray='7 4'/>
-<path d='M1076.0,798.0 L1125.0,798.0' fill='none' stroke='#fff' stroke-width='6' stroke-linejoin='round'/>
-<path d='M1076.0,798.0 L1125.0,798.0' fill='none' stroke='#222222' stroke-width='2' stroke-linejoin='round' stroke-linecap='round' stroke-dasharray='7 4'/>
-<path d='M1060.0,810.0 L1125.0,810.0' fill='none' stroke='#fff' stroke-width='6' stroke-linejoin='round'/>
-<path d='M1060.0,810.0 L1125.0,810.0' fill='none' stroke='#d62828' stroke-width='2' stroke-linejoin='round' stroke-linecap='round' stroke-dasharray='7 4'/>
-<path d='M1125.0,780.0 L1053.0,780.0' fill='none' stroke='#fff' stroke-width='6' stroke-linejoin='round'/>
-<path d='M1125.0,780.0 L1053.0,780.0' fill='none' stroke='#d62828' stroke-width='2' stroke-linejoin='round' stroke-linecap='round' stroke-dasharray='7 4'/>
 <path d='M1160.0,858.0 L1160.0,875.0' fill='none' stroke='#fff' stroke-width='6.2' stroke-linejoin='round'/>
 <path d='M1160.0,858.0 L1160.0,875.0' fill='none' stroke='#e07b00' stroke-width='2.2' stroke-linejoin='round' stroke-linecap='round' stroke-dasharray='7 4'/>
 <rect x='1140.0' y='875.0' width='6.0' height='10.0' rx='0' fill='#fff4e0' stroke='#e07b00' stroke-width='1'/>

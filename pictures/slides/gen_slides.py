@@ -117,13 +117,13 @@ def slide_hardware(path):
     s.arrow([(1260, 285), (1340, 285)], "b2b", "B2B", (1300, 270), both=True)
     s.box(56, 520, 240, 150, "Companion", ["planned · ≤ ~170 g", "USB (J9 / J11) or WiFi", "own 5 V BEC"], "new", "⑤", dash=True, rsize=14)
     s.box(330, 520, 300, 150, "Motors + props", ["4 × 1500 kV motors", "7 × 3.7 × 3 props", "S1: 2203.5 · S2: 2204"], "new", "③")
-    s.box(670, 520, 300, 150, "LED strip", ["16 px, 4 per arm", "own 5 V buck (+ fan)", "data via 74HCT125"], "new", "②")
-    s.box(1010, 520, 280, 150, "Cooling fan", ["3010 fan in a shroud at", "the stack end (2 mm gaps)", "5 V from the LED buck"], "new", "①")
+    s.box(670, 520, 300, 150, "LED strip", ["16 px, 4 per arm", "phase 1: ESC 3.3 V pad,", "data direct"], "new", "②")
+    s.box(1010, 520, 280, 150, "Cooling fan", ["3010 fan in a shroud at", "the stack end (2 mm gaps)", "phase 1: 5 V on VOXL J2"], "new", "①")
     s.box(1330, 520, 230, 150, "Livox Mid-360", ["265 g · deferred", "does not fit: ESC", "rated < 750 g total"], "grey", "④", dash=True)
     s.arrow([(520, 410), (520, 520)], "mod", "3-phase × 4", (575, 470), lanchor="middle")
     s.arrow([(700, 410), (760, 520)], "mod", "solder pads", (775, 465))
     s.arrow([(1070, 420), (1120, 520)], "mod", "cools", (1120, 470))
-    s.note(56, 720, 1504, 100, ["⚠  The ESC that would power the LEDs is also the VOXL 2's power supply",
+    s.note(56, 720, 1504, 100, ["⚠  The ESC that powers the LEDs (phase 1) is also the VOXL 2's power supply",
                                "A full-white strip command could brown out the flight computer. Cap the LED current in "
                                "software, not just the brightness setting."])
     s.save(path)

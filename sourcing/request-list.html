@@ -1,0 +1,320 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Purchase request — Starling 2 Max phase 1 and Jetson Orin NX</title>
+<style>
+@page { size: A4 landscape; margin: 9mm 11mm 8mm; }
+body { font-family: "DejaVu Sans", Arial, sans-serif; font-size: 7.0pt; color: #1b1f24; line-height: 1.2; }
+h1, h2 { font-size: 13pt; margin: 0 0 1.5mm; color: #1f4e79; border: 0; padding: 0; }
+h2 { break-before: page; }
+p, ul { margin: 1mm 0; }
+li { margin: 0.3mm 0; }
+table { border-collapse: collapse; width: 100%; margin: 1.5mm 0; }
+th, td { border: 1px solid #c9d1db; padding: 0.55mm 1.2mm; vertical-align: top; text-align: left; }
+th { background: #eef2f6; }
+tr { break-inside: avoid; }
+tr.alt td { background: #f7f8fa; color: #4a5260; font-size: 6.9pt; }
+tr.alt td:first-child { text-align: right; padding-left: 3mm; }
+tr.group td { background: #eef2f6; font-weight: bold; padding-top: 1.2mm; }
+tr.sum td { border-left-color: transparent; border-right-color: transparent; }
+tr.sum td:nth-last-child(-n+3) { border-left-color: #c9d1db; border-right-color: #c9d1db; }
+table { table-layout: fixed; }
+th, td { box-sizing: border-box; }
+code { font-family: "DejaVu Sans Mono", monospace; font-size: 7pt; }
+a { color: #1f5fa8; text-decoration: none; }
+tr.incart td { background: #e6f4ea; }
+.cart { display: inline-block; background: #1e7e34; color: #fff; font-weight: bold; font-size: 6.4pt; padding: 0 1.2mm; border-radius: 1mm; margin-right: 1mm; }
+table:first-of-type th:nth-child(1) { width: 2.5%; } table:first-of-type th:nth-child(2) { width: 24%; } table:first-of-type th:nth-child(3) { width: 26%; } table:first-of-type th:nth-child(4) { width: 5.5%; } table:first-of-type th:nth-child(5) { width: 7.5%; } table:first-of-type th:nth-child(6) { width: 6.5%; } table:first-of-type th:nth-child(7) { width: 28%; }
+table:last-of-type th:nth-child(1) { width: 2.5%; } table:last-of-type th:nth-child(2) { width: 28%; } table:last-of-type th:nth-child(3) { width: 17%; } table:last-of-type th:nth-child(4) { width: 4%; } table:last-of-type th:nth-child(5) { width: 8.5%; } table:last-of-type th:nth-child(6) { width: 8%; } table:last-of-type th:nth-child(7) { width: 7%; } table:last-of-type th:nth-child(8) { width: 25%; }
+</style></head><body>
+<h1>Purchase request, order 1 — Starling 2 Max phase 1 (LED strip + cooling fan)</h1>
+<p>Prepared 2026-10-27, updated 2026-10-30. SGD; DigiKey and AliExpress prices <strong>exclude GST</strong> (added at checkout), Sun-Light prices as listed. <strong>Both orders together ≈ S$208.87</strong> (order 1 ≈ 154.35, order 2 ≈ 54.52), plus DigiKey shipping if that order stays under S$60. Quantities cover <strong>both</strong> drones. Background: MODIFICATIONS.md §Phases.
+<strong>Sim Lim Tower first, any shop there</strong> (itemised receipt for the claim); DigiKey only where no Tower shop has the part. <strong>↳ rows are alternatives to the item above, not requested.</strong> Green <span class="cart">IN CART</span> rows are already in my AliExpress cart.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Item</th>
+<th>Source · part no.</th>
+<th>Qty</th>
+<th>Unit</th>
+<th>Line</th>
+<th>Stock · notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="group"><td colspan="7"><strong>Online</strong> — no Sim Lim Tower shop can guarantee the chip</td></tr>
+<tr>
+<td>1</td>
+<td>WS2812 strip, 2020 LEDs, 3.5 mm wide: 5 × 10-LED pieces (50 mm), 1.0 mm 3-pin leads. <strong>Lists "Voltage: 3.3-5V"</strong></td>
+<td>AliExpress, SoloGood Store, <a href="https://www.aliexpress.com/item/1005002829050513.html">item 1005002829050513</a> (colleague's pick; variant "5pcs 10 lights")</td>
+<td>1 lot</td>
+<td>21.45</td>
+<td>21.45</td>
+<td>Only listing found that states 3.3 V (title says 5 V, chip not named): phase 1 tests it on the 3.3 V pad. 50 LEDs; both drones need 32. Normal price; new-shopper 13.03 (max 1). Free shipping, 6–14 Nov</td>
+</tr>
+<tr class="alt">
+<td>↳</td>
+<td>Addressable LED strip, RGBW, 60 LED/m, 5 mm wide, 1 m · Adafruit 4914</td>
+<td>DigiKey SG <a href="https://www.digikey.sg/en/products/detail/adafruit-industries-llc/4914/14552181">1528-4914-ND</a> · Mouser SG 485-4914</td>
+<td>1</td>
+<td>30.11</td>
+<td>—</td>
+<td><strong>DigiKey sold out</strong> (30 Oct, restock ~27 Nov); Mouser SG ≈ 30.51. SK6812, rated 5 V</td>
+</tr>
+<tr class="alt incart">
+<td>↳</td>
+<td><span class="cart">IN CART</span> WS2812B strip, 2020 LEDs, <strong>5 mm wide</strong>, 60 LED/m, 1 m</td>
+<td>AliExpress, BST Xnbada LED Strip Store, <a href="https://www.aliexpress.com/item/1005006751909247.html">item 1005006751909247</a></td>
+<td>1</td>
+<td>6.64</td>
+<td>—</td>
+<td>In my AliExpress cart (29 Oct), not checked out. 4.9 ★ (48); free shipping. Listed as 5 V only</td>
+</tr>
+<tr class="alt incart">
+<td>↳</td>
+<td><span class="cart">IN CART</span> WS2812B strip, 5050 LEDs, ~10 mm wide, 60 LED/m, 1 m · BTF-LIGHTING</td>
+<td>AliExpress, BTF-LIGHTING Official Store, <a href="https://www.aliexpress.com/item/2036819167.html">item 2036819167</a> (WS2812B White PCB, 1m 60 IP30)</td>
+<td>1</td>
+<td>8.59</td>
+<td>—</td>
+<td>In my AliExpress cart (29 Oct), not checked out. 4.8 ★ (864); free shipping. Listed as 5 V only</td>
+</tr>
+<tr class="alt">
+<td>↳</td>
+<td>WS2812B strip, 5050 LEDs, 30 LED/m</td>
+<td>Sun-Light Electronics, Sim Lim Tower #03-09</td>
+<td>2 m</td>
+<td>5.50/m</td>
+<td>—</td>
+<td>Chip version unknown; only 2 LEDs per arm; 10 mm wide</td>
+</tr>
+<tr class="group"><td colspan="7"><strong>Sim Lim Tower, any shop</strong> — in stock online at Sun-Light #03-09 (29 Oct), the only Tower shop with an online catalogue</td></tr>
+<tr>
+<td>2</td>
+<td>Resistor 330 Ω, 0.5 W, 5 %, through-hole (LED data line)</td>
+<td>Sun-Light, "Resistor 0.5W 5% 330 Ω" (id 6413)</td>
+<td>10</td>
+<td>0.03</td>
+<td>0.30</td>
+<td>Slightly larger body than ¼ W; same job. DigiKey alt: <a href="https://www.digikey.sg/en/products/detail/stackpole-electronics-inc/CF14JT330R/1741399">CF14JT330RCT-ND</a>, 0.037</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Capacitor 100 nF (0.1 µF) ceramic, leaded, 25 V (fan noise)</td>
+<td>Sun-Light, "MLCC – leaded 0.1UF 25V" (id 6093)</td>
+<td>10</td>
+<td>0.20</td>
+<td>2.00</td>
+<td>25 V is ample on 5 V. DigiKey alt: <a href="https://www.digikey.sg/en/products/result?keywords=FG28X7R1H104KNT06">445-173588-1-ND</a>, 0.213</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Kapton tape, 12 mm × 30 m</td>
+<td>Sun-Light, "Kapton tape 5/12/24/48 mm (30 m)" (id 4438)</td>
+<td>1</td>
+<td>7.00</td>
+<td>7.00</td>
+<td>Ask for the 12 mm width</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Heat-shrink assortment, 580 pcs</td>
+<td>Sun-Light, "580pcs heat shrink sleeving tube assortment kit" (id 6503)</td>
+<td>1</td>
+<td>16.90</td>
+<td>16.90</td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td>Silicone wire, 30 AWG</td>
+<td>Sun-Light, "Heat resistant flexible silicone wire 30AWG" (id 6243)</td>
+<td>1</td>
+<td>20.00</td>
+<td>20.00</td>
+<td>Spec is 26 AWG (Hobby Square, Sim Lim Square, not priced); 30 AWG is acceptable for the LED current</td>
+</tr>
+<tr class="group"><td colspan="7"><strong>Sim Lim Tower first, ask around</strong> (B1: Continental #B1-25, Davjones #B1-47/11; J.C.W. for fans; Sun-Light #03-09) — <strong>DigiKey if no shop has it</strong>, budgeted at its price</td></tr>
+<tr>
+<td>7</td>
+<td>Cooling fan, 30 × 30 × 10 mm, <strong>5 V</strong>, 2 wires, ≤ 0.15 A, ball or fluid bearing (not plain sleeve)</td>
+<td>Any Tower shop (J.C.W. and the B1 stalls sell fans). Sun-Light's listed 3010 is <strong>12 V</strong>: not that one. If none: DigiKey <a href="https://www.digikey.sg/en/products/detail/sunon-fans/MF30100V1-1000U-A99/10441403">MF30100V1-1000U-A99-ND</a> (Sunon)</td>
+<td>2</td>
+<td>10.48</td>
+<td>20.96</td>
+<td>DigiKey: 7,542 in stock (30 Oct). The Sunon is the reference part of the fan airflow model (5.5 CFM, 49.8 Pa)</td>
+</tr>
+<tr class="alt incart">
+<td>↳</td>
+<td><span class="cart">IN CART</span> Fan 3010, 5 V, dual ball bearing, 2 pins · Gdstime</td>
+<td>AliExpress, Shenzhen Gdstime Technology, <a href="https://www.aliexpress.com/item/1005011834899767.html">item 1005011834899767</a> (5V Dual Ball 2PIN, 2-pack)</td>
+<td>1 pack of 2</td>
+<td>13.71</td>
+<td>—</td>
+<td>In my AliExpress cart (29 Oct), not checked out. 4.8 ★ (18); delivery 4–6 Nov. No airflow/pressure figures</td>
+</tr>
+<tr class="alt">
+<td>↳</td>
+<td>Fan 3010, 5 V, dual ball / hydraulic · WINSINN</td>
+<td>AliExpress, <a href="https://www.aliexpress.us/item/3256803696877889.html">WINSINN 3010</a></td>
+<td>1 pack of 2</td>
+<td>1.46</td>
+<td>—</td>
+<td>Found 27 Oct. Price is suspicious: AliExpress shows the cheapest variant (maybe 12 V, sleeve bearing or a single unit)</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Fan lead for VOXL 2 <code>J2</code>: JST SH 1.0 mm 2-pin, pre-crimped wires</td>
+<td>Any Tower shop; or the FPV shops at Sim Lim Square. If none: DigiKey <a href="https://www.digikey.sg/en/products/result?keywords=A02SR02SR30K152B">455-3013-ND</a> (JST A02SR02SR30K152B, 152 mm, cut in half → 2 leads)</td>
+<td>2</td>
+<td>1.59</td>
+<td>3.18</td>
+<td>DigiKey: 2,020 in stock. Check the fit on <code>J2</code> (SM02B-SRSS-TB) before cutting; mark pin 1 = +5 V</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Capacitor 470 µF 16 V electrolytic, ≤ 8 mm dia. (LED supply)</td>
+<td>Any Tower shop (Sun-Light lists none above 47 µF). If none: DigiKey <a href="https://www.digikey.sg/en/products/detail/panasonic-electronic-components/EEU-FR1C471/2433528">P14394-ND</a> (Panasonic EEU-FR1C471)</td>
+<td>4</td>
+<td>0.97</td>
+<td>3.88</td>
+<td>DigiKey: 851 in stock</td>
+</tr>
+<tr>
+<td>10</td>
+<td>JST-SM 3-pin plug + receptacle pairs, with wires</td>
+<td>Any Tower shop (Sun-Light lists only the 2-pin pair, S$2.50). If none: DigiKey, Adafruit 1663</td>
+<td>3 pairs</td>
+<td>≈ 18.23</td>
+<td>≈ 18.23</td>
+<td>Budgeted at the online price: Lazada SG, 10 pairs with 15 cm wires, S$18.23 (ships from China, 29 Oct). DigiKey: 4-week lead time</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Propellers, Gemfan 7037-3</td>
+<td>Hobby Square, <strong>Sim Lim Square</strong> #02-60 (hobby shop)</td>
+<td>≥ 2 sets of 4</td>
+<td>≈ 18.00 / set</td>
+<td>≈ 36.00</td>
+<td>Estimate (≈ US$3.50 per prop; shop price not listed online). Or ModalAI MRP-D0012-1-00, online US$29.99 / 4</td>
+</tr>
+<tr class="group"><td colspan="7"><strong>Budget ≈ S$154.35</strong>: Sun-Light #2–6 46.20 + strip #1 23.38 incl. GST + DigiKey fallbacks #7–9 30.54 incl. GST (only what Sim Lim doesn't have) + estimates #10 18.23 and #11 36.00. DigiKey shipping is free only on orders over S$60, otherwise added at checkout</td></tr>
+</tbody>
+</table>
+<p>DigiKey "Quick add", only the fallbacks Sim Lim lacked: <code>MF30100V1-1000U-A99-ND, 2</code> · <code>455-3013-ND, 2</code> · <code>P14394-ND, 4</code> · <code>839-10-02226-ND, 2</code> (order 2's plug).
+<strong>From my AliExpress cart only the Seeed cooler (order 2 #1) is requested</strong>; the other cart items are ↳ alternatives. Phase 2 parts are <strong>not</strong> requested (only if phase 1 fails).</p>
+<h2>Purchase request, order 2 — Jetson Orin NX: replacement cooler and power plug</h2>
+<p>The lab's Orin NX (Yahboom carrier, a copy of NVIDIA's P3768 dev-kit carrier) boots and runs; its fan is dead (motor winding open, bearing free). The heatsink is the Orin NX <strong>module's own</strong> (not part of the carrier), and Seeed 110991904 is the same heatsink with its fan, so <strong>the heatsink + fan assembly is replaced like for like</strong>. No Sim Lim Tower shop lists it, and a matching bare fan (frameless, 5 V, 4-wire PWM, 3-hole bracket) is hard to source. The Jetson will ride on a robot dog, so its screw-terminal power plug is replaced too: Sim Lim Tower first, DigiKey if no shop has the right size.
+<strong>↳ rows are alternatives to the item above, not requested.</strong> Green <span class="cart">IN CART</span> rows are already in my AliExpress cart.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Item</th>
+<th>Source · part no.</th>
+<th>Qty</th>
+<th>Unit</th>
+<th>Shipping</th>
+<th>Total incl. GST</th>
+<th>Stock · notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class=" incart">
+<td>1</td>
+<td><span class="cart">IN CART</span> <strong>Seeed Studio 110991904</strong>, aluminium heatsink with fan for Jetson Orin NX / Orin Nano / Xavier NX module: 58 × 39 × 17 mm, 5 V PWM fan, 4-pin 1.25 mm plug; includes holder, 4 screws, thermal compound</td>
+<td>AliExpress, Seeedstudio AI Hardware Store, <a href="https://www.aliexpress.com/item/1005007378342834.html">item 1005007378342834</a></td>
+<td>1</td>
+<td>28.91</td>
+<td>3.09</td>
+<td>≈ <strong>34.88</strong></td>
+<td>In my AliExpress cart (29 Oct), not checked out. Only 2 left, delivery 4–13 Nov. Seeed's own store; priced in SGD, tax added at checkout</td>
+</tr>
+<tr class="alt">
+<td>↳</td>
+<td>Same part</td>
+<td>Seeed Studio direct, <a href="https://www.seeedstudio.com/Aluminum-Heatsink-with-Fan-for-Jetson-Orin-NX-Orin-Nano-Xavier-NX-Module-p-5633.html">seeedstudio.com p-5633</a></td>
+<td>1</td>
+<td><strong>US$</strong> 19.90 (USD, not converted)</td>
+<td>at checkout</td>
+<td>—</td>
+<td>"In stock" (29 Oct), but at Seeed's overseas warehouses (CN, US, DE), not in Singapore: shipping, delivery time and GST only appear at checkout, so the landed SGD cost is unknown</td>
+</tr>
+<tr class="alt">
+<td>↳</td>
+<td>Same part</td>
+<td>Mouser SG, Seeed 110991904</td>
+<td>1</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><strong>Backordered</strong> (29 Oct)</td>
+</tr>
+<tr class="alt">
+<td>↳</td>
+<td>"Aluminum Heatsink with Fan for Orin NX" (unbranded)</td>
+<td>AliExpress, Shop1105736034 Store, <a href="https://www.aliexpress.com/item/1005012727131573.html">item 1005012727131573</a></td>
+<td>1</td>
+<td>18.27</td>
+<td>3.24</td>
+<td>—</td>
+<td>994 available (29 Oct). Reuses Seeed's photo, but states 9 × 5 × 3 cm, not 58 × 39 × 17 mm: possibly a copy; fit unverified</td>
+</tr>
+<tr class="alt">
+<td>↳</td>
+<td>Larger Super-mode heatsink + fan, 59 × 51 × 30 mm</td>
+<td>DigiKey SG <a href="https://www.digikey.sg/en/products/detail/seeed-technology-co-ltd/100021109/28959918">1597-100021109-ND</a></td>
+<td>1</td>
+<td>34.15</td>
+<td>—</td>
+<td>—</td>
+<td>Out of stock until ~2 Feb 2027; the only Seeed Orin NX heatsink on DigiKey. element14 SG, Shopee SG and Lazada SG have no Orin NX cooler (29 Oct)</td>
+</tr>
+<tr class="alt incart">
+<td>↳</td>
+<td><span class="cart">IN CART</span> Fan only, Waveshare Orin-FAN-PWM, 5 V 4-wire PWM, with bracket and screws</td>
+<td>AliExpress, SpotPear Electronics, <a href="https://www.aliexpress.com/item/1005005431136430.html">item 1005005431136430</a> · <a href="https://www.amazon.sg/Waveshare-2PCS-Official-Speed-Adjustable-Compatible/dp/B0DK8Y23TN">Amazon.sg 2-pack</a> 61.35 incl. GST</td>
+<td>1</td>
+<td>15.60</td>
+<td>3.87</td>
+<td>—</td>
+<td>In my AliExpress cart (29 Oct), not checked out. Backup if the Seeed cooler sells out; reuses the old heatsink, fit unconfirmed</td>
+</tr>
+<tr>
+<td>2</td>
+<td>DC power plug <strong>5.5 × 2.5 mm</strong>, right angle, with <strong>wire leads</strong> (soldered, or into a lever connector; <strong>no screw terminal</strong>)</td>
+<td>Any Sim Lim Tower shop first. Sun-Light lists "DC plug R/A w 10cm cable" (id 6205), S$2.50, size not stated; buy only if 5.5 × 2.5 (its other DC parts are 2.1 mm). If none: DigiKey <a href="https://www.digikey.sg/en/products/detail/tensility-international-corp/10-02226/6412241">839-10-02226-ND</a> (Tensility 10-02226: moulded, 18 AWG, 7 A, 1.83 m, tinned; red = centre +)</td>
+<td>2</td>
+<td>9.01</td>
+<td>free over S$60, else at checkout</td>
+<td>≈ <strong>19.64</strong></td>
+<td>Budgeted at the DigiKey price. DigiKey: 7,338 in stock (29 Oct). One fitted, one spare</td>
+</tr>
+<tr class="alt incart">
+<td>↳</td>
+<td><span class="cart">IN CART</span> DC plug 5.5 × 2.5 mm, right angle, 18 AWG pigtail, 30 cm</td>
+<td>AliExpress, ALLiSHOP RF coaxial connector Store, <a href="https://www.aliexpress.com/item/1005009842534963.html">item 1005009842534963</a> (5.5x2.5mm, 5 pcs)</td>
+<td>1 pack of 5</td>
+<td>5.31</td>
+<td>2.66</td>
+<td>—</td>
+<td>In my AliExpress cart (29 Oct), not checked out. 4.8 ★ (25); delivery 4–6 Nov. Rated 12 V 5 A; check polarity with a meter</td>
+</tr>
+<tr class="sum">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><strong>Budget</strong></td>
+<td><strong>≈ 54.52</strong></td>
+<td>AliExpress + DigiKey (less if the plug comes from Sun-Light)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Notes</strong></p>
+<ul>
+<li><strong>Cooler, fitting:</strong> remove the old heatsink from the module, clean off the old paste (isopropyl alcohol), apply the supplied compound, mount the new unit with its holder and screws, and plug the fan into the carrier's fan header.</li>
+<li><strong>Power plug, why:</strong> the screw-terminal barrel plugs already bought loosen under vibration. A plug with its leads soldered or crimped at the factory doesn't; the right angle keeps it low against the board so vibration has less leverage on it.</li>
+<li><strong>Power plug, fit:</strong> 5.5 × 2.5 mm, centre-positive: the same size as the screw-terminal plugs it replaces and my laptop's port — take one to the shop to compare. The leads go to the existing XL4015 buck output (19.0 V), soldered and heat-shrunk or into the WAGO lever block, never a screw terminal. The jack has no lock, so the plug is still held only by friction: cable-tie the lead to the frame within ~5 cm of the jack, and optionally put a bead of silicone (RTV) across plug and jack.</li>
+</ul>
+</body></html>

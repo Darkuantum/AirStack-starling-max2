@@ -135,8 +135,7 @@ conn(T(5.2, 1.9), T(24.4, 7.0), "J5 · 120-pin B2B")
 conn(T(5.5, 27.6), T(28.4, 35.9), "J3 · 60-pin B2B")
 conn(T(28.8, 30.0), T(48.1, 36.4), "J19", exit="D")
 conn(T(49.2, 31.6), T(63.5, 36.4), "J10 · empty", unused=True, exit="D")
-conn(T(64.5, 26.2), T(71.2, 31.4), "J2", size=10.5, unused=True)
-text(*T(64.5, 39.5), "J2 · empty", 10, fill="#777", italic=True)
+conn(T(64.5, 26.2), T(71.2, 31.4), "J2", size=10.5)
 dot(*T(30.0, 34.6), 2.6, "#e00"); dot(*T(66.0, 27.4), 2.6, "#e00")
 
 # ---- VOXL 2 bottom face (faces down), x-ray: bottom drawing mirrored -------
@@ -244,8 +243,12 @@ box(540, 385, 240, 100, "RC receiver", [
     "Starling 1: ELRS · Starling 2: Ghost", "J19-11 RX ← receiver TX", "J19-10 TX → receiver RX (ELRS only)",
     "J19-1 +5 V (shared) · J19-12 GND"], C["uart"])
 
-# ---- fan: powered from the LED buck (scenario B), J2 stays empty --------
-box(888, 752, 165, 72, "① Fan (planned)", ["3010, shroud at stack end", "5 V · 2 wires · always on"], C["mod"], "7 4", 10.5, 13.5)
+# ---- fan, phase 1: on J2 ----------------------------------------------------
+box(745, 258, 205, 72, "① Fan — phase 1, on J2", ["3010, shroud at stack end", "5 V · 2 wires · 100 nF across · SH 2-pin"], C["mod"], "7 4", 10.5, 13.5)
+wire([(T(71.2, 28.8)[0] + 1, T(71.2, 28.8)[1]), (745, T(71.2, 28.8)[1])], C["mod"], 2.2, "7 4")
+
+# ---- phase 2, only if phase 1 fails (no wiring drawn) ------------------------
+box(888, 752, 165, 84, "Phase 2 (only if needed)", ["XT30 bus off BATT pads:", "LED → 5 V buck + 74HCT125", "fan → that buck, or fused 12/24 V"], "#777", "3 3", 10, 13)
 
 # ---- J3/J5 -> add-on board -------------------------------------------------
 rect(TX - 4, TY - 3, 70 * S + 8, 36 * S + 7, "none", C["b2b"], 1.8, rx=6, dash="6 4")
@@ -268,14 +271,12 @@ box(670, 588, 161, 136, "M0173 camera board", [
 for jj, yy in ((j6, 610), (j7, 690)):
     wire([(jj[2], (jj[1] + jj[3]) / 2), (650, (jj[1] + jj[3]) / 2), (650, yy), (670, yy)], C["b2b"], 2, "6 4")
 
-# ---- scenario B: buck + 74HCT125 feed the LED chain and the fan (planned) -
+# ---- LED, phase 1: straight from the ESC's pads (scenario A) ----------------
 BXB, BYB = 1125, 752
-box(BXB, BYB, 205, 106, "② 5 V buck + 74HCT125", ["buck: battery pads → 5.0 V", "OUT → 74HCT125 → 330 Ω → DIN", "VAUX not connected", "plugs: PH-4 in · SM-3 out · PH-2 fan"], C["mod"], "7 4", 10.5, 13.5)
+box(BXB, BYB, 205, 106, "② LED — phase 1, pads direct", ["VAUX 3.3 V → strip +", "⬇ OUT → 330 Ω → DIN", "GND → strip GND", "plug: JST-SM 3-pin"], C["mod"], "7 4", 10.5, 13.5)
+wire([(vpad[0] - 5, vpad[1]), (1092, vpad[1]), (1092, BYB + 30), (BXB, BYB + 30)], C["pwr"], 2, "7 4")   # 3.3 V
 wire([(opad[0] - 5, opad[1]), (1112, opad[1]), (1112, BYB)], C["mod"], 2.2, "7 4")          # data
-wire([(gpad[0] - 5, gpad[1]), (1102, gpad[1]), (1102, BYB)], C["gnd"], 2, "7 4")             # ground reference
-wire([(1076, 798), (BXB, 798)], C["gnd"], 2, "7 4")                                            # battery − in
-wire([(1060, 810), (BXB, 810)], C["pwr"], 2, "7 4")                                            # battery + in
-wire([(BXB, 780), (1053, 780)], C["pwr"], 2, "7 4")                                            # 5 V to fan
+wire([(gpad[0] - 5, gpad[1]), (1102, gpad[1]), (1102, BYB)], C["gnd"], 2, "7 4")             # ground
 sx, sy = 1140, 880
 wire([(sx + 20, BYB + 106), (sx + 20, sy - 5)], C["mod"], 2.2, "7 4")
 for arm in range(4):

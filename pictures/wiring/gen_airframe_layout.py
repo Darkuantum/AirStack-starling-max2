@@ -133,7 +133,7 @@ callout((14, 36), TXC, 300, ["Rear edge (yellow ticks)", "VOXL J4 + J9, ESC J1, 
 callout(((c0[0] + fx) / 2 + 4, (c0[1] + fy) / 2 + 3), TXC, 385,
         ["Arm: ~10 mm wide", f"~{L - 14:.0f} mm clear by photo scale", "(owner measured ~75 mm — re-check:",
          "at ≥ 100 mm, 6 px at 60/m fits)"], MOD)
-callout((-8, 0), TXC, 485, ["① Fan: 3010 in a shroud at one stack end", "powered from the LED buck (J2 stays empty)"], MOD)
+callout((-8, 0), TXC, 485, ["① Fan: 3010 in a shroud at one stack end", "phase 1: 5 V on VOXL 2 J2"], MOD)
 callout((-40, 20), TXC, 545, ["Battery: 2 × 2S 18650 packs", "XT30 each, wired in series (4S)"], "#3f7d1c")
 callout((4, 53), TXC, 605, ["Hi-res down camera"], "#2f6db5")
 callout((0, 80), TXC, 650, ["GNSS + mag on rear mast", "fitted, unused indoors"], "#555")

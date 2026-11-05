@@ -1,18 +1,21 @@
 # Printable parts-sourcing sheet
 
-`parts-sourcing.pdf`: 8 pages, A4, to carry to Sim Lim Tower (components) and Sim Lim Square (propellers).
-Quantities cover **both** drones.
+`parts-sourcing.pdf`: 10 pages, A4, to carry to Sim Lim Tower (components) and Sim Lim Square (propellers).
+Quantities cover **both** drones. Items are split into **phase 1 (buy now)** and **phase 2 (only if phase 1 fails)**;
+see [MODIFICATIONS.md §Phases](../docs/MODIFICATIONS.md#phases). Phase 2 cards carry a yellow badge.
 
 | Page | Contents |
 |---|---|
-| 1 | Shopping list with tick boxes and thumbnails, grouped by building; what to bring; why the buck module and chip |
+| 1 | Shopping list with tick boxes and thumbnails: phase 1 by building, then phase 2; what to bring |
 | 2 | 1 · LED strip |
-| 3 | 2 · Cooling fan (3010 square fan + backup blower) |
-| 4 | 3 · 5 V buck module · 4 · 74HCT125 level shifter |
-| 5 | 5 · resistors · 6 · capacitors (470 µF + 100 nF) · 7 · disconnect connectors (JST-PH 2/4-pin, JST-SM 3-pin) |
-| 6 | 8 · silicone wire · 9 · Kapton tape + heat-shrink |
-| 7 | 10 · Propellers (Sim Lim Square) |
-| 8 | Where to go: Tower and Square shops, prop and fan fallbacks |
+| 3 | 2 · Cooling fan (5 V 3010, for VOXL 2 `J2`) |
+| 4 | 3 · JST SH 2-pin plug for `J2` · 4 · resistors · 5 · capacitors (470 µF + 100 nF) |
+| 5 | 6 · silicone wire · 7 · Kapton tape + heat-shrink · 8 · JST-SM 3-pin LED connector |
+| 6 | 9 · Propellers (Sim Lim Square) |
+| 7 | Phase 2: 10 · 5 V buck module · 11 · 74HCT125 level shifter |
+| 8 | Phase 2: 12 · Peripheral power bus: XT30 pairs, 1-to-2 splitter, 20 AWG, JST-PH 2-pin (Sim Lim Square) |
+| 9 | Phase 2: 13 · PTC resettable fuses · 14 · fan alternatives (12 V / 24 V 3010 for the battery, blower) |
+| 10 | Where to go: Tower and Square shops, prop and fan fallbacks |
 
 Every item card has the same layout:
 - a photo;
@@ -34,7 +37,21 @@ google-chrome --headless=new --disable-gpu --no-pdf-header-footer \
 
 Check the page count afterwards (`pdfinfo parts-sourcing.pdf`): cards never split across pages, so an overfull page pushes a card onto an extra page.
 
-Specs come from `docs/MODIFICATIONS.md` (§① cooling, §② LED strip incl. scenario B, §③ propellers). If a spec changes there, change it here too. Shop details were web-sourced 2026-10-14/22, partly from a ~2-year-old directory: **call before travelling**.
+Specs come from `docs/MODIFICATIONS.md` (§① cooling, §② LED strip incl. scenario B, §③ propellers). If a spec changes there, change it here too. Shop details were web-sourced 2026-10-14/22, partly from a ~2-year-old directory: **call before travelling**. Sun-Light (#03-09) is the only Tower shop with an online catalogue (`sun-light.com.sg`); its stock notes on the cards were checked 2026-10-29.
+
+## Purchase request (for the supervisor / Concur claim)
+
+`request-list.pdf`: 2 pages, one table each. Page 1 is order 1 (the phase 1 drone parts), page 2 is order 2 (Jetson Orin NX cooler and power plug).
+**Sim Lim Tower first, any shop there**; DigiKey only where no Tower shop has the part, budgeted at the DigiKey price. The LED strip and the Jetson cooler are bought online. Shaded **↳** rows are alternatives to the item above, not requested. Start an item cell with `**IN CART**` and the build turns it into a green badge and tints the row: use it for items already in the owner's cart.
+Source text is `request-list.md` (`request-list.csv` is the spreadsheet copy, kept by hand). Rebuild, from this directory:
+
+```sh
+python3 build_request_pdf.py      # needs the `markdown` package
+google-chrome --headless=new --disable-gpu --no-pdf-header-footer \
+  --print-to-pdf=request-list.pdf "file://$PWD/request-list.html"
+```
+
+Check it is still 2 pages (`pdfinfo request-list.pdf`); if a table spills, shorten notes rather than shrinking the font further.
 
 ## Photo credits
 
@@ -48,6 +65,9 @@ Credits are printed under each photo; the source list is `img/CREDITS.tsv`.
 | `img/resistor.jpg` | oomlout, Wikimedia Commons, CC BY-SA 2.0 |
 | `img/capacitor-470uf.jpg` | Elcap, Wikimedia Commons, CC0 |
 | `img/conn-jst-ph.jpg` | Adafruit (product 4714) |
+| `img/xt30-splitter.jpg` | Pyrodrone (XT30 Parallel Adapter) |
+| `img/xt30-pigtail.jpg` | Rotor Riot (XT30 Pigtail) |
+| `img/ptc-fuse.jpg` | Shaddack, Wikimedia Commons, public domain |
 | `img/wire-silicone.jpg` | Adafruit (product 1970) |
 | `img/kapton-tape.jpg` | Jérôme, Wikimedia Commons, CC BY-SA 3.0 |
 | `img/ic-dip14.jpg` | Stefan Riepl, Wikimedia Commons, public domain |

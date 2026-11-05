@@ -68,15 +68,15 @@
 <text x='696.0' y='553.0' font-size='17' text-anchor='middle' font-weight='bold' fill='#fff' font-family='Helvetica, Arial, sans-serif'>②</text>
 <text x='720.0' y='554.0' font-size='19' text-anchor='start' font-weight='bold' fill='#b8860b' font-family='Helvetica, Arial, sans-serif'>LED strip</text>
 <text x='686.0' y='582.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>16 px, 4 per arm</text>
-<text x='686.0' y='603.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>own 5 V buck (+ fan)</text>
-<text x='686.0' y='624.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>data via 74HCT125</text>
+<text x='686.0' y='603.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>phase 1: ESC 3.3 V pad,</text>
+<text x='686.0' y='624.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>data direct</text>
 <rect x='1010' y='520' width='280' height='150' rx='12' fill='#fff3cd' stroke='#b8860b' stroke-width='2.2'/>
 <circle cx='1036' cy='547' r='15' fill='#b8860b'/>
 <text x='1036.0' y='553.0' font-size='17' text-anchor='middle' font-weight='bold' fill='#fff' font-family='Helvetica, Arial, sans-serif'>①</text>
 <text x='1060.0' y='554.0' font-size='19' text-anchor='start' font-weight='bold' fill='#b8860b' font-family='Helvetica, Arial, sans-serif'>Cooling fan</text>
 <text x='1026.0' y='582.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>3010 fan in a shroud at</text>
 <text x='1026.0' y='603.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>the stack end (2 mm gaps)</text>
-<text x='1026.0' y='624.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>5 V from the LED buck</text>
+<text x='1026.0' y='624.0' font-size='15' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>phase 1: 5 V on VOXL J2</text>
 <rect x='1330' y='520' width='230' height='150' rx='12' fill='#f1f1f1' stroke='#8a8a8a' stroke-width='2.2' stroke-dasharray='8 5'/>
 <circle cx='1356' cy='547' r='15' fill='#8a8a8a'/>
 <text x='1356.0' y='553.0' font-size='17' text-anchor='middle' font-weight='bold' fill='#fff' font-family='Helvetica, Arial, sans-serif'>④</text>
@@ -94,6 +94,6 @@
 <rect x='1096.4' y='457.0' width='47.2' height='19' rx='3' fill='#ffffff' opacity='0.92'/>
 <text x='1120.0' y='470.0' font-size='14' text-anchor='middle' font-weight='bold' fill='#b8860b' font-family='Helvetica, Arial, sans-serif'>cools</text>
 <rect x='56' y='720' width='1504' height='100' rx='10' fill='#ffe3e3' stroke='#c53030' stroke-width='1.6'/>
-<text x='74.0' y='750.0' font-size='17' text-anchor='start' font-weight='bold' fill='#c53030' font-family='Helvetica, Arial, sans-serif'>⚠  The ESC that would power the LEDs is also the VOXL 2's power supply</text>
+<text x='74.0' y='750.0' font-size='17' text-anchor='start' font-weight='bold' fill='#c53030' font-family='Helvetica, Arial, sans-serif'>⚠  The ESC that powers the LEDs (phase 1) is also the VOXL 2's power supply</text>
 <text x='74.0' y='775.0' font-size='17' text-anchor='start' font-weight='normal' fill='#14202e' font-family='Helvetica, Arial, sans-serif'>A full-white strip command could brown out the flight computer. Cap the LED current in software, not just the brightness setting.</text>
 </svg>

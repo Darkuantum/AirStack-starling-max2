@@ -99,7 +99,7 @@
 <line x1='470.0' y1='532.8' x2='897.0' y2='481.0' stroke='#b4b4b4' stroke-width='1.0' stroke-linecap='round' opacity='1'/>
 <circle cx='470.0' cy='532.8' r='3' fill='#e07b00'/>
 <text x='905.0' y='485.0' font-size='12.5' text-anchor='start' font-weight='bold' fill='#e07b00' font-family='Helvetica, Arial, sans-serif'>① Fan: 3010 in a shroud at one stack end</text>
-<text x='905.0' y='500.0' font-size='11.5' text-anchor='start' font-weight='normal' fill='#333' font-family='Helvetica, Arial, sans-serif'>powered from the LED buck (J2 stays empty)</text>
+<text x='905.0' y='500.0' font-size='11.5' text-anchor='start' font-weight='normal' fill='#333' font-family='Helvetica, Arial, sans-serif'>phase 1: 5 V on VOXL 2 J2</text>
 <line x1='432.0' y1='472.0' x2='897.0' y2='541.0' stroke='#b4b4b4' stroke-width='1.0' stroke-linecap='round' opacity='1'/>
 <circle cx='432.0' cy='472.0' r='3' fill='#3f7d1c'/>
 <text x='905.0' y='545.0' font-size='12.5' text-anchor='start' font-weight='bold' fill='#3f7d1c' font-family='Helvetica, Arial, sans-serif'>Battery: 2 × 2S 18650 packs</text>

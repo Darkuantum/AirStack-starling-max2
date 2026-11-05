@@ -19,8 +19,8 @@
 |---|---|---|
 | 2026-10-09 | Desk research on LEDs, cooling, props, board identity, LiDAR and AirStack integration. Vendor drawings copied into `pictures/modalai/` and `pictures/livox/` | The four workstreams scoped; the questions only the hardware could answer were listed |
 | 2026-10-14 | **ADB bench session on both aircraft**: `scripts/identify_drone.sh`, `probe_led_fan.sh`, thermal runs. Transcripts in `drone-backups/ident-*.txt` | Board, ESC, WiFi hardware, airframe revisions, cameras and software baselines settled; thermal cause found |
-| 2026-10-22 | Owner decisions and checks: services stay enabled; ~2 mm board gaps; partner build photos; Sim Lim Tower-only sourcing | Fan plan → shrouded 3010; LED 5 V option re-specified; sheet reworked |
 | 2026-10-20 | **Owner's hardware inspection**: connectors, the Starling 1 modem carrier, arm size, receivers. Onboard-compute research | Wiring confirmed; M0151 assumption overturned; ESC 750 g rating found, which rules out LiDAR on this airframe |
+| 2026-10-22 | Owner decisions and checks: services stay enabled; ~2 mm board gaps; partner build photos; Sim Lim Tower-only sourcing | Fan plan → shrouded 3010; LED 5 V option re-specified; sheet reworked. Same day, on a senior colleague's advice: **phased plan**, fewest parts first |
 
 ## Corrections log
 
@@ -48,7 +48,7 @@ Every belief that turned out wrong, so it isn't repeated.
 | More onboard compute needs a Jetson | The VOXL 2's CPU is roughly an Orin Nano's (the camera and VIO services use ~1.4 of its 8 cores). A Jetson (~170–200 g) is at or over the 750 g limit | Compute research | 10-20 |
 | Stop the camera and VIO services to fix the heat | **They stay enabled** (owner: they may be needed). Cooling has to come from a fan; `en_vio: false` stays as a flight-safety setting | Owner decision | 10-22 |
 | The fan is a 25 mm axial blowing onto the board | The boards are stacked with ~2 mm gaps, so air must go in from the side. Plan: a 3010 square fan in a shroud at the stack end (as a partner university does), blower as backup | Owner; partner photos; airflow model | 10-22 |
-| The LED strip "needs" 3.3 V | 3.3 V is just what the ESC pad gives. No addressable chip is rated for a 3.3 V supply; WS2812B v4+ reads 3.3 V data on a 5 V supply | Chip ratings ([Watterott](https://learn.watterott.com/kb/ws281x/)) | 10-22 |
+| The LED strip "needs" 3.3 V | 3.3 V is just what the ESC pad gives. WS2812B v4+ reads 3.3 V data on a 5 V supply; only the **V6** generation is rated for a 3.3 V supply (found 10-25; WS2812C corrected 10-27) | Chip ratings ([Watterott](https://learn.watterott.com/kb/ws281x/)) | 10-22 |
 | The 5 V option needs an XT30 Y-lead and an RC "BEC" | A generic 5 V buck module soldered to the ESC battery pads does the same, and is stocked by component shops | Sim Lim Tower sourcing | 10-22 |
 
 ---
@@ -345,7 +345,9 @@ Photos from a partner university's Starlings, shown to us 2026-10-22. Photos not
 
 ## LED supply voltage
 
-- **No common addressable LED is rated for a 3.3 V supply:** SK6812 3.5–5.5 V, WS281x 3.7–5.3 V, SK6805-EC15 3.7–5.5 V ([Watterott](https://learn.watterott.com/kb/ws281x/); [Electrokit](https://www.electrokit.com/en/led-smd5050-rgb-adresserbar-sk6812); [LCSC via Flux](https://www.flux.ai/lcsc/sk6805-ec15~wwta/files)). Running the strip from the ESC's 3.3 V pad is below spec. It often works, but blue and green dim first.
+- **Correction (2026-10-25, colleague's tip):** WorldSemi's **V6** generation *is* rated for a 3.3 V supply. Its family page lists WS2812B-2020-V6, WS2812B-MINI-V6 (3535), WS2812B-B-V6 (5050), WS2812B-4020-V6 and WS2812C at **3.3–5.5 V** ([WorldSemi WS2812 family](https://www.world-semi.com/ws2812-family/)), but that page is **not reliable** (next bullet). The WS2812B-2020-V6 datasheet: "3.3 V power supply is supported", VDD +3.3~+5.3 V absolute, VIH 0.55 × VDD, 12 mA per colour channel ([datasheet via TME](https://www.tme.com/Document/f57342b0dc3e7d573aa1f8b6b5942fcf/WS2812B-2020-V6_V1.2_EN.pdf)). That makes phase 1 in spec, with no margin below 3.3 V. The claim below holds for the older chips only.
+- **Correction (2026-10-27): the WS2812C is *not* rated for 3.3 V.** Both its datasheets say VDD **+3.7~+5.3 V**: WorldSemi's current V1.5 (2021-12-08, [world-semi.com](https://www.world-semi.com/web/userfiles/productfile/WS2812C_V1.5_EN.pdf)) and the 2019 WS2812C-2020 V1.0 ([SparkFun](https://cdn.sparkfun.com/assets/4/c/8/a/9/WS2812C-2020_Datasheet.pdf)). The family page's "3.3V-5.5V" for it contradicts WorldSemi's own datasheet. **Lesson: check the datasheet, not the family page.** Confirmed by datasheet: WS2812B-2020-V6, **WS2812B-B-V6** (5050; V1.1 CN: "静态功耗低于1μA，支持3.3V供电" (standby under 1 µA, 3.3 V supply supported), VDD +3.3~+5.3 V, VIH 0.55 × VDD, and DIN/DOUT "任意对调，不分方向" (freely swappable, no direction)) and **WS2812B-Mini-V6** (3535; "支持3.3V供电" (3.3 V supply supported), VDD +3.3~+5.3 V, VIH 0.55 × VDD, standby ≤ 1 µA; [LCSC C52941386](https://datasheet.lcsc.com/datasheet/pdf/dcdd06829203d6b8ea1111ef8ac67cca.pdf?productCode=C52941386)). The older **WS2812B-MINI-X1** (V1.1, 2022) is VDD 3.7–5.3 V, VIH 0.65 × VDD. **WS2812B-MINI-X1-V6** (2026-10-27 search): only on the family page and its detail page ("3.3V-5.5V"); the row's datasheet link is actually the **WS2812B-Mini-V3J** (VDD 3.7–5.3 V, VIH 2.7 V), so no datasheet; no distributor or strip found. The family page also links the 4020-V6 row to a WS2812C-4020 datasheet. **Lesson (owner caught it):** read the raw page and open every linked datasheet; a summarising fetch missed the 5050 V6 datasheet, the DIN/DOUT swap and the mismatched links. The WS2812C does draw only **5 mA per colour** (quiescent 0.5–0.6 mA), so 24 px at full white is ~0.36 A, inside the pad's limit.
+- **No common addressable LED is rated for a 3.3 V supply** (pre-V6): SK6812 3.5–5.5 V, WS281x 3.7–5.3 V, SK6805-EC15 3.7–5.5 V ([Watterott](https://learn.watterott.com/kb/ws281x/); [Electrokit](https://www.electrokit.com/en/led-smd5050-rgb-adresserbar-sk6812); [LCSC via Flux](https://www.flux.ai/lcsc/sk6805-ec15~wwta/files)). Running the strip from the ESC's 3.3 V pad is below spec. It often works, but blue and green dim first.
 - **WS2812B version 4 and later (WS2812B-Mini v2 and later) accept 3.3 V data on a 5 V supply** (high level ≥ 2.7 V) ([Watterott](https://learn.watterott.com/kb/ws281x/)). With one of those, a 5 V supply alone is enough, no level shifter. The version usually can't be checked at a shop counter, so the 74HCT125 stays as insurance.
 - **The LED data is not on the UART pads.** The colour packets ride the VOXL 2 ↔ ESC UART (`J18` ↔ `J1`). The ESC's ID0 microcontroller then generates the WS2812 signal on its own pin (PB6) to the separate `⬇ OUT` pad.
 
@@ -353,11 +355,33 @@ Photos from a partner university's Starlings, shown to us 2026-10-22. Photos not
 
 | Scenario | LED supply | Data | If the LED wiring shorts |
 |---|---|---|---|
-| A | ESC 3.3 V AUX pad | direct | only the AUX regulator collapses; but below every chip's supply rating |
-| **B (chosen)** | own 5 V buck from the battery; fan on it too | 74HCT125 | only the buck collapses |
+| **A (phase 1)** | ESC 3.3 V AUX pad | direct | only the AUX regulator collapses; but below every chip's supply rating |
+| B (phase 2) | own 5 V buck from the battery; fan on it too | 74HCT125 | only the buck collapses |
 | C | ESC main 5 V through a 0.5 A PTC fuse | 74HCT125 | fuse trips; the VOXL's rail may dip briefly |
 
-Boosting the 3.3 V pad to 5 V for fan + strip was ruled out: ~0.55 A from a 500–600 mA pad, more at fan start-up. **B was chosen by the owner** because it removes every dependency on the strip's chip version, the 3.3 V pad and a JST SH plug.
+**PTC sizing for scenario C** (WS2812B: ~20 mA per colour channel per LED at full brightness, 16 LEDs, ~1 mA/LED idle; fan 0.12 A; hold current derated to ~80 % for warm air around the stack; Bourns MF-R values via datasheet mirrors ([alldatasheet](https://www.alldatasheet.com/html-pdf/161241/BOURNS/MF-R/213/1/MF-R.html))):
+
+| Brightness cap (/255) | LEDs, full white | LED-only PTC (hold / trip) | LEDs + fan | Shared PTC (hold / trip) |
+|---|---|---|---|---|
+| 40 | ~170 mA | 0.25 / 0.5 A (MF-R025) | ~290 mA | 0.4 / 0.8 A (MF-R040) |
+| **80 (current)** | **~320 mA** | **0.5 / 1.0 A (MF-R050)**, 0.4 A minimum | **~440 mA** | **0.65 / 1.3 A (MF-R065)** |
+| 128 | ~500 mA | 0.65 / 1.3 A (MF-R065) | ~620 mA | 0.9 / 1.8 A (MF-R090) |
+| 255 (no cap) | ~980 mA | 1.35 / 2.7 A (MF-R135) | ~1.1 A | 1.6 / 3.2 A (MF-R160) |
+| Fan alone | 120 mA | — | — | 0.2 / 0.4 A (MF-R020) |
+
+- **Voltage drop** across the fuse: ~0.24 V for MF-R050 at 0.32 A; ~0.34 V for MF-R020 at the fan's 0.12 A. Both fine at 5 V.
+- **Raise the fuse if you raise the cap.**
+- **These fuses are slow:** the table shows seconds to trip at a few times the hold current. That's why a PTC limits damage but can't prevent a brief sag on a shared rail, and why B is preferred.
+- Littelfuse **RXEF0xx** parts are the same ratings under another name (RXEF050 = 0.5 A hold).
+
+**Peripheral power bus (2026-10-22).** To keep B from being a temporary fix, the battery tap is a dedicated bus: a 20 AWG pigtail from the ESC battery pads, soldered once, into an XT30 1-to-2 splitter. Branch 1 feeds the LED/fan buck; branch 2 is reserved for a future companion's own regulator. Each subsystem gets its own regulator, and the ESC's 5 V stays the VOXL 2's alone. That makes B the first module of the expansion plan rather than something to replace.
+
+Boosting the 3.3 V pad to 5 V for fan + strip was ruled out: ~0.55 A from a 500–600 mA pad, more at fan start-up. The owner first chose **B** because it removes every dependency on the strip's chip version, the 3.3 V pad and a JST SH plug.
+
+**Phased plan (2026-10-22, superseding "B now").** The owner's senior colleague advised against adding many parts up front. Phase 1 is the simplest wiring: the strip on the ESC's 3.3 V pad with data direct (A), and the 5 V fan straight on VOXL 2 `J2`. Both are accepted risks: the pad is below the LED chips' rated supply, and the fan's motor noise lands on the VOXL 2's own 5 V rail. Phase 2 (B, the bus, the PTCs) is bought only if a phase 1 test fails, and the LED and fan step up independently. Instructions and pass criteria: [MODIFICATIONS.md §Phases](../docs/MODIFICATIONS.md#phases).
+
+- **Fan on `J2`:** pin 2 is a low-side PWM switch, so only a **100 nF** ceramic goes across the fan; a bulk capacitor there would surge through the switch each time it turns on. Starling 2's SDK has no `fan_mode`, so whether its `J2` is on by default is unknown until a fan is plugged in.
+- **12 V fan off the raw battery** (the colleague's alternative): a 4S pack is 12–16.8 V, **40 % over** a plain 12 V rating when full; typical 12 V fans are specified to ~13.8 V. Use one whose range reaches ~17 V, or a **24 V** fan that starts at ≤ 12 V (in spec, slower). It needs the peripheral bus and a battery-voltage PTC (0.2 A hold, ≥ 30 V; MF-R is 60 V), and saves the buck only if the LEDs stay on the pad.
 
 ## Sim Lim Tower sourcing (2026-10-22)
 
